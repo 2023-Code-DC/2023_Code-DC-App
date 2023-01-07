@@ -11,5 +11,9 @@ void main() async {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: HomeScreen(),
+    theme: ThemeData(
+        textTheme: TextTheme(
+            bodyText1: TextStyle(color: Colors.white),
+            bodyText2: TextStyle(color: Colors.white))),
   ));
 }
