@@ -1,6 +1,6 @@
 # code_dc
 
-A new Flutter project.
+코드디씨 동아리 앱
 
 ## Getting Started
 
