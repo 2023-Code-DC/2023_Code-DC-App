@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "61156491550",
+    "project_id": "code-dc-2e246",
+    "storage_bucket": "code-dc-2e246.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61156491550:android:11056ffdbd31fbc6d8090f",
+        "android_client_info": {
+          "package_name": "com.CODEDC.CODEDCAPP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61156491550-392in347t3fvvq37s1jjnk011c8c4qn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvw8B1Im_WcJeEbRB2Rag6ABPM2k05qZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61156491550-392in347t3fvvq37s1jjnk011c8c4qn8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
