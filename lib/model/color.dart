@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DCColor {
-  static const Color backgroundcolor = Color.fromARGB(255, 13, 17, 23);
-  static const Color dcyellow = Color.fromARGB(255, 255, 200, 0);
+  static const Color backgroundcolor = Color.fromRGBO(30, 35, 44, 1);
+  static const Color dcyellow = Color.fromRGBO(255, 208, 41, 1);
   boldFontBlack(double fontsize) {
     return TextStyle(
         fontSize: fontsize,
