@@ -49,7 +49,6 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -68,12 +67,17 @@ class _AccountPageState extends State<AccountPage> {
                 print(widget.user);
                 UserData().addData(widget.user);
               },
-              child: Text("")),
+              child: Text("adddata")),
           ElevatedButton(
               onPressed: () {
                 UserData().getData(widget.user, "image").toString();
               },
-              child: Text("")),
+              child: Text("getdata")),
+          ElevatedButton(
+              onPressed: () {
+                widget.SignOut();
+              },
+              child: Text("로그아웃")),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
