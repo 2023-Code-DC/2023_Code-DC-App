@@ -2,10 +2,26 @@ import 'package:code_dc/loading/main_loading.dart';
 import 'package:code_dc/model/color.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
 
-class HomeScreen extends StatelessWidget {
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  // Optional clientId
+  // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
+  scopes: <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +42,15 @@ class HomeScreen extends StatelessWidget {
                   "동무를 찾고있었습네다.",
                   style: DCColor().boldFontBlack(30),
                 ),
-                Text("발신 -코드디씨-", style: DCColor().boldFontBlack(16)),
+                SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text("발신 -코드디씨-", style: DCColor().boldFontBlack(16)),
+                    ],
+                  ),
+                )
               ]),
               Container(
                 width: double.infinity,
