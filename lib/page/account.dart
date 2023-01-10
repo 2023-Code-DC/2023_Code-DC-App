@@ -24,7 +24,7 @@ class _AccountPageState extends State<AccountPage> {
   String imagePath = "";
   ImageProvider<Object> avatorImage() {
     if (!imageTF) {
-      return AssetImage("images/pepe.png");
+      return AssetImage("assets/images/pepe.png");
     } else {
       return NetworkImage(imagePath);
     }
