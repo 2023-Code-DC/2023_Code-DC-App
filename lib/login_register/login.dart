@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
     Widget Passwordfield = TextFormField(
       validator: (value) {
         if (value!.trim().isEmpty || value.length < 8) {
-          return "올바른 통과암호를 적으라우";
+          return "8글자 이상으로 적으라우 동무";
         }
       },
       key: const ValueKey(2),
@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
       decoration: const InputDecoration(
           filled: true,
           fillColor: Color.fromRGBO(247, 248, 249, 1),
-          hintText: "8글자 이상으로 적으라우 동무",
+          hintText: "통과 암호 (비밀번호)",
           hintStyle: TextStyle(
               fontSize: 15,
               fontFamily: "urbanist",
