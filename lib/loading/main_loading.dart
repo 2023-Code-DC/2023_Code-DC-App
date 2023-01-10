@@ -1,5 +1,5 @@
 import 'package:animations/animations.dart';
-import 'package:code_dc/login/login.dart';
+import 'package:code_dc/login_register/login.dart';
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/page/main_page.dart';
 import 'package:flutter/material.dart';
