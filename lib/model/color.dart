@@ -20,4 +20,20 @@ class DCColor {
         fontWeight: FontWeight.w600,
         color: Colors.white);
   }
+
+  loginGOregFontBlack(double fontsize) {
+    return TextStyle(
+        fontSize: fontsize,
+        fontFamily: "urbanist",
+        fontWeight: FontWeight.w700,
+        color: Colors.black);
+  }
+
+  blodFontgrey(double fontsize) {
+    return TextStyle(
+        fontSize: fontsize,
+        fontFamily: "urbanist",
+        fontWeight: FontWeight.w700,
+        color: Color.fromRGBO(106, 112, 124, 1));
+  }
 }
