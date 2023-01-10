@@ -29,6 +29,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     UserData().addData(widget.user);
+    print(widget.user);
   }
 
   @override
