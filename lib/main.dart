@@ -1,4 +1,5 @@
 import 'package:code_dc/loading/main_loading.dart';
+import 'package:code_dc/login_register/register.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -68,6 +69,12 @@ void main() async {
               type: PageTransitionType.fade,
               settings: settings,
             );
+          case '/register':
+            return PageTransition(
+                child: RegisterPage(),
+                type: PageTransitionType.rightToLeft,
+                duration: Duration(milliseconds: 500),
+                settings: settings);
           default:
             return null;
         }
