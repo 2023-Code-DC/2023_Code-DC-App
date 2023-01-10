@@ -73,7 +73,7 @@ void main() async {
             return PageTransition(
                 child: RegisterPage(),
                 type: PageTransitionType.rightToLeft,
-                duration: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 200),
                 settings: settings);
           default:
             return null;
