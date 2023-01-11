@@ -155,13 +155,11 @@ class ChoicePage extends StatelessWidget {
       ],
     ));
     return WillPopScope(
-      onWillPop: (() {
-        return Future(() => false);
-      }),
-      child: Scaffold(
-          body: user != null
-              ? MainPage(SignOut: SignOut, user: user)
-              : LoginPage()),
-    );
+        onWillPop: (() {
+          return Future(() => false);
+        }),
+        child: user != null
+            ? MainPage(SignOut: SignOut, user: user)
+            : LoginPage());
   }
 }
