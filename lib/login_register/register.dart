@@ -266,27 +266,29 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                      margin: EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                              color: Color.fromRGBO(232, 236, 244, 1),
-                              width: 2)),
-                      width: 45,
-                      height: 45,
-                      child: InkWell(
-                        onTap: (() {
-                          Navigator.pop(context);
-                        }),
-                        child: Center(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 40,
+                        height: 40,
+                        child: InkWell(
+                          onTap: (() {
+                            Navigator.pop(context);
+                          }),
                           child: Icon(
-                            Icons.chevron_left,
-                            size: 30,
+                            Icons.arrow_back,
+                            size: 36,
                           ),
                         ),
-                      )),
-                  welcometext,
+                      ),
+                      SizedBox(
+                        height: 14,
+                        width: 1,
+                      ),
+                      welcometext
+                    ],
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -333,7 +335,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Container(
                               color: Color.fromRGBO(198, 198, 198, 1),
                               height: 1,
-                              width: 140,
+                              width: 120,
                             ),
                             Text(
                               "또는",
@@ -342,7 +344,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Container(
                               color: Color.fromRGBO(198, 198, 198, 1),
                               height: 1,
-                              width: 140,
+                              width: 120,
                             )
                           ],
                         ),
