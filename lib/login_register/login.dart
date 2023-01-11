@@ -171,20 +171,24 @@ class _LoginPageState extends State<LoginPage> {
                     Passwordfield,
                     Column(
                       children: [
+                        SizedBox(
+                          width: 1,
+                          height: 5,
+                        ),
                         InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, '/register');
                           },
                           child: Text(
-                            "구성원 신청서",
-                            style: DCColor().loginGOregFontBlack(10),
+                            "당원 신청하기",
+                            style: DCColor().loginGOregFontBlack(14),
                           ),
                         ),
                         Container(
                           color: Colors.black,
                           height: 1,
-                          width: 58,
-                        )
+                          width: 78,
+                        ),
                       ],
                     )
                   ],
@@ -217,7 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                           Container(
                             color: Color.fromRGBO(198, 198, 198, 1),
                             height: 1,
-                            width: 140,
+                            width: 120,
                           ),
                           Text(
                             "또는",
@@ -226,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                           Container(
                             color: Color.fromRGBO(198, 198, 198, 1),
                             height: 1,
-                            width: 140,
+                            width: 120,
                           )
                         ],
                       ),
