@@ -72,8 +72,9 @@ void main() async {
           case '/register':
             return PageTransition(
                 child: RegisterPage(),
-                type: PageTransitionType.rightToLeft,
-                duration: Duration(milliseconds: 200),
+                type: PageTransitionType.leftToRightWithFade,
+                duration: Duration(milliseconds: 500),
+                reverseDuration: Duration(milliseconds: 500),
                 settings: settings);
           default:
             return null;
