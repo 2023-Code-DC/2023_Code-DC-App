@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -15,6 +16,13 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
+    emmmm() async {
+      final storage = new FlutterSecureStorage();
+
+      String? value = await storage.read(key: "login");
+      print(value);
+    }
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: SingleChildScrollView(
@@ -33,14 +41,14 @@ class _HomepageState extends State<Homepage> {
                 onPressed: (() {
                   UserAuthentication().SignOutWithGoogle();
                   setState(() {});
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) => HomeScreen())));
+                  Navigator.popAndPushNamed(context, "/homescreen");
                 }),
                 child: Text("로그아웃")),
             ElevatedButton(
                 onPressed: (() {
                   final _authentication = FirebaseAuth.instance.currentUser;
                   print(_authentication);
+                  emmmm();
                   setState(() {});
                 }),
                 child: Text("현재상태"))
