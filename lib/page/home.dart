@@ -1,4 +1,4 @@
-import 'package:code_dc/model/color.dart';
+import 'package:code_dc/HomeScreen.dart';
 import 'package:code_dc/model/login_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +33,8 @@ class _HomepageState extends State<Homepage> {
                 onPressed: (() {
                   UserAuthentication().SignOutWithGoogle();
                   setState(() {});
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) => HomeScreen())));
                 }),
                 child: Text("로그아웃")),
             ElevatedButton(
