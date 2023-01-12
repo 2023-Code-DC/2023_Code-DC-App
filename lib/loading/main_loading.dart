@@ -1,15 +1,7 @@
-import 'package:code_dc/loading/circular_loading.dart';
-import 'package:code_dc/login_register/login.dart';
-import 'package:code_dc/main.dart';
 import 'package:code_dc/model/color.dart';
-import 'package:code_dc/page/main_page.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'dart:async';
-import 'package:animations/animations.dart';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class MainLoadingPage extends StatefulWidget {
