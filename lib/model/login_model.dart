@@ -53,10 +53,13 @@ class UserAuthentication {
     // Once signed in, return the UserCredential
     String displayname = googleUser!.displayName.toString();
     String email = googleUser.displayName.toString();
+    var result =
+        await firestore.collection('userdata').doc(googleUser.id).get();
+    Navigator.popAndPushNamed(context, "/mainpage");
+    if (result.data() == null) {
+      UserData().firstData(googleUser);
+    }
 
-    UserData().firstData(googleUser);
-    Navigator.pushNamed(context, "/mainpage");
-    print(googleUser);
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
@@ -97,7 +100,7 @@ class UserAuthentication {
         email: email,
         password: password,
       );
-      Navigator.pushNamed(context, "/mainpage");
+      Navigator.popAndPushNamed(context, "/mainpage");
       await storage.write(key: "login", value: "device");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
