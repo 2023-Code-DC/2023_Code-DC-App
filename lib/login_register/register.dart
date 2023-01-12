@@ -1,6 +1,9 @@
 import 'package:code_dc/model/color.dart';
+import 'package:code_dc/model/dcfirestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -26,6 +29,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String emailtext = "";
   String passwordtext = "";
+  String nametext = "";
+  String chpasswordtext = "";
   late FocusNode emailFocusNode;
   late FocusNode pwFocusNode;
   late FocusNode chpwFocusNode;
@@ -48,20 +53,30 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     void _tryValidation() {
+      //동무되기 버튼 클릭
       final isValid = _formKey.currentState!.validate();
       if (isValid) {
-        _formKey.currentState!.save();
+        _formKey.currentState!.save(); //텍스트 폼필드가 다 정상이면 작동
+        print("됨");
+        print(nametext);
+        print(emailtext);
+        print(passwordtext);
+        UserData().DeviceAddData(nametext, nametext, emailtext, "none");
       }
     }
 
     Widget namefield = TextFormField(
       validator: (value) {
-        if (value!.trim().isEmpty || value.length < 10) {
-          return "똑바로 적으라우";
+        if (value!.trim().isEmpty || value.length > 10) {
+          return "10글자 아래로 똑바로 적으라우 ";
         }
       },
       key: const ValueKey(1),
-      onChanged: ((value) {}),
+      onChanged: ((value) {
+        setState(() {
+          nametext = value;
+        });
+      }),
       decoration: const InputDecoration(
           filled: true,
           fillColor: Color.fromRGBO(247, 248, 249, 1),
@@ -105,7 +120,11 @@ class _RegisterPageState extends State<RegisterPage> {
       validator: (value) =>
           EmailValidator.validate(value!) ? null : "올바른 전자우편을 적으라우",
       key: const ValueKey(2),
-      onChanged: ((value) {}),
+      onChanged: ((value) {
+        setState(() {
+          emailtext = value;
+        });
+      }),
       decoration: const InputDecoration(
           filled: true,
           fillColor: Color.fromRGBO(247, 248, 249, 1),
@@ -156,6 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
           passwordtext = value;
         });
       }),
+      obscureText: true,
       decoration: const InputDecoration(
           filled: true,
           fillColor: Color.fromRGBO(247, 248, 249, 1),
@@ -206,6 +226,7 @@ class _RegisterPageState extends State<RegisterPage> {
       },
       key: const ValueKey(4),
       onChanged: ((value) {}),
+      obscureText: true,
       decoration: const InputDecoration(
           filled: true,
           fillColor: Color.fromRGBO(247, 248, 249, 1),
@@ -329,40 +350,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8)))),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              color: Color.fromRGBO(198, 198, 198, 1),
-                              height: 1,
-                              width: 120,
-                            ),
-                            Text(
-                              "또는",
-                              style: DCColor().blodFontgrey(14),
-                            ),
-                            Container(
-                              color: Color.fromRGBO(198, 198, 198, 1),
-                              height: 1,
-                              width: 120,
-                            )
-                          ],
-                        ),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                backgroundColor: Colors.white,
-                                minimumSize: Size(105, 56),
-                                shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color:
-                                            Color.fromRGBO(218, 218, 218, 1)),
-                                    borderRadius: BorderRadius.circular(8))),
-                            onPressed: () {},
-                            child: Image.asset(
-                              "assets/images/google_logo.png",
-                              scale: 26,
-                            ))
                       ],
                     ),
                   )
