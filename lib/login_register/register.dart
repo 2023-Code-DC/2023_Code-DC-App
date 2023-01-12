@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
       if (isValid) {
         _formKey.currentState!.save(); //텍스트 폼필드가 다 정상이면 작동
         UserAuthentication()
-            .siginInWithDevice(context, nametext, emailtext, passwordtext);
+            .CreateWithDevice(context, nametext, emailtext, passwordtext);
       }
     }
 
