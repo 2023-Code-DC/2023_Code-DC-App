@@ -1,9 +1,6 @@
-import 'package:code_dc/loading/main_loading.dart';
 import 'package:code_dc/model/color.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
