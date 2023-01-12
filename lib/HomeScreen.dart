@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         width: double.infinity,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text(
@@ -43,15 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: DCColor().boldFontBlack(30),
                 ),
                 SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text("발신 -코드디씨-", style: DCColor().boldFontBlack(16)),
-                    ],
-                  ),
-                )
+                  width: 1,
+                  height: 6,
+                ),
+                Text("발신 -코드디씨-", style: DCColor().boldFontBlack(16))
               ]),
+              Container(
+                child: Image.asset(
+                  "assets/images/logo.png",
+                ),
+              ),
               Container(
                 width: double.infinity,
                 child: ElevatedButton(
