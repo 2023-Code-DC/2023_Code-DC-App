@@ -1,7 +1,9 @@
 import 'package:code_dc/model/color.dart';
+import 'package:code_dc/model/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -51,6 +53,11 @@ class _LoginPageState extends State<LoginPage> {
       final isValid = _formKey.currentState!.validate();
       if (isValid) {
         _formKey.currentState!.save();
+        print(emailtext);
+        print(passwordtext);
+        _pwController.text = "";
+        UserAuthentication()
+            .SiginInWithDevice(context, emailtext, passwordtext);
       }
     }
 
@@ -58,7 +65,11 @@ class _LoginPageState extends State<LoginPage> {
       validator: (value) =>
           EmailValidator.validate(value!) ? null : "올바른 전자우편을 적으라우",
       key: const ValueKey(1),
-      onChanged: ((value) {}),
+      onChanged: ((value) {
+        setState(() {
+          emailtext = value;
+        });
+      }),
       controller: _emailController,
       decoration: const InputDecoration(
           filled: true,
@@ -103,7 +114,11 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       key: const ValueKey(2),
-      onChanged: ((value) {}),
+      onChanged: ((value) {
+        setState(() {
+          passwordtext = value;
+        });
+      }),
       controller: _pwController,
       obscureText: true,
       decoration: const InputDecoration(
@@ -178,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/register');
+                            Navigator.pushNamed(context, '/registerpage');
                           },
                           child: Text(
                             "당원 신청하기",
