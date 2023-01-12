@@ -105,6 +105,7 @@ class _LoginPageState extends State<LoginPage> {
       key: const ValueKey(2),
       onChanged: ((value) {}),
       controller: _pwController,
+      obscureText: true,
       decoration: const InputDecoration(
           filled: true,
           fillColor: Color.fromRGBO(247, 248, 249, 1),
