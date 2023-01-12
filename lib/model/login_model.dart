@@ -1,6 +1,5 @@
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
-import 'package:code_dc/page/home.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -39,19 +38,39 @@ final InvalidEmail = SnackBar(
 class UserAuthentication {
   signInWithGoogle(BuildContext context) async {
     await storage.write(key: "login", value: "google");
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    String displayname = googleUser!.displayName.toString();
+    String email = googleUser.displayName.toString();
+
+    UserData().firstData(googleUser);
     Navigator.pushNamed(context, "/mainpage");
     print(googleUser);
-    return googleUser;
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Future<void> SignOutWithGoogle() async {
     final _authentication = FirebaseAuth.instance;
     String? logindata = await storage.read(key: 'login');
-    _authentication.signOut();
+    if (logindata == "device") {
+      _authentication.signOut();
+    } else {
+      _googleSignIn.disconnect();
+    }
     print(logindata);
+    print(_authentication);
+    print(_googleSignIn);
     await storage.delete(key: "login");
   }
 
