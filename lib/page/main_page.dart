@@ -13,8 +13,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key, required this.SignOut, required this.user});
-  final SignOut;
+  const MainPage({super.key, required this.user});
   final user;
   @override
   State<MainPage> createState() => _MainPageState();
@@ -28,7 +27,6 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    UserData().addData(widget.user);
     print(widget.user);
   }
 
@@ -41,10 +39,7 @@ class _MainPageState extends State<MainPage> {
           AnnouncementPage(),
           AskedPage(),
           UserCheckPage(),
-          AccountPage(
-            SignOut: widget.SignOut,
-            user: widget.user,
-          )
+          AccountPage()
         ]),
         bottomNavigationBar: BottomBar(
             selectedIndex: _selectedIndex, pageController: pageController));
