@@ -1,5 +1,9 @@
 import 'package:code_dc/loading/main_loading.dart';
+import 'package:code_dc/login_register/login.dart';
 import 'package:code_dc/login_register/register.dart';
+import 'package:code_dc/model/login_model.dart';
+import 'package:code_dc/page/main_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -9,6 +13,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
 GoogleSignInAccount? _currentUser;
+User? user = FirebaseAuth.instance.currentUser;
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
   // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
@@ -40,6 +45,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   print("앱이 시작됨");
+  print(user);
   _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
     //현재 사용자가 변경 될때 실행됨
     _currentUser = account;
@@ -57,10 +63,6 @@ void main() async {
           textTheme: TextTheme(
               bodyText1: TextStyle(color: Colors.white),
               bodyText2: TextStyle(color: Colors.white))),
-      routes: {
-        '/choice': (BuildContext context) =>
-            ChoicePage(user: _currentUser, SignOut: SignOutWithGoogle),
-      },
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/mainloadingpage':
@@ -69,10 +71,26 @@ void main() async {
               type: PageTransitionType.fade,
               settings: settings,
             );
-          case '/register':
+          case '/registerpage':
             return PageTransition(
                 child: RegisterPage(),
                 type: PageTransitionType.leftToRightWithFade,
+                duration: Duration(milliseconds: 500),
+                reverseDuration: Duration(milliseconds: 500),
+                settings: settings);
+          case '/loginpage':
+            return PageTransition(
+                child: LoginPage(),
+                type: PageTransitionType.fade,
+                duration: Duration(milliseconds: 500),
+                reverseDuration: Duration(milliseconds: 500),
+                settings: settings);
+          case '/mainpage':
+            return PageTransition(
+                child: MainPage(
+                  user: _currentUser,
+                ),
+                type: PageTransitionType.bottomToTop,
                 duration: Duration(milliseconds: 500),
                 reverseDuration: Duration(milliseconds: 500),
                 settings: settings);
