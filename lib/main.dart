@@ -46,15 +46,19 @@ void main() async {
   );
   print("앱이 시작됨");
   print(user);
-  _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
-    //현재 사용자가 변경 될때 실행됨
-    _currentUser = account;
-    if (_currentUser != null) {
-      _handleGetContact(_currentUser!);
-    }
-  });
-  _googleSignIn.signInSilently();
-  //이전에 인증된 사용자로 로그인 시도
+  if (user != null) {
+    print("자동로그인됨");
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
+      //현재 사용자가 변경 될때 실행됨
+      _currentUser = account;
+      if (_currentUser != null) {
+        _handleGetContact(_currentUser!);
+      }
+    });
+    _googleSignIn.signInSilently();
+    //이전에 인증된 사용자로 로그인 시도
+  }
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -90,7 +94,7 @@ void main() async {
                 child: MainPage(
                   user: _currentUser,
                 ),
-                type: PageTransitionType.bottomToTop,
+                type: PageTransitionType.fade,
                 duration: Duration(milliseconds: 500),
                 reverseDuration: Duration(milliseconds: 500),
                 settings: settings);
