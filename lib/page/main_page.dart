@@ -32,16 +32,21 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: DCColor.backgroundcolor,
-        body: PageView(controller: pageController, children: [
-          Homepage(),
-          AnnouncementPage(),
-          AskedPage(),
-          UserCheckPage(),
-          AccountPage()
-        ]),
-        bottomNavigationBar: BottomBar(
-            selectedIndex: _selectedIndex, pageController: pageController));
+    return WillPopScope(
+      onWillPop: () {
+        return Future(() => false);
+      },
+      child: Scaffold(
+          backgroundColor: DCColor.backgroundcolor,
+          body: PageView(controller: pageController, children: [
+            Homepage(),
+            AnnouncementPage(),
+            AskedPage(),
+            UserCheckPage(),
+            AccountPage()
+          ]),
+          bottomNavigationBar: BottomBar(
+              selectedIndex: _selectedIndex, pageController: pageController)),
+    );
   }
 }
