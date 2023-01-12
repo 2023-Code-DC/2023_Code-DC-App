@@ -259,7 +259,9 @@ class _LoginPageState extends State<LoginPage> {
                                   side: BorderSide(
                                       color: Color.fromRGBO(218, 218, 218, 1)),
                                   borderRadius: BorderRadius.circular(8))),
-                          onPressed: () {},
+                          onPressed: () {
+                            UserAuthentication().signInWithGoogle(context);
+                          },
                           child: Image.asset(
                             "assets/images/google_logo.png",
                             scale: 26,
