@@ -1,5 +1,6 @@
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
+import 'package:code_dc/model/login_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
@@ -57,11 +58,8 @@ class _RegisterPageState extends State<RegisterPage> {
       final isValid = _formKey.currentState!.validate();
       if (isValid) {
         _formKey.currentState!.save(); //텍스트 폼필드가 다 정상이면 작동
-        print("됨");
-        print(nametext);
-        print(emailtext);
-        print(passwordtext);
-        UserData().DeviceAddData(nametext, nametext, emailtext, "none");
+        UserAuthentication()
+            .siginInWithDevice(context, nametext, emailtext, passwordtext);
       }
     }
 
