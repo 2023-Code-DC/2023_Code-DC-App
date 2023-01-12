@@ -1,10 +1,7 @@
 import 'package:code_dc/model/color.dart';
-import 'package:code_dc/model/dcfirestore.dart';
 import 'package:code_dc/model/login_model.dart';
-
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

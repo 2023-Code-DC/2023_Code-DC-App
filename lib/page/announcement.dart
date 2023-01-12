@@ -1,7 +1,5 @@
-import 'package:code_dc/model/color.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
 
 class AnnouncementPage extends StatelessWidget {

@@ -1,8 +1,6 @@
-import 'package:code_dc/model/color.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class UserCheckPage extends StatelessWidget {
   const UserCheckPage({super.key});
