@@ -55,14 +55,12 @@ void main() async {
           textTheme: TextTheme(
               bodyText1: TextStyle(color: Colors.white),
               bodyText2: TextStyle(color: Colors.white))),
+      routes: {
+        '/homescreen': (BuildContext context) => HomeScreen(),
+        '/mainloadingpage': ((context) => MainLoadingPage())
+      },
       onGenerateRoute: (settings) {
         switch (settings.name) {
-          case '/mainloadingpage':
-            return PageTransition(
-              child: MainLoadingPage(),
-              type: PageTransitionType.fade,
-              settings: settings,
-            );
           case '/registerpage':
             return PageTransition(
                 child: RegisterPage(),
