@@ -1,12 +1,16 @@
-import 'package:animations/animations.dart';
+import 'package:code_dc/loading/circular_loading.dart';
 import 'package:code_dc/login_register/login.dart';
+import 'package:code_dc/main.dart';
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/page/main_page.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'dart:async';
 import 'package:animations/animations.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class MainLoadingPage extends StatefulWidget {
   const MainLoadingPage({super.key});
@@ -16,12 +20,19 @@ class MainLoadingPage extends StatefulWidget {
 }
 
 class _MainLoadingPageState extends State<MainLoadingPage> {
+  final storage = new FlutterSecureStorage();
+  dynamic userInfo;
+  _asyncMethod() async {
+    userInfo = await storage.read(key: 'login');
+  }
+
   @override
   void initState() {
     super.initState();
     Timer(Duration(milliseconds: 400), () {
       setState(() {
         _a = true;
+        _asyncMethod();
       });
     });
     Timer(Duration(milliseconds: 400), () {
@@ -46,7 +57,8 @@ class _MainLoadingPageState extends State<MainLoadingPage> {
     });
     Timer(Duration(milliseconds: 3850), () {
       setState(() {
-        Navigator.popAndPushNamed(context, "/choice");
+        Navigator.popAndPushNamed(
+            context, userInfo != null ? "/mainpage" : "/loginpage");
       });
     });
   }
@@ -126,40 +138,5 @@ class _MainLoadingPageState extends State<MainLoadingPage> {
         ),
       ),
     );
-  }
-}
-
-class ChoicePage extends StatelessWidget {
-  ChoicePage({super.key, required this.user, required this.SignOut});
-  final SignOut;
-  GoogleSignInAccount? user;
-
-  @override
-  Widget build(BuildContext context) {
-    var ang = Center(
-        child: Column(
-      children: [
-        ElevatedButton(
-            onPressed: (() {
-              Navigator.pop(context);
-            }),
-            child: Text("pop")),
-        Text(
-          "테스트 페이지 현재 뒤로가기 막음",
-          style: DCColor().boldFontBlack(20),
-        ),
-        Text(
-          user != null ? user!.displayName.toString() : "없음",
-          style: DCColor().boldFontBlack(20),
-        )
-      ],
-    ));
-    return WillPopScope(
-        onWillPop: (() {
-          return Future(() => false);
-        }),
-        child: user != null
-            ? MainPage(SignOut: SignOut, user: user)
-            : LoginPage());
   }
 }
