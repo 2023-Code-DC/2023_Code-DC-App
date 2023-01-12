@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final _authentication = FirebaseAuth.instance;
 final storage = new FlutterSecureStorage();
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
@@ -38,32 +37,27 @@ final InvalidEmail = SnackBar(
 );
 
 class UserAuthentication {
-  Future<UserCredential> signInWithGoogle() async {
+  signInWithGoogle(BuildContext context) async {
+    await storage.write(key: "login", value: "google");
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    Navigator.pushNamed(context, "/mainpage");
+    print(googleUser);
+    return googleUser;
   }
 
   Future<void> SignOutWithGoogle() async {
-    await storage.deleteAll();
-    String? value = await storage.read(key: "login");
-    print(value);
+    final _authentication = FirebaseAuth.instance;
+    String? logindata = await storage.read(key: 'login');
+    _authentication.signOut();
+    print(logindata);
+    await storage.delete(key: "login");
   }
 
   CreateWithDevice(BuildContext context, String username, String userEmail,
       String userPassword) async {
+    final _authentication = FirebaseAuth.instance;
     try {
       final newUser = await _authentication.createUserWithEmailAndPassword(
           email: userEmail, password: userPassword);
@@ -85,7 +79,7 @@ class UserAuthentication {
         password: password,
       );
       Navigator.pushNamed(context, "/mainpage");
-      await storage.write(key: "login", value: "true");
+      await storage.write(key: "login", value: "device");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(UserNotFound);
