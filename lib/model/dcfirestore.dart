@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 
 final firestore = FirebaseFirestore.instance;
 
@@ -14,14 +13,14 @@ class UserData {
     return result["image"];
   }
 
-  addData(User? user) async {
+  firstData(GoogleSignInAccount user) async {
     final userdata = {
-      "displayName": user!.displayName.toString(),
+      "displayName": user.displayName.toString(),
       "name": user.displayName.toString(),
       "email": user.email,
-      "image": user.photoURL != null ? user.photoURL.toString() : "none"
+      "image": user.photoUrl != null ? user.photoUrl.toString() : "none"
     };
-    firestore.collection("userdata").doc(user.uid).set(userdata);
+    firestore.collection("userdata").doc(user.id).set(userdata);
   }
 
   DeviceAddData(
