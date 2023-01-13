@@ -22,7 +22,7 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: Colors.white, width: 0.1)),
+        border: Border(top: BorderSide(color: Colors.white, width: 0.4)),
       ),
       child: BottomNavigationBar(
           backgroundColor: DCColor.backgroundcolor,
