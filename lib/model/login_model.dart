@@ -37,7 +37,9 @@ final InvalidEmail = SnackBar(
 
 class UserAuthentication {
   signInWithGoogle(BuildContext context) async {
+    User? user = FirebaseAuth.instance.currentUser;
     await storage.write(key: "login", value: "google");
+
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     // Obtain the auth details from the request
@@ -50,20 +52,15 @@ class UserAuthentication {
       idToken: googleAuth?.idToken,
     );
 
-    // Once signed in, return the UserCredential
-    String displayname = googleUser!.displayName.toString();
-    String email = googleUser.displayName.toString();
-    var result =
-        await firestore.collection('userdata').doc(googleUser.id).get();
-    Navigator.popAndPushNamed(context, "/mainpage");
-    if (result.data() == null) {
-      UserData().firstData(googleUser);
-    }
-
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    return await FirebaseAuth.instance
+        .signInWithCredential(credential)
+        .then((value) {
+      Navigator.popAndPushNamed(context, "/mainpage");
+      UserData().firstData();
+    });
   }
 
-  Future<void> SignOutWithGoogle() async {
+  SignOutWithGoogle(BuildContext context) async {
     final _authentication = FirebaseAuth.instance;
     String? logindata = await storage.read(key: 'login');
     if (logindata == "device") {
@@ -74,6 +71,12 @@ class UserAuthentication {
     print(logindata);
     print(_authentication);
     print(_googleSignIn);
+    try {
+      Navigator.pushReplacementNamed(context, "/homescreen");
+    } catch (e) {
+      print(e);
+    }
+
     await storage.delete(key: "login");
   }
 

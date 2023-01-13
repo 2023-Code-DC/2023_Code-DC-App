@@ -13,14 +13,15 @@ class UserData {
     return result["image"];
   }
 
-  firstData(GoogleSignInAccount user) async {
+  firstData() {
+    User? user = FirebaseAuth.instance.currentUser;
     final userdata = {
-      "displayName": user.displayName.toString(),
-      "name": user.displayName.toString(),
+      "displayName": user!.displayName,
+      "name": user.displayName,
       "email": user.email,
-      "image": user.photoUrl != null ? user.photoUrl.toString() : "none"
+      "image": user.photoURL
     };
-    firestore.collection("userdata").doc(user.id).set(userdata);
+    firestore.collection("userdata").doc(user.uid).set(userdata);
   }
 
   DeviceAddData(
