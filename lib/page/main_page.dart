@@ -34,13 +34,16 @@ class _MainPageState extends State<MainPage> {
       },
       child: Scaffold(
           backgroundColor: DCColor.backgroundcolor,
-          body: PageView(controller: pageController, children: [
-            Homepage(),
-            AnnouncementPage(),
-            AskedPage(),
-            UserCheckPage(),
-            AccountPage()
-          ]),
+          body: PageView(
+              controller: pageController,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                Homepage(),
+                AnnouncementPage(),
+                AskedPage(),
+                UserCheckPage(),
+                AccountPage()
+              ]),
           bottomNavigationBar: BottomBar(
               selectedIndex: _selectedIndex, pageController: pageController)),
     );
