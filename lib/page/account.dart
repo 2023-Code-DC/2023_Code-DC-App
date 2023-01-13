@@ -41,13 +41,8 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   void initState() {
-    super.initState();
     getdata();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+    super.initState();
   }
 
   @override
@@ -60,22 +55,6 @@ class _AccountPageState extends State<AccountPage> {
         width: double.infinity,
         height: size.height,
         child: Column(children: [
-          ElevatedButton(
-              onPressed: () {
-                print(user);
-                UserData().addData(user);
-              },
-              child: Text("adddata")),
-          ElevatedButton(
-              onPressed: () {
-                UserData().getData(user, "image").toString();
-              },
-              child: Text("getdata")),
-          ElevatedButton(
-              onPressed: () {
-                UserAuthentication().SignOutWithGoogle();
-              },
-              child: Text("로그아웃")),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
