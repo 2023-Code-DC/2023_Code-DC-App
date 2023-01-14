@@ -28,21 +28,22 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       pages: [
         //PageViewModel로 해도 되고 Widget 만들어서 해도 될듯?
         PageViewModel(
-          title: "Title!",
-          body: "This is body!\n" "first page!!",
-          image: Image.asset('assets/images/pepe.png'),
+          title: "개발자를 꿈꾸고 계신가요?",
+          body: "코드디씨는 교내 개발동아리로 재학생이라면\n 누구나 지원할 수 있습니다.",
+          image: Image.asset('assets/images/boarding1.png'),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
-          title: "Title!",
-          body: "This is body!\n" "second page!!",
-          image: Image.asset('assets/images/pepe.png'),
+          title: "코드디씨의 운영방향",
+          body:
+              "기초향상 -> 개인 과제 -> 팀 프로젝트 순으로\n기초적인 프로그래밍 실력을 학습 한 이후\n실제 프로젝트를 진행합니다.",
+          image: Image.asset('assets/images/boarding2.png'),
           decoration: getPageDecoration(),
         ),
         PageViewModel(
-          title: "Title!",
-          body: "This is body!\n" "third page!!",
-          image: Image.asset('assets/images/pepe.png'),
+          title: "류재희를 알고계신가요?",
+          body: "진짜 굉장할껄요?",
+          image: Image.asset('assets/images/boarding3.png'),
           decoration: getPageDecoration(),
         ),
       ],
@@ -50,9 +51,13 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       onDone: () {
         Navigator.of(context).pushReplacementNamed("/mainpage");
       }, //done을 누르면 실행되는거(마지막 페이지에서 나옴)
-      next: const Icon(Icons.arrow_forward), //Next 버튼 아이콘으로 됨
-      showSkipButton: true, //스킵버튼 True로 활성화
-      skip: const Text("Skip"), //스킵버튼 문구 지정
+      globalBackgroundColor: Color.fromRGBO(30, 35, 44, 1),
+      next: const Text("다음"), //Next 버튼 아이콘으로 됨
+      showSkipButton: false,
+      showBackButton: true,
+      back: const Text("이전"), //스킵버튼 문구 지정
+      dotsContainerDecorator: BoxDecoration(
+          border: Border(top: BorderSide(color: Colors.white, width: 0.8))),
       dotsDecorator: DotsDecorator(
         color: Colors.cyan,
         size: const Size(10, 10), //점 사이즈
@@ -62,16 +67,17 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
         activeColor: Colors.red, //밑에 활성화된 점 색상
       ),
-      curve: Curves.bounceOut, //페이지 넘김 효과
+      curve: Curves.ease, //페이지 넘김 효과
     );
   }
 
   PageDecoration getPageDecoration() {
     return const PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-      bodyTextStyle: TextStyle(fontSize: 18, color: Colors.blue),
+      titleTextStyle: TextStyle(
+          fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+      bodyTextStyle: TextStyle(fontSize: 18, color: Colors.white),
       imagePadding: EdgeInsets.only(top: 40),
-      pageColor: Colors.orange,
+      pageColor: Color.fromRGBO(30, 35, 44, 1),
     );
   }
 }
