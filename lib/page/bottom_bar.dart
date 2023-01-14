@@ -46,17 +46,23 @@ class _BottomBarState extends State<BottomBar> {
                 tooltip: "",
                 backgroundColor: DCColor.backgroundcolor),
             BottomNavigationBarItem(
-                icon: Icon(Icons.abc),
+                icon: Icon(widget.selectedIndex == 1
+                    ? Icons.notifications
+                    : Icons.notifications_outlined),
                 label: "c",
                 tooltip: "",
                 backgroundColor: DCColor.backgroundcolor),
             BottomNavigationBarItem(
-                icon: Icon(Icons.abc),
+                icon: Icon(widget.selectedIndex == 2
+                    ? Icons.help
+                    : Icons.help_outline),
                 label: "c",
                 tooltip: "",
                 backgroundColor: DCColor.backgroundcolor),
             BottomNavigationBarItem(
-                icon: Icon(Icons.abc),
+                icon: Icon(widget.selectedIndex == 3
+                    ? Icons.group
+                    : Icons.group_outlined),
                 label: "c",
                 tooltip: "",
                 backgroundColor: DCColor.backgroundcolor),
