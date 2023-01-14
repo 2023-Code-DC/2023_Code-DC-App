@@ -1,13 +1,5 @@
-import 'dart:math';
-
-import 'package:code_dc/model/color.dart';
-import 'package:code_dc/model/dcfirestore.dart';
-import 'package:code_dc/model/login_model.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AccountPage extends StatefulWidget {
@@ -19,24 +11,19 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   User? user = FirebaseAuth.instance.currentUser;
   final firestore = FirebaseFirestore.instance;
-  bool imageTF = false;
-  String imagePath = "";
+  var result;
+  bool page = false;
   ImageProvider<Object> avatorImage() {
-    if (!imageTF) {
+    if (result != null) {
       return AssetImage("assets/images/pepe.png");
     } else {
-      return NetworkImage(imagePath);
+      return NetworkImage(result["image"]);
     }
   }
 
-  getdata() async {
-    var result = await firestore.collection('userdata').doc(user!.uid).get();
-    imagePath = result["image"];
-    if (imagePath != "none") {
-      setState(() {
-        imageTF = true;
-      });
-    }
+  Future getdata() async {
+    result = await firestore.collection('userdata').doc(user!.uid).get();
+    return result == null ? null : "true";
   }
 
   @override
@@ -48,31 +35,47 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-        child: Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 0, 4.0, 0),
-      child: Container(
-        width: double.infinity,
-        height: size.height,
-        child: Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: avatorImage(),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(user!.displayName.toString()),
-                  Text(user!.email.toString())
-                ],
-              )
-            ],
-          )
-        ]),
-      ),
-    ));
+    return FutureBuilder(
+      future: getdata(),
+      builder: ((context, snapshot) {
+        if (snapshot.hasData) {
+          return SafeArea(
+              child: Padding(
+            padding: const EdgeInsets.fromLTRB(4.0, 0, 4.0, 0),
+            child: Container(
+              width: double.infinity,
+              height: size.height,
+              child: Column(children: [
+                ElevatedButton(
+                    onPressed: (() {
+                      print(user);
+                    }),
+                    child: Text("ㅁㄴㅇ")),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: avatorImage(),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(result["name"].toString()),
+                        Text(user!.email.toString())
+                      ],
+                    )
+                  ],
+                )
+              ]),
+            ),
+          ));
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      }),
+    );
   }
 }
