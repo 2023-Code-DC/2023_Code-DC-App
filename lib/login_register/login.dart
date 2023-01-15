@@ -1,7 +1,6 @@
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/login_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:email_validator/email_validator.dart';
 
 class LoginPage extends StatefulWidget {

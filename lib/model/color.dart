@@ -1,5 +1,3 @@
-import 'package:flutter/animation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DCColor {
@@ -34,6 +32,6 @@ class DCColor {
         fontSize: fontsize,
         fontFamily: "urbanist",
         fontWeight: FontWeight.w700,
-        color: Color.fromRGBO(106, 112, 124, 1));
+        color: const Color.fromRGBO(106, 112, 124, 1));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:code_dc/model/color.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -51,28 +52,33 @@ class _AccountPageState extends State<AccountPage> {
                       print(user);
                     }),
                     child: Text("ㅁㄴㅇ")),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                CircleAvatar(
+                  radius: 40,
+                  backgroundImage: avatorImage(),
+                ),
+                const SizedBox(
+                  width: 1,
+                  height: 10,
+                ),
+                Column(
                   children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: avatorImage(),
+                    Text(
+                      result["name"].toString(),
+                      style: DCColor().boldFontWhite(20),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(result["name"].toString()),
-                        Text(user!.email.toString())
-                      ],
-                    )
+                    Text(user!.email.toString(),
+                        style: DCColor().boldFontWhite(20))
                   ],
-                )
+                ),
+                Drawer()
               ]),
             ),
           ));
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
+          return const Center(
+            child: CircularProgressIndicator(
+              color: DCColor.dcyellow,
+            ),
           );
         }
       }),

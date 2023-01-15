@@ -1,9 +1,6 @@
-import 'package:code_dc/HomeScreen.dart';
 import 'package:code_dc/model/login_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Homepage extends StatefulWidget {
@@ -39,9 +36,8 @@ class _HomepageState extends State<Homepage> {
             ),
             ElevatedButton(
                 onPressed: (() {
-                  UserAuthentication().SignOutWithGoogle();
+                  UserAuthentication().SignOutWithGoogle(context);
                   setState(() {});
-                  Navigator.popAndPushNamed(context, "/homescreen");
                 }),
                 child: Text("로그아웃")),
             ElevatedButton(
@@ -51,7 +47,16 @@ class _HomepageState extends State<Homepage> {
                   emmmm();
                   setState(() {});
                 }),
-                child: Text("현재상태"))
+                child: Text("현재상태")),
+            ElevatedButton(
+                onPressed: (() async {
+                  final storage = new FlutterSecureStorage();
+                  await storage.delete(key: "first");
+                  String? value = await storage.read(key: "first");
+
+                  print(value);
+                }),
+                child: Text("온보딩 토큰 삭제"))
           ],
         ),
       )),
