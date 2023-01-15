@@ -72,7 +72,7 @@ class UserAuthentication {
     print(_authentication);
     print(_googleSignIn);
     try {
-      Navigator.pushReplacementNamed(context, "/homescreen");
+      Navigator.popAndPushNamed(context, "/homescreen");
     } catch (e) {
       print(e);
     }
