@@ -1,4 +1,4 @@
-import 'package:code_dc/model/dcfirestore.dart';
+import 'package:code_dc/model/color.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -47,25 +47,29 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           decoration: getPageDecoration(),
         ),
       ],
-      done: const Text("done"),
+      done: Text("완료", style: DCColor().boldFontWhite(18)),
       onDone: () {
         Navigator.of(context).pushReplacementNamed("/mainpage");
       }, //done을 누르면 실행되는거(마지막 페이지에서 나옴)
-      globalBackgroundColor: Color.fromRGBO(30, 35, 44, 1),
-      next: const Text("다음"), //Next 버튼 아이콘으로 됨
+      globalBackgroundColor: const Color.fromRGBO(30, 35, 44, 1),
+      next: Text("다음", style: DCColor().boldFontWhite(18)), //Next 버튼 아이콘으로 됨
       showSkipButton: false,
       showBackButton: true,
-      back: const Text("이전"), //스킵버튼 문구 지정
+      back: Text(
+        "이전",
+        style: DCColor().boldFontWhite(18),
+      ), //스킵버튼 문구 지정
       dotsContainerDecorator: BoxDecoration(
           border: Border(top: BorderSide(color: Colors.white, width: 0.8))),
       dotsDecorator: DotsDecorator(
-        color: Colors.cyan,
+        color: Colors.white,
         size: const Size(10, 10), //점 사이즈
         activeSize: const Size(22, 10), //현재 활성화된 점 사이즈
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        activeColor: Colors.red, //밑에 활성화된 점 색상
+
+        activeColor: DCColor.dcyellow, //밑에 활성화된 점 색상
       ),
       curve: Curves.ease, //페이지 넘김 효과
     );
