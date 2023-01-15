@@ -1,7 +1,7 @@
-import 'package:code_dc/model/login_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:code_dc/model/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'dart:async';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,6 +11,34 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  Timer? timer;
+  PageController controller = PageController(
+    initialPage: 0,
+  );
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(Duration(seconds: 4), (timer) {
+      int currentPage = controller.page!.toInt();
+      int nextPage = currentPage + 1;
+
+      if (nextPage > 4) {
+        nextPage = 0;
+      }
+      controller.animateToPage(nextPage,
+          duration: Duration(milliseconds: 400), curve: Curves.linear);
+    });
+  }
+
+  @override
+  void dispose() {
+    if (timer != null) {
+      timer!.cancel();
+    }
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     emmmm() async {
@@ -21,42 +49,30 @@ class _HomepageState extends State<Homepage> {
     }
 
     Size size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: SingleChildScrollView(
           child: Container(
-        height: size.height,
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "홈 화면",
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            ),
-            ElevatedButton(
-                onPressed: (() {
-                  UserAuthentication().SignOutWithGoogle(context);
-                  setState(() {});
-                }),
-                child: Text("로그아웃")),
-            ElevatedButton(
-                onPressed: (() {
-                  final _authentication = FirebaseAuth.instance.currentUser;
-                  print(_authentication);
-                  emmmm();
-                  setState(() {});
-                }),
-                child: Text("현재상태")),
-            ElevatedButton(
-                onPressed: (() async {
-                  final storage = new FlutterSecureStorage();
-                  await storage.delete(key: "first");
-                  String? value = await storage.read(key: "first");
-
-                  print(value);
-                }),
-                child: Text("온보딩 토큰 삭제"))
+            Container(
+              width: double.infinity,
+              height: 100,
+              child: PageView(
+                controller: controller,
+                children: [1, 2, 3, 4, 5]
+                    .map((e) => Container(
+                        color: Colors.red,
+                        child: Text(
+                          e.toString(),
+                          style: DCColor().boldFontWhite(30),
+                        )))
+                    .toList(),
+              ),
+            )
           ],
         ),
       )),
