@@ -3,6 +3,7 @@ import 'package:code_dc/model/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AccountPage extends StatefulWidget {
   AccountPage({super.key});
@@ -34,6 +35,7 @@ class _AccountPageState extends State<AccountPage> {
     super.initState();
   }
 
+  bool logoutbutton = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -59,7 +61,8 @@ class _AccountPageState extends State<AccountPage> {
                                           color: DCColor.backgroundcolor,
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(32.0),
+                                          padding:
+                                              const EdgeInsets.only(top: 20),
                                           child: Column(
                                             children: [
                                               Container(
@@ -75,18 +78,98 @@ class _AccountPageState extends State<AccountPage> {
                                                 height: 20,
                                                 width: 1,
                                               ),
-                                              Text('메뉴',
+                                              Text('메뉴 페이지 (문구 삭제예정)',
                                                   textAlign: TextAlign.center,
                                                   style: DCColor()
                                                       .boldFontWhite(20)),
                                               ElevatedButton(
+                                                  //로그아웃버튼
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        DCColor.backgroundcolor,
+                                                    shadowColor:
+                                                        Colors.transparent,
+                                                    elevation: 0,
+                                                    foregroundColor:
+                                                        Colors.transparent,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0)),
+                                                  ),
                                                   onPressed: (() {
                                                     UserAuthentication()
                                                         .SignOutWithGoogle(
                                                             context);
                                                     setState(() {});
                                                   }),
-                                                  child: Text("로그아웃")),
+                                                  child: Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.logout,
+                                                        color: Colors.white,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                        height: 50,
+                                                      ),
+                                                      Text(
+                                                        "로그아웃",
+                                                        style: DCColor()
+                                                            .boldFontWhite(20),
+                                                      )
+                                                    ],
+                                                  )),
+                                              ElevatedButton(
+                                                  //온보딩 다시보기
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        DCColor.backgroundcolor,
+                                                    shadowColor:
+                                                        Colors.transparent,
+                                                    elevation: 0,
+                                                    foregroundColor:
+                                                        Colors.transparent,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0)),
+                                                  ),
+                                                  onPressed: (() async {
+                                                    final storage =
+                                                        new FlutterSecureStorage();
+                                                    await storage.delete(
+                                                        key: "first");
+                                                    String? value =
+                                                        await storage.read(
+                                                            key: "first");
+
+                                                    print(value);
+                                                  }),
+                                                  child: Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons
+                                                            .dashboard_customize,
+                                                        color: Colors.white,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 10,
+                                                        height: 50,
+                                                      ),
+                                                      Text(
+                                                        "온보딩 페이지 다시보기",
+                                                        style: DCColor()
+                                                            .boldFontWhite(20),
+                                                      )
+                                                    ],
+                                                  )),
                                             ],
                                           ),
                                         ),
