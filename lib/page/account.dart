@@ -101,6 +101,7 @@ class _AccountPageState extends State<AccountPage> {
                                                                         0)),
                                                   ),
                                                   onPressed: (() {
+                                                    Navigator.pop(context);
                                                     UserAuthentication()
                                                         .SignOutWithGoogle(
                                                             context);
