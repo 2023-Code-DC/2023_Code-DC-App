@@ -1,4 +1,5 @@
 import 'package:code_dc/model/color.dart';
+import 'package:code_dc/model/dcfirestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
@@ -15,9 +16,19 @@ class _HomepageState extends State<Homepage> {
   PageController controller = PageController(
     initialPage: 0,
   );
+  var result = null;
+
+  ad() async {
+    var ad = await firestore.collection('image').doc("images").get();
+    setState(() {
+      result = ad;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    ad();
     timer = Timer.periodic(Duration(seconds: 4), (timer) {
       int currentPage = controller.page!.toInt();
       int nextPage = currentPage + 1;
@@ -64,12 +75,20 @@ class _HomepageState extends State<Homepage> {
               child: PageView(
                 controller: controller,
                 children: [1, 2, 3, 4, 5]
-                    .map((e) => Container(
-                        color: Colors.red,
-                        child: Text(
-                          e.toString(),
-                          style: DCColor().boldFontWhite(30),
-                        )))
+                    .map(
+                      (e) => Container(
+                        color: DCColor.backgroundcolor,
+                        child: result == null
+                            ? Text(
+                                "현재 null임",
+                                style: DCColor().boldFontWhite(30),
+                              )
+                            : Image.network(
+                                result["광고$e"],
+                                fit: BoxFit.fill,
+                              ),
+                      ),
+                    )
                     .toList(),
               ),
             )

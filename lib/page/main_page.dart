@@ -1,4 +1,5 @@
 import 'package:code_dc/model/color.dart';
+import 'package:code_dc/model/dcfirestore.dart';
 import 'package:code_dc/page/account.dart';
 import 'package:code_dc/page/asked.dart';
 import 'package:code_dc/page/bottom_bar.dart';
@@ -23,6 +24,7 @@ class _MainPageState extends State<MainPage> {
 
   Future em() async {
     onboarding = await storage.read(key: "first");
+
     return onboarding == null ? null : "true";
   }
 
@@ -45,10 +47,6 @@ class _MainPageState extends State<MainPage> {
         child: FutureBuilder(
           future: em(),
           builder: (context, snapshot) {
-            print("구분선");
-            print(snapshot.hasData);
-            print(snapshot.data.runtimeType);
-            print(snapshot.data);
             if (snapshot.hasData) {
               return Scaffold(
                   backgroundColor: DCColor.backgroundcolor,
