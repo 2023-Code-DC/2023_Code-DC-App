@@ -1,6 +1,7 @@
 import 'package:code_dc/loading/main_loading.dart';
 import 'package:code_dc/login_register/login.dart';
 import 'package:code_dc/login_register/register.dart';
+import 'package:code_dc/page/application.dart';
 import 'package:code_dc/page/main_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +88,13 @@ void main() async {
                 type: PageTransitionType.fade,
                 duration: Duration(milliseconds: 500),
                 reverseDuration: Duration(milliseconds: 500),
+                settings: settings);
+          case '/applicationpage':
+            return PageTransition(
+                child: ApplicationPage(),
+                type: PageTransitionType.rightToLeft,
+                duration: Duration(milliseconds: 200),
+                reverseDuration: Duration(milliseconds: 200),
                 settings: settings);
           default:
             return null;
