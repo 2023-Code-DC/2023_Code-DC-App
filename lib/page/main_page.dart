@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Scaffold(
-                  backgroundColor: DCColor.backgroundcolor,
+                  backgroundColor: DCColor.background,
                   body: PageView(
                       controller: pageController,
                       physics: NeverScrollableScrollPhysics(),

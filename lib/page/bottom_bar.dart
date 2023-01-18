@@ -25,13 +25,13 @@ class _BottomBarState extends State<BottomBar> {
         border: Border(top: BorderSide(color: Colors.white, width: 0.4)),
       ),
       child: BottomNavigationBar(
-          backgroundColor: DCColor.backgroundcolor,
+          backgroundColor: DCColor.background,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           currentIndex: widget.selectedIndex,
           selectedItemColor: DCColor.dcyellow,
-          unselectedItemColor: Colors.white,
+          unselectedItemColor: DCColor.gitcolor,
           enableFeedback: false,
           onTap: (value) {
             _onItemTapped(value);
@@ -39,40 +39,40 @@ class _BottomBarState extends State<BottomBar> {
           iconSize: 30,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(widget.selectedIndex == 0
-                    ? Icons.home
-                    : Icons.home_outlined),
-                label: "a",
-                tooltip: "",
-                backgroundColor: DCColor.backgroundcolor),
+              icon: Icon(
+                  widget.selectedIndex == 0 ? Icons.home : Icons.home_outlined),
+              label: "a",
+              tooltip: "",
+              backgroundColor: DCColor.gitcolor,
+            ),
             BottomNavigationBarItem(
                 icon: Icon(widget.selectedIndex == 1
                     ? Icons.notifications
                     : Icons.notifications_outlined),
                 label: "c",
                 tooltip: "",
-                backgroundColor: DCColor.backgroundcolor),
+                backgroundColor: DCColor.gitcolor),
             BottomNavigationBarItem(
                 icon: Icon(widget.selectedIndex == 2
                     ? Icons.help
                     : Icons.help_outline),
                 label: "c",
                 tooltip: "",
-                backgroundColor: DCColor.backgroundcolor),
+                backgroundColor: DCColor.gitcolor),
             BottomNavigationBarItem(
                 icon: Icon(widget.selectedIndex == 3
                     ? Icons.group
                     : Icons.group_outlined),
                 label: "c",
                 tooltip: "",
-                backgroundColor: DCColor.backgroundcolor),
+                backgroundColor: DCColor.gitcolor),
             BottomNavigationBarItem(
                 icon: Icon(widget.selectedIndex == 4
                     ? Icons.account_circle_sharp
                     : Icons.account_circle),
                 label: "c",
                 tooltip: "",
-                backgroundColor: DCColor.backgroundcolor)
+                backgroundColor: DCColor.gitcolor)
           ]),
     );
   }

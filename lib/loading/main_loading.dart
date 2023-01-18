@@ -119,7 +119,8 @@ class _MainLoadingPageState extends State<MainLoadingPage> {
                           animatedTexts: [
                             FadeAnimatedText('동무 어서오라우!',
                                 duration: Duration(milliseconds: 1700),
-                                textStyle: DCColor().boldFontBlack(24)),
+                                textStyle: DCColor()
+                                    .boldFontBlack(24, FontWeight.w600)),
                           ],
                         )
                       : SizedBox(),

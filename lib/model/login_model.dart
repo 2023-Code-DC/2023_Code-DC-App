@@ -15,23 +15,27 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 final Already = SnackBar(
-  backgroundColor: DCColor.backgroundcolor,
-  content: Text("이미 존재하는 전자우편이라우 동무", style: DCColor().boldFontWhite(20)),
+  backgroundColor: DCColor.gitcolor,
+  content: Text("이미 존재하는 전자우편이라우 동무",
+      style: DCColor().boldFontWhite(20, FontWeight.w600)),
   duration: Duration(seconds: 2),
 );
 final UserNotFound = SnackBar(
-  backgroundColor: DCColor.backgroundcolor,
-  content: Text("동무는 당원신청서를 작성하라우", style: DCColor().boldFontWhite(20)),
+  backgroundColor: DCColor.gitcolor,
+  content: Text("동무는 당원신청서를 작성하라우",
+      style: DCColor().boldFontWhite(20, FontWeight.w600)),
   duration: Duration(seconds: 2),
 );
 final WrongPassword = SnackBar(
-  backgroundColor: DCColor.backgroundcolor,
-  content: Text("동무 통과암호가 틀리다우", style: DCColor().boldFontWhite(20)),
+  backgroundColor: DCColor.gitcolor,
+  content: Text("동무 통과암호가 틀리다우",
+      style: DCColor().boldFontWhite(20, FontWeight.w600)),
   duration: Duration(seconds: 2),
 );
 final InvalidEmail = SnackBar(
-  backgroundColor: DCColor.backgroundcolor,
-  content: Text("동무 이메일이 틀리다우", style: DCColor().boldFontWhite(20)),
+  backgroundColor: DCColor.gitcolor,
+  content:
+      Text("동무 이메일이 틀리다우", style: DCColor().boldFontWhite(20, FontWeight.w600)),
   duration: Duration(seconds: 2),
 );
 

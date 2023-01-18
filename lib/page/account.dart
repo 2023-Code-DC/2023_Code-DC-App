@@ -58,7 +58,7 @@ class _AccountPageState extends State<AccountPage> {
                                     builder: (BuildContext context) {
                                       return Container(
                                         decoration: BoxDecoration(
-                                          color: DCColor.backgroundcolor,
+                                          color: DCColor.background,
                                         ),
                                         child: Padding(
                                           padding:
@@ -69,7 +69,7 @@ class _AccountPageState extends State<AccountPage> {
                                                 width: 50,
                                                 height: 5,
                                                 decoration: BoxDecoration(
-                                                    color: Colors.white,
+                                                    color: DCColor.gitcolor,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10)),
@@ -81,13 +81,14 @@ class _AccountPageState extends State<AccountPage> {
                                               Text('메뉴 페이지 (문구 삭제예정)',
                                                   textAlign: TextAlign.center,
                                                   style: DCColor()
-                                                      .boldFontWhite(20)),
+                                                      .boldFontBlack(
+                                                          20, FontWeight.w600)),
                                               ElevatedButton(
                                                   //로그아웃버튼
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                     backgroundColor:
-                                                        DCColor.backgroundcolor,
+                                                        DCColor.background,
                                                     shadowColor:
                                                         Colors.transparent,
                                                     elevation: 0,
@@ -111,7 +112,7 @@ class _AccountPageState extends State<AccountPage> {
                                                     children: [
                                                       Icon(
                                                         Icons.logout,
-                                                        color: Colors.white,
+                                                        color: DCColor.gitcolor,
                                                       ),
                                                       SizedBox(
                                                         width: 10,
@@ -120,7 +121,10 @@ class _AccountPageState extends State<AccountPage> {
                                                       Text(
                                                         "로그아웃",
                                                         style: DCColor()
-                                                            .boldFontWhite(20),
+                                                            .boldFontBlack(
+                                                                20,
+                                                                FontWeight
+                                                                    .w600),
                                                       )
                                                     ],
                                                   )),
@@ -129,7 +133,7 @@ class _AccountPageState extends State<AccountPage> {
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                     backgroundColor:
-                                                        DCColor.backgroundcolor,
+                                                        DCColor.background,
                                                     shadowColor:
                                                         Colors.transparent,
                                                     elevation: 0,
@@ -158,7 +162,7 @@ class _AccountPageState extends State<AccountPage> {
                                                       Icon(
                                                         Icons
                                                             .dashboard_customize,
-                                                        color: Colors.white,
+                                                        color: DCColor.gitcolor,
                                                       ),
                                                       SizedBox(
                                                         width: 10,
@@ -167,7 +171,10 @@ class _AccountPageState extends State<AccountPage> {
                                                       Text(
                                                         "온보딩 페이지 다시보기",
                                                         style: DCColor()
-                                                            .boldFontWhite(20),
+                                                            .boldFontBlack(
+                                                                20,
+                                                                FontWeight
+                                                                    .w600),
                                                       )
                                                     ],
                                                   )),
@@ -179,7 +186,7 @@ class _AccountPageState extends State<AccountPage> {
                               }),
                               icon: Icon(
                                 Icons.menu,
-                                color: Colors.white,
+                                color: DCColor.gitcolor,
                                 size: 30,
                               ))
                         ],
@@ -203,11 +210,15 @@ class _AccountPageState extends State<AccountPage> {
                             children: [
                               Text(
                                 result["name"].toString(),
-                                style: DCColor().boldFontWhite(20),
+                                style: DCColor()
+                                    .boldFontBlack(20, FontWeight.w600),
                               ),
                               Text(user!.email.toString(),
-                                  style: DCColor().boldFontWhite(20)),
-                              Text("해킹보안과", style: DCColor().boldFontWhite(20))
+                                  style: DCColor()
+                                      .boldFontBlack(20, FontWeight.w600)),
+                              Text("해킹보안과",
+                                  style: DCColor()
+                                      .boldFontBlack(20, FontWeight.w600))
                             ],
                           ),
                         ]),

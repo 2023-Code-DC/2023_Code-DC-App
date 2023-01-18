@@ -16,11 +16,11 @@ class _RegisterPageState extends State<RegisterPage> {
     children: [
       Text(
         "동무!",
-        style: DCColor().boldFontBlack(30),
+        style: DCColor().boldFontBlack(30, FontWeight.w600),
       ),
       Text(
         "처음온걸 환영합네다.",
-        style: DCColor().boldFontBlack(30),
+        style: DCColor().boldFontBlack(30, FontWeight.w600),
       ),
     ],
   );
@@ -337,10 +337,11 @@ class _RegisterPageState extends State<RegisterPage> {
                               }),
                               child: Text(
                                 "동무 되기",
-                                style: DCColor().boldFontWhite(15),
+                                style: DCColor()
+                                    .boldFontWhite(15, FontWeight.w600),
                               ),
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: DCColor.backgroundcolor,
+                                  backgroundColor: DCColor.gitcolor,
                                   minimumSize: Size(330, 56),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8)))),

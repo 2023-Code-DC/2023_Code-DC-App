@@ -16,11 +16,11 @@ class _LoginPageState extends State<LoginPage> {
     children: [
       Text(
         "동무!",
-        style: DCColor().boldFontBlack(30),
+        style: DCColor().boldFontBlack(30, FontWeight.w600),
       ),
       Text(
         "돌아온걸 환영합네다.",
-        style: DCColor().boldFontBlack(30),
+        style: DCColor().boldFontBlack(30, FontWeight.w600),
       ),
     ],
   );
@@ -47,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     void _tryValidation() {
       final isValid = _formKey.currentState!.validate();
       if (isValid) {
@@ -221,10 +222,11 @@ class _LoginPageState extends State<LoginPage> {
                             }),
                             child: Text(
                               "복귀하기",
-                              style: DCColor().boldFontWhite(15),
+                              style:
+                                  DCColor().boldFontWhite(15, FontWeight.w600),
                             ),
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: DCColor.backgroundcolor,
+                                backgroundColor: DCColor.gitcolor,
                                 minimumSize: Size(330, 56),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)))),
@@ -235,7 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                           Container(
                             color: Color.fromRGBO(198, 198, 198, 1),
                             height: 1,
-                            width: 120,
+                            width: size.width * 0.35,
                           ),
                           Text(
                             "또는",
@@ -244,7 +246,7 @@ class _LoginPageState extends State<LoginPage> {
                           Container(
                             color: Color.fromRGBO(198, 198, 198, 1),
                             height: 1,
-                            width: 120,
+                            width: size.width * 0.35,
                           )
                         ],
                       ),
@@ -252,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: ElevatedButton.styleFrom(
                               elevation: 0,
                               backgroundColor: Colors.white,
-                              minimumSize: Size(105, 56),
+                              minimumSize: Size(108, 56),
                               shape: RoundedRectangleBorder(
                                   side: BorderSide(
                                       color: Color.fromRGBO(218, 218, 218, 1)),
@@ -262,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Image.asset(
                             "assets/images/google_logo.png",
-                            scale: 26,
+                            scale: size.height * 0.03,
                           ))
                     ],
                   ),
