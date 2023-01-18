@@ -1,5 +1,6 @@
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
+import 'package:code_dc/page/application.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
@@ -170,10 +171,9 @@ class _HomepageState extends State<Homepage> {
                                     Size(size.width * 0.3, size.width * 0.06),
                                 backgroundColor: DCColor.dcyellow,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
+                                    borderRadius: BorderRadius.circular(8))),
                             onPressed: (() {
-                              print(size.height);
-                              print(size.width);
+                              Navigator.pushNamed(context, "/applicationpage");
                             }),
                             child: Center(
                                 child: Text(
