@@ -47,17 +47,22 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           decoration: getPageDecoration(),
         ),
       ],
-      done: Text("완료", style: DCColor().boldFontWhite(18)),
+      done: Text("완료", style: DCColor().boldFontWhite(18, FontWeight.w600)),
       onDone: () {
         Navigator.of(context).pushReplacementNamed("/mainpage");
       }, //done을 누르면 실행되는거(마지막 페이지에서 나옴)
       globalBackgroundColor: const Color.fromRGBO(30, 35, 44, 1),
-      next: Text("다음", style: DCColor().boldFontWhite(18)), //Next 버튼 아이콘으로 됨
+      next: Text("다음",
+          style:
+              DCColor().boldFontWhite(18, FontWeight.w600)), //Next 버튼 아이콘으로 됨
       showSkipButton: false,
       showBackButton: true,
+      baseBtnStyle: TextButton.styleFrom(
+        foregroundColor: Colors.black,
+      ),
       back: Text(
         "이전",
-        style: DCColor().boldFontWhite(18),
+        style: DCColor().boldFontWhite(18, FontWeight.w600),
       ), //스킵버튼 문구 지정
       dotsContainerDecorator: BoxDecoration(
           border: Border(top: BorderSide(color: Colors.white, width: 0.8))),
