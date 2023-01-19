@@ -35,4 +35,25 @@ class UserData {
     };
     firestore.collection("userdata").doc(user?.uid).set(userdata);
   }
+
+  firstForm(String name) {
+    User? user = FirebaseAuth.instance.currentUser;
+    final form = {
+      "동기": "동기글",
+      "이름": name,
+      "자기소개": "자기소개",
+      "전화번호": "전화번호",
+      "포부": "포부",
+      "학번": "학번",
+    };
+    firestore.collection("Form").doc(user!.uid).set(form);
+  }
+
+  schoolIDForm(String id) {
+    User? user = FirebaseAuth.instance.currentUser;
+    final form = {
+      "학번": id,
+    };
+    firestore.collection("Form").doc(user!.uid).update(form);
+  }
 }

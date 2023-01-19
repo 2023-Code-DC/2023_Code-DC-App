@@ -94,6 +94,7 @@ class UserAuthentication {
       final newUser = await authentication.createUserWithEmailAndPassword(
           email: userEmail, password: userPassword);
       UserData().DeviceAddData(username, username, userEmail, "none");
+
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
