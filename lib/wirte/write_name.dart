@@ -4,6 +4,7 @@ import 'package:code_dc/model/dcfirestore.dart';
 import 'package:code_dc/wirte/wrtie_student.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class FormWritePage extends StatefulWidget {
   const FormWritePage({super.key});
@@ -16,13 +17,21 @@ class _FormWritePageState extends State<FormWritePage> {
   User? user = FirebaseAuth.instance.currentUser;
   final firestore = FirebaseFirestore.instance;
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController numberController = TextEditingController();
   String name = "";
+  String number = "";
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late FocusNode myFocusNode;
+  late FocusNode numberFocusNode;
+  var maskFormatter = new MaskTextInputFormatter(
+      mask: '###-####-####',
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
   @override
   void initState() {
     super.initState();
     myFocusNode = FocusNode();
+    numberFocusNode = FocusNode();
   }
 
   @override
@@ -39,7 +48,7 @@ class _FormWritePageState extends State<FormWritePage> {
       if (isValid) {
         _formKey.currentState!.save();
         nameController.text = "";
-        UserData().firstForm(name);
+        UserData().firstForm(name, number);
         Navigator.push(context,
             MaterialPageRoute(builder: ((context) => WriteStudentPage())));
       }
@@ -60,7 +69,7 @@ class _FormWritePageState extends State<FormWritePage> {
                 height: 20,
               ),
               Text(
-                "이름을 입력해주세요",
+                "정보를 입력해주세요",
                 style:
                     DCColor().boldFontBlack(size.width * 0.08, FontWeight.w700),
               ),
@@ -129,9 +138,70 @@ class _FormWritePageState extends State<FormWritePage> {
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.name,
                         onFieldSubmitted: (value) {
-                          FocusScope.of(context).unfocus();
+                          FocusScope.of(context).requestFocus(numberFocusNode);
                         },
                         focusNode: myFocusNode,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                        height: 40,
+                      ),
+                      TextFormField(
+                        inputFormatters: [maskFormatter],
+                        validator: (value) {
+                          if (value!.trim().isEmpty || value.length < 10) {
+                            return "올바른 전화번호를 입력해주세요";
+                          }
+                        },
+                        key: const ValueKey(2),
+                        onChanged: ((value) {
+                          setState(() {
+                            number = value;
+                          });
+                        }),
+                        cursorColor: DCColor.gitcolor,
+                        controller: numberController,
+                        decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color.fromRGBO(247, 248, 249, 1),
+                            hintText: "전화번호를 입력해주세요",
+                            hintStyle: TextStyle(
+                                fontSize: 15,
+                                fontFamily: "inter",
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromRGBO(131, 145, 161, 1)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromRGBO(218, 218, 218, 1),
+                              ),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: Color.fromRGBO(218, 218, 218, 1),
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 2,
+                                  color: Colors.red,
+                                ),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)))),
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.number,
+                        onFieldSubmitted: (value) {
+                          FocusScope.of(context).unfocus();
+                        },
+                        focusNode: numberFocusNode,
                       ),
                       const SizedBox(
                         width: 10,
