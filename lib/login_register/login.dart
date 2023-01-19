@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           hintStyle: TextStyle(
               fontSize: 15,
-              fontFamily: "urbanist",
+              fontFamily: "inter",
               fontWeight: FontWeight.w500,
               color: Color.fromRGBO(131, 145, 161, 1)),
           focusedBorder: OutlineInputBorder(
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
           hintText: "통과 암호 (비밀번호)",
           hintStyle: TextStyle(
               fontSize: 15,
-              fontFamily: "urbanist",
+              fontFamily: "inter",
               fontWeight: FontWeight.w500,
               color: Color.fromRGBO(131, 145, 161, 1)),
           focusedBorder: OutlineInputBorder(

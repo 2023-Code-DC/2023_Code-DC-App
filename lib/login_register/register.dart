@@ -79,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
           hintText: "니 명을 적어라 (이름)",
           hintStyle: TextStyle(
               fontSize: 15,
-              fontFamily: "urbanist",
+              fontFamily: "inter",
               fontWeight: FontWeight.w500,
               color: Color.fromRGBO(131, 145, 161, 1)),
           focusedBorder: OutlineInputBorder(
@@ -134,7 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           hintStyle: TextStyle(
               fontSize: 15,
-              fontFamily: "urbanist",
+              fontFamily: "inter",
               fontWeight: FontWeight.w500,
               color: Color.fromRGBO(131, 145, 161, 1)),
           focusedBorder: OutlineInputBorder(
@@ -180,7 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
           hintText: "통과 암호 (비밀번호)",
           hintStyle: TextStyle(
               fontSize: 15,
-              fontFamily: "urbanist",
+              fontFamily: "inter",
               fontWeight: FontWeight.w500,
               color: Color.fromRGBO(131, 145, 161, 1)),
           focusedBorder: OutlineInputBorder(
@@ -232,7 +232,7 @@ class _RegisterPageState extends State<RegisterPage> {
           hintText: "통과 암호 확인 (비밀번호 확인)",
           hintStyle: TextStyle(
               fontSize: 15,
-              fontFamily: "urbanist",
+              fontFamily: "inter",
               fontWeight: FontWeight.w500,
               color: Color.fromRGBO(131, 145, 161, 1)),
           focusedBorder: OutlineInputBorder(
