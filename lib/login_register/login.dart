@@ -59,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     Widget Emailfield = TextFormField(
+      cursorColor: DCColor.gitcolor,
       validator: (value) =>
           EmailValidator.validate(value!) ? null : "올바른 전자우편을 적으라우",
       key: const ValueKey(1),
@@ -105,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
     Widget Passwordfield = TextFormField(
+      cursorColor: DCColor.gitcolor,
       validator: (value) {
         if (value!.trim().isEmpty || value.length < 8) {
           return "8글자 이상으로 적으라우 동무";

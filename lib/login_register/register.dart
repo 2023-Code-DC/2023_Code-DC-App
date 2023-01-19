@@ -61,6 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     Widget namefield = TextFormField(
+      cursorColor: DCColor.gitcolor,
       validator: (value) {
         if (value!.trim().isEmpty || value.length > 10) {
           return "10글자 아래로 똑바로 적으라우 ";
@@ -112,6 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
 
     Widget Emailfield = TextFormField(
+      cursorColor: DCColor.gitcolor,
       validator: (value) =>
           EmailValidator.validate(value!) ? null : "올바른 전자우편을 적으라우",
       key: const ValueKey(2),
@@ -159,6 +161,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
 
     Widget Passwordfield = TextFormField(
+      cursorColor: DCColor.gitcolor,
       validator: (value) {
         if (value!.trim().isEmpty || value.length < 8) {
           return "8글자 이상으로 적으라우 동무";
@@ -212,6 +215,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
 
     Widget checkPasswordfield = TextFormField(
+      cursorColor: DCColor.gitcolor,
       validator: (value) {
         if (passwordtext == value) {
           return null;
