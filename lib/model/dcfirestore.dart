@@ -36,13 +36,13 @@ class UserData {
     firestore.collection("userdata").doc(user?.uid).set(userdata);
   }
 
-  firstForm(String name) {
+  firstForm(String name, String number) {
     User? user = FirebaseAuth.instance.currentUser;
     final form = {
       "동기": "동기글",
       "이름": name,
       "자기소개": "자기소개",
-      "전화번호": "전화번호",
+      "전화번호": number,
       "포부": "포부",
       "학번": "학번",
     };
