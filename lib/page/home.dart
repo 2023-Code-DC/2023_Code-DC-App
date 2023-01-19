@@ -1,6 +1,6 @@
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
-import 'package:code_dc/page/application.dart';
+import 'package:code_dc/model/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
@@ -136,7 +136,7 @@ class _HomepageState extends State<Homepage> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 1,
                               height: 10,
                             ),
@@ -165,10 +165,10 @@ class _HomepageState extends State<Homepage> {
                         ),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                shadowColor: Color(0),
+                                shadowColor: const Color(0x00000000),
                                 elevation: 0,
                                 minimumSize:
-                                    Size(size.width * 0.3, size.width * 0.06),
+                                    Size(size.width * 0.3, size.width * 0.08),
                                 backgroundColor: DCColor.dcyellow,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8))),
@@ -185,7 +185,12 @@ class _HomepageState extends State<Homepage> {
                     )
                   ],
                 ),
-              )
+              ),
+              ElevatedButton(
+                  onPressed: (() {
+                    UserAuthentication().SignOutWithGoogle(context);
+                  }),
+                  child: const Text("로그아웃"))
               /* Container(
                 decoration: BoxDecoration(
                     border: Border(

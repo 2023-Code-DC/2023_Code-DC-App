@@ -6,9 +6,6 @@ final firestore = FirebaseFirestore.instance;
 class UserData {
   getData(User? user, String data) async {
     var result = await firestore.collection('userdata').doc(user!.uid).get();
-    print(result["email"]);
-    print(result["image"]);
-    print(result["image"].runtimeType);
     return result["image"];
   }
 
@@ -18,7 +15,7 @@ class UserData {
       "displayName": user!.displayName,
       "name": user.displayName,
       "email": user.email,
-      "image": user.photoURL
+      "image": user.photoURL,
     };
     firestore.collection("userdata").doc(user.uid).set(userdata);
   }
@@ -34,7 +31,7 @@ class UserData {
       "displayName": displayName,
       "name": displayName,
       "email": email,
-      "image": image
+      "image": image,
     };
     firestore.collection("userdata").doc(user?.uid).set(userdata);
   }

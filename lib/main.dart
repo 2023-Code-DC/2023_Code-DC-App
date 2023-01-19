@@ -50,35 +50,33 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   print("앱이 시작됨");
-  print(user);
-
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: const HomeScreen(),
       theme: ThemeData(
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
               bodyText1: TextStyle(color: Colors.white),
               bodyText2: TextStyle(color: Colors.white))),
       routes: {
-        '/homescreen': (BuildContext context) => HomeScreen(),
-        '/mainloadingpage': ((context) => MainLoadingPage())
+        '/homescreen': (BuildContext context) => const HomeScreen(),
+        '/mainloadingpage': ((context) => const MainLoadingPage()),
       },
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/registerpage':
             return PageTransition(
-                child: RegisterPage(),
+                child: const RegisterPage(),
                 type: PageTransitionType.leftToRightWithFade,
-                duration: Duration(milliseconds: 500),
-                reverseDuration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
+                reverseDuration: const Duration(milliseconds: 500),
                 settings: settings);
           case '/loginpage':
             return PageTransition(
                 child: LoginPage(),
                 type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 500),
-                reverseDuration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
+                reverseDuration: const Duration(milliseconds: 500),
                 settings: settings);
           case '/mainpage':
             return PageTransition(
@@ -86,15 +84,15 @@ void main() async {
                   user: _currentUser,
                 ),
                 type: PageTransitionType.fade,
-                duration: Duration(milliseconds: 500),
-                reverseDuration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
+                reverseDuration: const Duration(milliseconds: 500),
                 settings: settings);
           case '/applicationpage':
             return PageTransition(
-                child: ApplicationPage(),
+                child: const ApplicationPage(),
                 type: PageTransitionType.rightToLeft,
-                duration: Duration(milliseconds: 200),
-                reverseDuration: Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 200),
+                reverseDuration: const Duration(milliseconds: 200),
                 settings: settings);
           default:
             return null;

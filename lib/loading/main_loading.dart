@@ -12,7 +12,7 @@ class MainLoadingPage extends StatefulWidget {
 }
 
 class _MainLoadingPageState extends State<MainLoadingPage> {
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   dynamic userInfo;
   _asyncMethod() async {
     userInfo = await storage.read(key: 'login');
@@ -21,33 +21,33 @@ class _MainLoadingPageState extends State<MainLoadingPage> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(milliseconds: 400), () {
+    Timer(const Duration(milliseconds: 400), () {
       setState(() {
         _a = true;
         _asyncMethod();
       });
     });
-    Timer(Duration(milliseconds: 400), () {
+    Timer(const Duration(milliseconds: 400), () {
       setState(() {
         _b = true;
       });
     });
-    Timer(Duration(milliseconds: 1300), () {
+    Timer(const Duration(milliseconds: 1300), () {
       setState(() {
         _c = true;
       });
     });
-    Timer(Duration(milliseconds: 1700), () {
+    Timer(const Duration(milliseconds: 1700), () {
       setState(() {
         _e = true;
       });
     });
-    Timer(Duration(milliseconds: 3400), () {
+    Timer(const Duration(milliseconds: 3400), () {
       setState(() {
         _d = true;
       });
     });
-    Timer(Duration(milliseconds: 3850), () {
+    Timer(const Duration(milliseconds: 3850), () {
       setState(() {
         Navigator.popAndPushNamed(
             context, userInfo != null ? "/mainpage" : "/loginpage");
@@ -68,8 +68,8 @@ class _MainLoadingPageState extends State<MainLoadingPage> {
 
   @override
   Widget build(BuildContext context) {
-    double _h = MediaQuery.of(context).size.height;
-    double _w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: (() {
         return Future(() => false);
@@ -85,7 +85,7 @@ class _MainLoadingPageState extends State<MainLoadingPage> {
                 height: _d
                     ? 0
                     : _a
-                        ? _h / 2
+                        ? h / 2
                         : 20,
                 width: 20,
                 // color: Colors.deepPurpleAccent,
@@ -99,31 +99,32 @@ class _MainLoadingPageState extends State<MainLoadingPage> {
                             : 0),
                 curve: Curves.fastLinearToSlowEaseIn,
                 height: _d
-                    ? _h
+                    ? h
                     : _c
                         ? 80
                         : 20,
                 width: _d
-                    ? _w
+                    ? w
                     : _c
                         ? 200
                         : 20,
                 decoration: BoxDecoration(
                     color: _b ? Colors.white : Colors.transparent,
-                    borderRadius:
-                        _d ? BorderRadius.only() : BorderRadius.circular(30)),
+                    borderRadius: _d
+                        ? const BorderRadius.only()
+                        : BorderRadius.circular(30)),
                 child: Center(
                   child: _e
                       ? AnimatedTextKit(
                           totalRepeatCount: 1,
                           animatedTexts: [
                             FadeAnimatedText('동무 어서오라우!',
-                                duration: Duration(milliseconds: 1700),
+                                duration: const Duration(milliseconds: 1700),
                                 textStyle: DCColor()
                                     .boldFontBlack(24, FontWeight.w600)),
                           ],
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ),
               ),
             ],

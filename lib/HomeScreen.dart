@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   "동무를 찾고있었습네다.",
                   style: DCColor().boldFontBlack(30, FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 1,
                   height: 6,
                 ),
@@ -43,13 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   scale: size.width * 0.001,
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
-                        minimumSize: Size(330, 56),
+                        minimumSize: const Size(330, 56),
                         backgroundColor: DCColor.gitcolor),
                     onPressed: (() {
                       Navigator.popAndPushNamed(context, "/mainloadingpage");

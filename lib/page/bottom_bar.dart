@@ -21,7 +21,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: Border(top: BorderSide(color: Colors.white, width: 0.4)),
       ),
       child: BottomNavigationBar(

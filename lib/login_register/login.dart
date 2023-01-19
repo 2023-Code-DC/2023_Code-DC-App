@@ -25,8 +25,8 @@ class _LoginPageState extends State<LoginPage> {
     ],
   );
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = new TextEditingController();
-  TextEditingController _pwController = new TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _pwController = TextEditingController();
   String emailtext = "";
   String passwordtext = "";
   late FocusNode myFocusNode;
@@ -52,8 +52,6 @@ class _LoginPageState extends State<LoginPage> {
       final isValid = _formKey.currentState!.validate();
       if (isValid) {
         _formKey.currentState!.save();
-        print(emailtext);
-        print(passwordtext);
         _pwController.text = "";
         UserAuthentication()
             .SiginInWithDevice(context, emailtext, passwordtext);
@@ -168,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
         body: Container(
           height: double.infinity,
           width: double.infinity,
-          padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+          padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -180,13 +178,13 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Emailfield,
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Passwordfield,
                     Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 1,
                           height: 5,
                         ),
@@ -213,29 +211,29 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                            onPressed: (() {
-                              FocusScope.of(context).unfocus();
-                              _tryValidation();
-                            }),
-                            child: Text(
-                              "복귀하기",
-                              style:
-                                  DCColor().boldFontWhite(15, FontWeight.w600),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: DCColor.gitcolor,
-                                minimumSize: Size(330, 56),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)))),
+                          onPressed: (() {
+                            FocusScope.of(context).unfocus();
+                            _tryValidation();
+                          }),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: DCColor.gitcolor,
+                              minimumSize: const Size(330, 56),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                          child: Text(
+                            "복귀하기",
+                            style: DCColor().boldFontWhite(15, FontWeight.w600),
+                          ),
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
-                            color: Color.fromRGBO(198, 198, 198, 1),
+                            color: const Color.fromRGBO(198, 198, 198, 1),
                             height: 1,
                             width: size.width * 0.35,
                           ),
@@ -244,7 +242,7 @@ class _LoginPageState extends State<LoginPage> {
                             style: DCColor().blodFontgrey(14),
                           ),
                           Container(
-                            color: Color.fromRGBO(198, 198, 198, 1),
+                            color: const Color.fromRGBO(198, 198, 198, 1),
                             height: 1,
                             width: size.width * 0.35,
                           )
@@ -254,9 +252,9 @@ class _LoginPageState extends State<LoginPage> {
                           style: ElevatedButton.styleFrom(
                               elevation: 0,
                               backgroundColor: Colors.white,
-                              minimumSize: Size(108, 56),
+                              minimumSize: const Size(108, 56),
                               shape: RoundedRectangleBorder(
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                       color: Color.fromRGBO(218, 218, 218, 1)),
                                   borderRadius: BorderRadius.circular(8))),
                           onPressed: () {

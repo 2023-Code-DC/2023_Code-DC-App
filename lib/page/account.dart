@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AccountPage extends StatefulWidget {
-  AccountPage({super.key});
+  const AccountPage({super.key});
   @override
   State<AccountPage> createState() => _AccountPageState();
 }
@@ -18,7 +18,7 @@ class _AccountPageState extends State<AccountPage> {
   bool page = false;
   ImageProvider<Object> avatorImage() {
     if (result != null) {
-      return AssetImage("assets/images/pepe.png");
+      return const AssetImage("assets/images/pepe.png");
     } else {
       return NetworkImage(result["image"]);
     }
@@ -57,7 +57,7 @@ class _AccountPageState extends State<AccountPage> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: DCColor.background,
                                         ),
                                         child: Padding(
@@ -74,7 +74,7 @@ class _AccountPageState extends State<AccountPage> {
                                                         BorderRadius.circular(
                                                             10)),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 20,
                                                 width: 1,
                                               ),
@@ -110,11 +110,11 @@ class _AccountPageState extends State<AccountPage> {
                                                   }),
                                                   child: Row(
                                                     children: [
-                                                      Icon(
+                                                      const Icon(
                                                         Icons.logout,
                                                         color: DCColor.gitcolor,
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                         height: 50,
                                                       ),
@@ -147,24 +147,19 @@ class _AccountPageState extends State<AccountPage> {
                                                                         0)),
                                                   ),
                                                   onPressed: (() async {
-                                                    final storage =
-                                                        new FlutterSecureStorage();
+                                                    const storage =
+                                                        FlutterSecureStorage();
                                                     await storage.delete(
                                                         key: "first");
-                                                    String? value =
-                                                        await storage.read(
-                                                            key: "first");
-
-                                                    print(value);
                                                   }),
                                                   child: Row(
                                                     children: [
-                                                      Icon(
+                                                      const Icon(
                                                         Icons
                                                             .dashboard_customize,
                                                         color: DCColor.gitcolor,
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                         height: 50,
                                                       ),
@@ -184,7 +179,7 @@ class _AccountPageState extends State<AccountPage> {
                                       );
                                     });
                               }),
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.menu,
                                 color: DCColor.gitcolor,
                                 size: 30,

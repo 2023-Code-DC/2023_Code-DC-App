@@ -275,7 +275,7 @@ class _RegisterPageState extends State<RegisterPage> {
           body: Container(
             height: double.infinity,
             width: double.infinity,
-            padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+            padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
             child: Form(
               key: _formKey,
               child: Column(
@@ -292,13 +292,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           onTap: (() {
                             Navigator.pop(context);
                           }),
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back,
                             size: 36,
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 14,
                         width: 1,
                       ),
@@ -309,15 +309,15 @@ class _RegisterPageState extends State<RegisterPage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       namefield,
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Emailfield,
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Passwordfield,
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       checkPasswordfield,
@@ -328,23 +328,24 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                              onPressed: (() {
-                                FocusScope.of(context).unfocus();
-                                _tryValidation();
-                              }),
-                              child: Text(
-                                "동무 되기",
-                                style: DCColor()
-                                    .boldFontWhite(15, FontWeight.w600),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: DCColor.gitcolor,
-                                  minimumSize: Size(330, 56),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)))),
+                            onPressed: (() {
+                              FocusScope.of(context).unfocus();
+                              _tryValidation();
+                            }),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: DCColor.gitcolor,
+                                minimumSize: const Size(330, 56),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
+                            child: Text(
+                              "동무 되기",
+                              style:
+                                  DCColor().boldFontWhite(15, FontWeight.w600),
+                            ),
+                          ),
                         ),
                       ],
                     ),

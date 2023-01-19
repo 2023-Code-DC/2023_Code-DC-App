@@ -52,19 +52,19 @@ class _MainPageState extends State<MainPage> {
                   backgroundColor: DCColor.background,
                   body: PageView(
                       controller: pageController,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        Homepage(),
-                        AnnouncementPage(),
-                        AskedPage(),
-                        UserCheckPage(),
+                        const Homepage(),
+                        const AnnouncementPage(),
+                        const AskedPage(),
+                        const UserCheckPage(),
                         AccountPage()
                       ]),
                   bottomNavigationBar: BottomBar(
                       selectedIndex: _selectedIndex,
                       pageController: pageController));
             } else {
-              return OnBoardingPage();
+              return const OnBoardingPage();
             }
           },
         ));

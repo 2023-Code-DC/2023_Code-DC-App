@@ -11,7 +11,7 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   fisrt() async {
     await storage.write(key: "first", value: "false");
   }
@@ -64,7 +64,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         "이전",
         style: DCColor().boldFontWhite(18, FontWeight.w600),
       ), //스킵버튼 문구 지정
-      dotsContainerDecorator: BoxDecoration(
+      dotsContainerDecorator: const BoxDecoration(
           border: Border(top: BorderSide(color: Colors.white, width: 0.8))),
       dotsDecorator: DotsDecorator(
         color: Colors.white,
