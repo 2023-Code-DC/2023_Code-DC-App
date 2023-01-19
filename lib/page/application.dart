@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_dc/model/color.dart';
-import 'package:code_dc/page/FormWrite.dart';
+import 'package:code_dc/wirte/write_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -150,7 +150,6 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                           ),
                                         ]),
                                     Container(
-                                      height: double.infinity,
                                       width: size.width * 0.4,
                                       decoration: const BoxDecoration(
                                           image: DecorationImage(
@@ -175,6 +174,8 @@ class _ApplicationPageState extends State<ApplicationPage> {
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                       crossAxisAlignment:
@@ -202,7 +203,6 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                     width: 1,
                                   ),
                                   Container(
-                                    height: double.infinity,
                                     width: size.width * 0.4,
                                     decoration: const BoxDecoration(
                                         image: DecorationImage(
@@ -246,7 +246,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                     height: 20,
                                     child: LinearPercentIndicator(
                                       animation: true,
-                                      lineHeight: 20.0,
+                                      lineHeight: size.height * 0.1,
                                       animationDuration: 2500,
                                       percent: progbar,
                                       barRadius: const Radius.circular(6),
