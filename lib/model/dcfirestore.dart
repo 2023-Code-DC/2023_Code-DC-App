@@ -72,4 +72,12 @@ class UserData {
     };
     firestore.collection("Form").doc(user!.uid).update(form);
   }
+
+  planForm(String plan) {
+    User? user = FirebaseAuth.instance.currentUser;
+    final form = {
+      "동기": plan,
+    };
+    firestore.collection("Form").doc(user!.uid).update(form);
+  }
 }
