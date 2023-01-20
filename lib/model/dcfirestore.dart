@@ -56,4 +56,20 @@ class UserData {
     };
     firestore.collection("Form").doc(user!.uid).update(form);
   }
+
+  introduceForm(String myself) {
+    User? user = FirebaseAuth.instance.currentUser;
+    final form = {
+      "자기소개": myself,
+    };
+    firestore.collection("Form").doc(user!.uid).update(form);
+  }
+
+  motiveForm(String motive) {
+    User? user = FirebaseAuth.instance.currentUser;
+    final form = {
+      "동기": motive,
+    };
+    firestore.collection("Form").doc(user!.uid).update(form);
+  }
 }
