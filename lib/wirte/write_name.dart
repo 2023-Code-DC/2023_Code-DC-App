@@ -40,22 +40,23 @@ class _FormWritePageState extends State<FormWritePage> {
     super.dispose();
   }
 
+  void _tryValidation() {
+    final isValid = _formKey.currentState!.validate();
+    if (isValid) {
+      _formKey.currentState!.save();
+      UserData().firstForm(name, number);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => WriteStudentPage(
+                    name: name,
+                  ))));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    void _tryValidation() {
-      final isValid = _formKey.currentState!.validate();
-      if (isValid) {
-        _formKey.currentState!.save();
-        UserData().firstForm(name, number);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: ((context) => WriteStudentPage(
-                      name: name,
-                    ))));
-      }
-    }
 
     return GestureDetector(
       onTap: () {

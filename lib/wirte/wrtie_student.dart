@@ -1,6 +1,6 @@
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
-import 'package:code_dc/wirte/intome.dart';
+import 'package:code_dc/wirte/write_intome.dart';
 import 'package:flutter/material.dart';
 
 class WriteStudentPage extends StatefulWidget {
@@ -55,7 +55,11 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
       id += "2";
     }
 
-    schoolid = id + number.toString();
+    if (number < 10) {
+      schoolid = id + "0" + number.toString();
+    } else {
+      schoolid = id + number.toString();
+    }
   }
 
   @override
@@ -73,24 +77,25 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
     super.dispose();
   }
 
+  void _tryValidation() {
+    final isValid = _formKey.currentState!.validate();
+    if (isValid) {
+      _formKey.currentState!.save();
+      numberController.text = "";
+      schoolID();
+      UserData().schoolIDForm(schoolid);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => WriteMe(
+                    name: widget.name,
+                  ))));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    void _tryValidation() {
-      final isValid = _formKey.currentState!.validate();
-      if (isValid) {
-        _formKey.currentState!.save();
-        numberController.text = "";
-        schoolID();
-        UserData().schoolIDForm(schoolid);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: ((context) => WriteMe(
-                      name: widget.name,
-                    ))));
-      }
-    }
 
     return GestureDetector(
       onTap: () {
@@ -279,7 +284,7 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
                           TextFormField(
                             onTap: () {
                               _scrollController.animateTo(120.0,
-                                  duration: Duration(milliseconds: 500),
+                                  duration: const Duration(milliseconds: 500),
                                   curve: Curves.ease);
                             },
                             validator: (value) {
@@ -290,6 +295,7 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
                               } else if (int.parse(value) > 25) {
                                 return "내가 몇번까지 있는지 모르겠지만 그정도는 안될껄?";
                               }
+                              return null;
                             },
                             key: const ValueKey(4),
                             onChanged: ((value) {
