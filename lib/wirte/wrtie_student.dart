@@ -1,11 +1,11 @@
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
-import 'package:code_dc/wirte/number.dart';
+import 'package:code_dc/wirte/intome.dart';
 import 'package:flutter/material.dart';
 
 class WriteStudentPage extends StatefulWidget {
-  const WriteStudentPage({super.key});
-
+  WriteStudentPage({super.key, required this.name});
+  String name;
   @override
   State<WriteStudentPage> createState() => _WriteStudentPageState();
 }
@@ -25,6 +25,8 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
   final TextEditingController numberController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late FocusNode myFocusNode;
+  late ScrollController _scrollController;
+
   schoolID() {
     String id = "";
     if (selectclass == "메타버스게임과") {
@@ -60,12 +62,14 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
   void initState() {
     super.initState();
     myFocusNode = FocusNode();
+    _scrollController = ScrollController();
   }
 
   @override
   void dispose() {
     myFocusNode.dispose();
     numberController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -79,8 +83,12 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
         numberController.text = "";
         schoolID();
         UserData().schoolIDForm(schoolid);
-        Navigator.push(context,
-            MaterialPageRoute(builder: ((context) => WriteNumberPage())));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => WriteMe(
+                      name: widget.name,
+                    ))));
       }
     }
 
@@ -89,8 +97,9 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
         myFocusNode.unfocus();
       },
       child: Scaffold(
-        body: SafeArea(
-          child: SizedBox(
+        body: SingleChildScrollView(
+          controller: _scrollController,
+          child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: Center(
@@ -268,11 +277,18 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
                             height: 30,
                           ),
                           TextFormField(
+                            onTap: () {
+                              _scrollController.animateTo(120.0,
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.ease);
+                            },
                             validator: (value) {
                               if (value!.trim().isEmpty) {
                                 return "번호를 입력해주세요";
                               } else if (int.parse(value) == 0) {
                                 return "솔직히 0번은 아니지";
+                              } else if (int.parse(value) > 25) {
+                                return "내가 몇번까지 있는지 모르겠지만 그정도는 안될껄?";
                               }
                             },
                             key: const ValueKey(4),
@@ -330,7 +346,7 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
                             height: 30,
                           ),
                           SizedBox(
-                            width: size.width * 0.6,
+                            width: size.width * 0.75,
                             child: ElevatedButton(
                               onPressed: (() {
                                 FocusScope.of(context).unfocus();
