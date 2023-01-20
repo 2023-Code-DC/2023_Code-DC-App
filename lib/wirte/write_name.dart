@@ -47,10 +47,13 @@ class _FormWritePageState extends State<FormWritePage> {
       final isValid = _formKey.currentState!.validate();
       if (isValid) {
         _formKey.currentState!.save();
-        nameController.text = "";
         UserData().firstForm(name, number);
-        Navigator.push(context,
-            MaterialPageRoute(builder: ((context) => WriteStudentPage())));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => WriteStudentPage(
+                      name: name,
+                    ))));
       }
     }
 
@@ -217,9 +220,10 @@ class _FormWritePageState extends State<FormWritePage> {
                           style: ElevatedButton.styleFrom(
                               shadowColor: const Color(0x00000000),
                               elevation: 0,
-                              backgroundColor: name.length > 2
-                                  ? DCColor.dcyellow
-                                  : Color.fromRGBO(217, 217, 217, 1),
+                              backgroundColor:
+                                  name.length > 1 && number.length > 12
+                                      ? DCColor.dcyellow
+                                      : Color.fromRGBO(217, 217, 217, 1),
                               minimumSize: const Size(330, 56),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
