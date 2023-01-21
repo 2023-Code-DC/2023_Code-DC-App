@@ -70,7 +70,7 @@ class _WriteFinPageState extends State<WriteFinPage> {
                               "신청서를 수정하고 싶으시면\n수정페이지에서 수정하실 수 있습니다",
                               textAlign: TextAlign.center,
                               speed: const Duration(milliseconds: 120)),
-                          TyperAnimatedText('CODE D.C. 동아리에지원해주셔서\n감사합니다',
+                          TyperAnimatedText('CODE D.C. 동아리에 지원해주셔서\n감사합니다!',
                               textAlign: TextAlign.center,
                               speed: const Duration(milliseconds: 120)),
                         ]))

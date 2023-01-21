@@ -77,6 +77,7 @@ class _WritePlanPageState extends State<WritePlanPage> {
                       height: 30,
                     ),
                     TextFormField(
+                        minLines: 5,
                         onTap: () {
                           _scrollController.animateTo(125.0,
                               duration: const Duration(milliseconds: 500),

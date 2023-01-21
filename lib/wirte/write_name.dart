@@ -91,6 +91,7 @@ class _FormWritePageState extends State<FormWritePage> {
                   child: Column(
                     children: [
                       TextFormField(
+                        maxLength: 4,
                         validator: (value) {
                           if (value!.trim().isEmpty || value.length < 2) {
                             return "이름을 적어주세요";
@@ -105,6 +106,7 @@ class _FormWritePageState extends State<FormWritePage> {
                         cursorColor: DCColor.gitcolor,
                         controller: nameController,
                         decoration: const InputDecoration(
+                            counterText: "",
                             filled: true,
                             fillColor: Color.fromRGBO(247, 248, 249, 1),
                             hintText: "이름을 입력해주세요",

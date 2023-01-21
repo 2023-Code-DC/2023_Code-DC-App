@@ -33,7 +33,7 @@ class _WriteMotivePageState extends State<WriteMotivePage> {
     final isValid = _formKey.currentState!.validate();
     if (isValid) {
       _formKey.currentState!.save();
-      UserData().motiveForm(motive = motive);
+      UserData().motiveForm(motive);
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -137,6 +137,7 @@ class _WriteMotivePageState extends State<WriteMotivePage> {
                           FocusScope.of(context).unfocus();
                         },
                         focusNode: myFocusNode,
+                        minLines: 5,
                         maxLines: 22),
                     const SizedBox(
                       width: 10,

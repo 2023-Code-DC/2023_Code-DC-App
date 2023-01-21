@@ -137,7 +137,8 @@ class _WriteMeState extends State<WriteMe> {
                           FocusScope.of(context).unfocus();
                         },
                         focusNode: myFocusNode,
-                        maxLines: 22),
+                        minLines: 5,
+                        maxLines: 23),
                     const SizedBox(
                       width: 10,
                       height: 20,
