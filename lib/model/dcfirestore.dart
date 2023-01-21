@@ -44,7 +44,7 @@ class UserData {
       "자기소개": "자기소개",
       "전화번호": number,
       "포부": "포부",
-      "학번": "학번",
+      "학번": "G1101",
     };
     firestore.collection("Form").doc(user!.uid).set(form);
   }
