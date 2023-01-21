@@ -20,7 +20,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
   final firestore = FirebaseFirestore.instance;
   late DocumentSnapshot<Map<String, dynamic>> result;
   DateTime dday = DateTime(2023, 4, 15);
-  DateTime startday = DateTime(2023, 3, 3);
+  DateTime startday = DateTime(2023, 1, 20);
   double progbar = 0;
   Future getdata() async {
     result = await firestore.collection('Form').doc(user!.uid).get();
@@ -30,14 +30,16 @@ class _ApplicationPageState extends State<ApplicationPage> {
   @override
   void initState() {
     super.initState();
+    var now = DateTime.now();
+    var mday = dday.difference(startday);
+    var aday = now.difference(dday);
+    progbar = aday.inSeconds / mday.inSeconds + 1;
     getdata();
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       var now = DateTime.now();
-      var aday = now.difference(dday);
       var sday = dday.difference(now);
       setState(() {
         finday = sday;
-        progbar = aday.inSeconds / sday.inSeconds + 1;
       });
     });
   }
@@ -61,7 +63,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
             builder: (context, snapshot) {
               if (snapshot.hasData == true) {
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  padding: const EdgeInsets.fromLTRB(24, 10, 24, 10),
                   child: Center(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -93,7 +95,9 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                           actions: [
                                             ElevatedButton(
                                                 onPressed: (() {
-                                                  Navigator.pop(context);
+                                                  Navigator.popAndPushNamed(
+                                                      context,
+                                                      "/modifyformpage");
                                                 }),
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor:
@@ -161,55 +165,99 @@ class _ApplicationPageState extends State<ApplicationPage> {
                               ),
                             ),
                           ),
-                          Container(
-                            height: size.height * 0.2,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                    color:
-                                        const Color.fromRGBO(217, 217, 217, 1),
-                                    width: 2),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "신청서 \n수정하기",
-                                          style: DCColor().boldFontBlack(
-                                              size.width * 0.08,
-                                              FontWeight.w800),
-                                        ),
-                                        const SizedBox(
-                                          width: 1,
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          "웹에서도 수정할 수 있어요!",
-                                          style: DCColor().boldFontYellow(
-                                              size.width * 0.032,
-                                              FontWeight.w700),
-                                        ),
-                                      ]),
-                                  const SizedBox(
-                                    height: 20,
-                                    width: 1,
-                                  ),
-                                  Container(
-                                    width: size.width * 0.4,
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                "assets/images/edit.png"))),
-                                  ),
-                                ],
+                          InkWell(
+                            onTap: (() {
+                              if (result.exists == true) {
+                                Navigator.pushNamed(context, "/modifyformpage");
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          title: Text(
+                                            "신청서를 먼저 작성해주세요",
+                                            textAlign: TextAlign.center,
+                                            style: DCColor().boldFontBlack(
+                                                size.width * 0.05,
+                                                FontWeight.w700),
+                                          ),
+                                          actionsAlignment:
+                                              MainAxisAlignment.center,
+                                          actions: [
+                                            ElevatedButton(
+                                                onPressed: (() {
+                                                  Navigator.popAndPushNamed(
+                                                      context,
+                                                      "/writeformpage");
+                                                }),
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      DCColor.dcyellow,
+                                                ),
+                                                child: Text(
+                                                  "작성하기",
+                                                  style: DCColor()
+                                                      .boldFontBlack(
+                                                          size.width * 0.05,
+                                                          FontWeight.w700),
+                                                ))
+                                          ],
+                                        ));
+                              }
+                            }),
+                            child: Container(
+                              height: size.height * 0.2,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: const Color.fromRGBO(
+                                          217, 217, 217, 1),
+                                      width: 2),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "신청서 \n수정하기",
+                                            style: DCColor().boldFontBlack(
+                                                size.width * 0.08,
+                                                FontWeight.w800),
+                                          ),
+                                          const SizedBox(
+                                            width: 1,
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            "웹에서도 수정할 수 있어요!",
+                                            style: DCColor().boldFontYellow(
+                                                size.width * 0.032,
+                                                FontWeight.w700),
+                                          ),
+                                        ]),
+                                    const SizedBox(
+                                      height: 20,
+                                      width: 1,
+                                    ),
+                                    Container(
+                                      width: size.width * 0.4,
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  "assets/images/edit.png"))),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -247,7 +295,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                     child: LinearPercentIndicator(
                                       animation: true,
                                       lineHeight: size.height * 0.1,
-                                      animationDuration: 2500,
+                                      animationDuration: 1000,
                                       percent: progbar,
                                       barRadius: const Radius.circular(6),
                                       center: Text(
