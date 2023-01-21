@@ -1,9 +1,11 @@
 import 'package:code_dc/loading/main_loading.dart';
 import 'package:code_dc/login_register/login.dart';
 import 'package:code_dc/login_register/register.dart';
+import 'package:code_dc/modify/modify_main.dart';
 import 'package:code_dc/page/application.dart';
 import 'package:code_dc/page/main_page.dart';
 import 'package:code_dc/testpage.dart';
+import 'package:code_dc/wirte/write_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -92,6 +94,20 @@ void main() async {
             return PageTransition(
                 child: const ApplicationPage(),
                 type: PageTransitionType.rightToLeft,
+                duration: const Duration(milliseconds: 200),
+                reverseDuration: const Duration(milliseconds: 200),
+                settings: settings);
+          case '/writeformpage':
+            return PageTransition(
+                child: const FormWritePage(),
+                type: PageTransitionType.fade,
+                duration: const Duration(milliseconds: 200),
+                reverseDuration: const Duration(milliseconds: 200),
+                settings: settings);
+          case '/modifyformpage':
+            return PageTransition(
+                child: const ModifyFormPage(),
+                type: PageTransitionType.fade,
                 duration: const Duration(milliseconds: 200),
                 reverseDuration: const Duration(milliseconds: 200),
                 settings: settings);
