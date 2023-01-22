@@ -74,9 +74,9 @@ class _HomepageState extends State<Homepage> {
               Row(
                 children: [
                   StrokeText(
-                    text: "CODE D.C.",
-                    strokeColor: Colors.white,
-                    strokeWidth: 5,
+                    text: "CODE D.C. 동아리",
+                    strokeColor: DCColor.dcyellow,
+                    strokeWidth: 3,
                     textStyle: TextStyle(
                         shadows: [
                           Shadow(color: DCColor.dcyellow, blurRadius: 23.59),
@@ -85,7 +85,7 @@ class _HomepageState extends State<Homepage> {
                         fontSize: size.width * 0.06,
                         fontFamily: "inter",
                         fontWeight: FontWeight.w600,
-                        color: DCColor.dcyellow),
+                        color: DCColor.gitcolor),
                   ),
                 ],
               ),
