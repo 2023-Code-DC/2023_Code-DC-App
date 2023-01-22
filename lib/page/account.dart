@@ -3,7 +3,7 @@ import 'package:code_dc/model/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk_talk.dart' as kakao;
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -179,7 +179,17 @@ class _AccountPageState extends State<AccountPage> {
                                           borderRadius:
                                               BorderRadius.circular(0)),
                                       foregroundColor: DCColor.gitcolor),
-                                  onPressed: (() {}),
+                                  onPressed: (() async {
+                                    Uri url = await kakao.TalkApi.instance
+                                        .addChannelUrl('_jFsFxj');
+
+                                    // 연결 페이지 URL을 브라우저에서 열기
+                                    try {
+                                      await kakao.launchBrowserTab(url);
+                                    } catch (error) {
+                                      print('카카오톡 채널 추가 실패 $error');
+                                    }
+                                  }),
                                   child: Row(
                                     children: [
                                       const Icon(
