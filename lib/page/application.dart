@@ -68,10 +68,25 @@ class _ApplicationPageState extends State<ApplicationPage> {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                  splashColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: Icon(Icons.arrow_back)),
+                            ],
+                          ),
                           Text(
                             "신청서 페이지",
                             style: DCColor().boldFontBlack(
                                 size.width * 0.09, FontWeight.w800),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                            height: 50,
                           ),
                           InkWell(
                             onTap: () {
