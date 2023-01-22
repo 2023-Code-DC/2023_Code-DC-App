@@ -61,12 +61,6 @@ class UserAuthentication {
         .signInWithCredential(credential)
         .then((value) async {
       Navigator.popAndPushNamed(context, "/mainpage");
-      DocumentSnapshot<Map<String, dynamic>> result = await firestore
-          .collection('userdata')
-          .doc(user!.uid)
-          .get()
-          .then(
-              (value) => value.exists == true ? null : UserData().firstData());
     });
   }
 
@@ -107,11 +101,13 @@ class UserAuthentication {
 
   SiginInWithDevice(BuildContext context, String email, String password) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      Navigator.popAndPushNamed(context, "/mainpage");
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+            email: email,
+            password: password,
+          )
+          .then((value) => Navigator.popAndPushNamed(context, "/mainpage"));
+
       await storage.write(key: "login", value: "device");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
