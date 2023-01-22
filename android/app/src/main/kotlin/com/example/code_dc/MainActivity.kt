@@ -1,4 +1,4 @@
-package com.example.code_dc
+package com.hanseihigh.codedc
 
 import io.flutter.embedding.android.FlutterActivity
 
