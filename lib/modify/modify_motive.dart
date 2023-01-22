@@ -106,42 +106,8 @@ class _ModifyMotivePageState extends State<ModifyMotivePage> {
                         maxLength: 500,
                         cursorColor: DCColor.gitcolor,
                         controller: motiveController,
-                        decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.all(8),
-                            filled: true,
-                            fillColor: Color.fromRGBO(247, 248, 249, 1),
-                            hintText: "동아리에 지원하게된 동기를 작성해주세요!",
-                            hintStyle: TextStyle(
-                                fontSize: 15,
-                                fontFamily: "inter",
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(131, 145, 161, 1)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 2,
-                                  color: Colors.red,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)))),
+                        decoration: DCColor()
+                            .textFieldDecoration("동아리에 지원하게된 동기를 작성해주세요!"),
                         textInputAction: TextInputAction.done,
                         onFieldSubmitted: (value) {
                           FocusScope.of(context).unfocus();

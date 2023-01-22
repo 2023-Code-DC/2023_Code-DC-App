@@ -99,4 +99,25 @@ class DCColor {
       ),
     );
   }
+
+  modifyMainMenuContainer(String str, Size size) {
+    return Container(
+      height: size.height * 0.08,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(
+              color: const Color.fromRGBO(217, 217, 217, 1), width: 2),
+          borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Center(
+          child: Text(
+            str,
+            style: DCColor().boldFontBlack(size.width * 0.05, FontWeight.w800),
+          ),
+        ),
+      ),
+    );
+  }
 }

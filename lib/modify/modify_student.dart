@@ -97,11 +97,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
     } else {
       selectclassnumber = "2반";
     }
-    if (mynumber.runtimeType == String) {
-      number = '0';
-    } else {
-      number = mynumber;
-    }
+    number = int.parse(mynumber).toString();
     numberController.text = number.toString();
   }
 
@@ -177,21 +173,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                           key: const ValueKey(1),
                           style: DCColor().boldFontBlack(
                               size.width * 0.04, FontWeight.w500),
-                          decoration: const InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                          ),
+                          decoration: DCColor().dropdownButtonFormField(),
                           borderRadius: BorderRadius.circular(8),
                           value: selectgrade,
                           items: gradelist
@@ -214,21 +196,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                         alignedDropdown: true,
                         child: DropdownButtonFormField(
                           key: const ValueKey(2),
-                          decoration: const InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                          ),
+                          decoration: DCColor().dropdownButtonFormField(),
                           borderRadius: BorderRadius.circular(8),
                           style: DCColor().boldFontBlack(
                               size.width * 0.04, FontWeight.w500),
@@ -268,21 +236,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                         alignedDropdown: true,
                         child: DropdownButtonFormField(
                           key: const ValueKey(3),
-                          decoration: const InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                          ),
+                          decoration: DCColor().dropdownButtonFormField(),
                           borderRadius: BorderRadius.circular(8),
                           style: DCColor().boldFontBlack(
                               size.width * 0.04, FontWeight.w500),
@@ -349,40 +303,20 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                         cursorColor: DCColor.gitcolor,
                         controller: numberController,
                         decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Color.fromRGBO(247, 248, 249, 1),
-                            hintText: "번호를 입력해주세요",
-                            hintStyle: TextStyle(
-                                fontSize: 15,
-                                fontFamily: "inter",
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(131, 145, 161, 1)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: Color.fromRGBO(218, 218, 218, 1),
                             ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
                             ),
-                            errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 2,
-                                  color: Colors.red,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)))),
+                          ),
+                        ),
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.number,
                         onFieldSubmitted: (value) {

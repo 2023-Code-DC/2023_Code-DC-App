@@ -47,6 +47,10 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
               padding: const EdgeInsets.all(24.0),
               child: Center(
                 child: Column(children: [
+                  const SizedBox(
+                    width: 10,
+                    height: 20,
+                  ),
                   Row(
                     children: [
                       IconButton(
@@ -60,7 +64,7 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                   ),
                   const SizedBox(
                     width: 10,
-                    height: 30,
+                    height: 10,
                   ),
                   Text(
                     "신청서 수정 페이지",
@@ -72,156 +76,75 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                     height: 40,
                   ),
                   InkWell(
-                    onTap: (() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  ModifyNamePage(result: result))));
-                    }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                              color: const Color.fromRGBO(217, 217, 217, 1),
-                              width: 2),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          "개인정보 수정하기",
-                          style: DCColor().boldFontBlack(
-                              size.width * 0.05, FontWeight.w800),
-                        ),
-                      ),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      onTap: (() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    ModifyNamePage(result: result))));
+                      }),
+                      child:
+                          DCColor().modifyMainMenuContainer("개인정보 수정하기", size)),
                   const SizedBox(
                     width: 10,
                     height: 45,
                   ),
                   InkWell(
-                    onTap: (() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  ModifyStudentPage(result: result))));
-                    }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                              color: const Color.fromRGBO(217, 217, 217, 1),
-                              width: 2),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          "학번 수정하기",
-                          style: DCColor().boldFontBlack(
-                              size.width * 0.05, FontWeight.w800),
-                        ),
-                      ),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      onTap: (() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    ModifyStudentPage(result: result))));
+                      }),
+                      child:
+                          DCColor().modifyMainMenuContainer("학번 수정하기", size)),
                   const SizedBox(
                     width: 10,
                     height: 45,
                   ),
                   InkWell(
-                    onTap: (() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  ModifyMePage(result: result))));
-                    }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                              color: const Color.fromRGBO(217, 217, 217, 1),
-                              width: 2),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          "자기소개 수정하기",
-                          style: DCColor().boldFontBlack(
-                              size.width * 0.05, FontWeight.w800),
-                        ),
-                      ),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      onTap: (() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    ModifyMePage(result: result))));
+                      }),
+                      child:
+                          DCColor().modifyMainMenuContainer("자기소개 수정하기", size)),
                   const SizedBox(
                     width: 10,
                     height: 45,
                   ),
                   InkWell(
-                    onTap: (() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  ModifyMotivePage(result: result))));
-                    }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                              color: const Color.fromRGBO(217, 217, 217, 1),
-                              width: 2),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          "지원동기 수정하기",
-                          style: DCColor().boldFontBlack(
-                              size.width * 0.05, FontWeight.w800),
-                        ),
-                      ),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      onTap: (() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    ModifyMotivePage(result: result))));
+                      }),
+                      child: DCColor().modifyMainMenuContainer("지원동기", size)),
                   const SizedBox(
                     width: 10,
                     height: 45,
                   ),
                   InkWell(
-                    onTap: (() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  ModifyPlanPage(result: result))));
-                    }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                              color: const Color.fromRGBO(217, 217, 217, 1),
-                              width: 2),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Text(
-                          "포부 수정하기",
-                          style: DCColor().boldFontBlack(
-                              size.width * 0.05, FontWeight.w800),
-                        ),
-                      ),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      onTap: (() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) =>
+                                    ModifyPlanPage(result: result))));
+                      }),
+                      child:
+                          DCColor().modifyMainMenuContainer("포부 수정하기", size)),
                   const SizedBox(
                     width: 10,
                     height: 45,
