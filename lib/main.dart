@@ -9,13 +9,13 @@ import 'package:code_dc/wirte/write_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao;
 import 'firebase_options.dart';
 import 'homescreen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
-import 'package:kakao_flutter_sdk_common/kakao_flutter_sdk_common.dart';
 
 GoogleSignInAccount? _currentUser;
 User? user = FirebaseAuth.instance.currentUser;
@@ -46,10 +46,14 @@ Future<void> _handleGetContact(GoogleSignInAccount user) async {
 
 Future<void> SignOutWithGoogle() => _googleSignIn.disconnect();
 void main() async {
-  KakaoSdk.init(
-    nativeAppKey: 'dummy',
-  );
+  // 웹 환경에서 카카오 로그인을 정상적으로 완료하려면 runApp() 호출 전 아래 메서드 호출 필요
   WidgetsFlutterBinding.ensureInitialized();
+
+  // runApp() 호출 전 Flutter SDK 초기화
+  kakao.KakaoSdk.init(
+    nativeAppKey: '245a8022cd30a514b0843483c584d9f6',
+    javaScriptAppKey: '08cd1575234813e9fc1337bb9385a490',
+  );
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
