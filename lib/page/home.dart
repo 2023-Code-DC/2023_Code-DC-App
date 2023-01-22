@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
 import 'package:code_dc/model/login_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
@@ -14,6 +16,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  User? user = FirebaseAuth.instance.currentUser;
   Timer? timer;
   PageController controller = PageController(
     initialPage: 0,
@@ -21,10 +24,11 @@ class _HomepageState extends State<Homepage> {
   var result = null;
 
   ad() async {
-    var ad = await firestore.collection('image').doc("images").get();
-    setState(() {
-      result = ad;
-    });
+    DocumentSnapshot<Map<String, dynamic>> result = await firestore
+        .collection('userdata')
+        .doc(user!.uid)
+        .get()
+        .then((value) => value.exists == true ? null : UserData().firstData());
   }
 
   @override
