@@ -15,6 +15,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:kakao_flutter_sdk_common/kakao_flutter_sdk_common.dart';
 
 GoogleSignInAccount? _currentUser;
 User? user = FirebaseAuth.instance.currentUser;
@@ -45,6 +46,9 @@ Future<void> _handleGetContact(GoogleSignInAccount user) async {
 
 Future<void> SignOutWithGoogle() => _googleSignIn.disconnect();
 void main() async {
+  KakaoSdk.init(
+    nativeAppKey: 'dummy',
+  );
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
