@@ -1,3 +1,4 @@
+import 'package:code_dc/main.dart';
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/login_model.dart';
 import 'package:flutter/material.dart';
@@ -192,6 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         InkWell(
                           onTap: () {
+                            print(user);
                             Navigator.pushNamed(context, '/registerpage');
                           },
                           child: Text(
