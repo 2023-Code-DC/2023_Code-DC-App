@@ -154,7 +154,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                           ),
                                         ]),
                                     Container(
-                                      width: size.width * 0.4,
+                                      width: size.width * 0.35,
                                       decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(
@@ -250,7 +250,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                       width: 1,
                                     ),
                                     Container(
-                                      width: size.width * 0.4,
+                                      width: size.width * 0.35,
                                       decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(
@@ -291,7 +291,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                 else
                                   SizedBox(
                                     width: double.infinity,
-                                    height: 20,
+                                    height: 25,
                                     child: LinearPercentIndicator(
                                       animation: true,
                                       lineHeight: size.height * 0.1,
