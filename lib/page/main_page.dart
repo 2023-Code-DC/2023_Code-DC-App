@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
 import 'package:code_dc/page/account.dart';
@@ -21,11 +22,21 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final storage = new FlutterSecureStorage();
-
+  List<String> list = [];
   Future em() async {
     onboarding = await storage.read(key: "first");
-
-    return onboarding == null ? null : "true";
+    List<String> docs = [];
+    QuerySnapshot<Map<String, dynamic>> doc =
+        await firestore.collection('notice').get();
+    for (var index in doc.docs) {
+      docs.add(index.id);
+    }
+    for (var i = 0; i < docs.length; i++) {
+      DocumentSnapshot<Map<String, dynamic>> result =
+          await firestore.collection('notice').doc(docs[i]).get();
+      list.add(result["내용"]);
+    }
+    return onboarding == null ? "false" : "true";
   }
 
   PageController pageController = PageController(
@@ -47,7 +58,7 @@ class _MainPageState extends State<MainPage> {
         child: FutureBuilder(
           future: em(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
+            if (snapshot.data == "true") {
               return Scaffold(
                   backgroundColor: DCColor.background,
                   body: PageView(
@@ -55,7 +66,7 @@ class _MainPageState extends State<MainPage> {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         const Homepage(),
-                        const AnnouncementPage(),
+                        AnnouncementPage(list: list),
                         const AskedPage(),
                         const UserCheckPage(),
                         AccountPage()
@@ -63,8 +74,15 @@ class _MainPageState extends State<MainPage> {
                   bottomNavigationBar: BottomBar(
                       selectedIndex: _selectedIndex,
                       pageController: pageController));
-            } else {
+            } else if (snapshot.data == "false") {
               return const OnBoardingPage();
+            } else {
+              return Scaffold(
+                body: Center(
+                    child: CircularProgressIndicator(
+                  color: DCColor.dcyellow,
+                )),
+              );
             }
           },
         ));
