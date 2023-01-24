@@ -1,27 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class AnnouncementPage extends StatelessWidget {
-  const AnnouncementPage({super.key});
+class AnnouncementPage extends StatefulWidget {
+  AnnouncementPage({super.key, required this.list});
+  List<String> list;
+  @override
+  State<AnnouncementPage> createState() => _AnnouncementPageState();
+}
+
+class _AnnouncementPageState extends State<AnnouncementPage> {
+  User? user = FirebaseAuth.instance.currentUser;
+  final firestore = FirebaseFirestore.instance;
+  Future onRefresh() async {
+    List<String> docs = [];
+    QuerySnapshot<Map<String, dynamic>> doc =
+        await firestore.collection('notice').get();
+    for (var index in doc.docs) {
+      docs.add(index.id);
+    }
+    List<String> notice = [];
+    for (var i = 0; i < docs.length; i++) {
+      DocumentSnapshot<Map<String, dynamic>> result =
+          await firestore.collection('notice').doc(docs[i]).get();
+      notice.add(result["내용"]);
+      setState(() {
+        widget.list = notice;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: SingleChildScrollView(
-          child: Container(
-        height: size.height,
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "동아리 공지사항",
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            )
-          ],
+    return RefreshIndicator(
+        child: ListView.builder(
+          itemCount: widget.list.length,
+          itemBuilder: (context, index) {
+            final item = widget.list[index];
+            return ListTile(
+              title: Text(item),
+            );
+          },
         ),
-      )),
-    );
+        onRefresh: onRefresh);
   }
 }
