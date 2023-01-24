@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:code_dc/model/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AnnouncementPage extends StatefulWidget {
   AnnouncementPage({super.key, required this.list});
@@ -33,16 +35,28 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return RefreshIndicator(
-        child: ListView.builder(
-          itemCount: widget.list.length,
-          itemBuilder: (context, index) {
-            final item = widget.list[index];
-            return ListTile(
-              title: Text(item),
-            );
-          },
-        ),
-        onRefresh: onRefresh);
+    return Scaffold(
+      body: RefreshIndicator(
+          child: AnimationLimiter(
+            child: ListView.builder(
+              itemCount: widget.list.length,
+              itemBuilder: (context, index) {
+                final item = widget.list[index];
+                return AnimationConfiguration.staggeredList(
+                  position: index,
+                  child: SlideAnimation(
+                    child: FadeInAnimation(
+                      child: Text(
+                        item,
+                        style: DCColor().boldFontBlack(20, FontWeight.w700),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          onRefresh: onRefresh),
+    );
   }
 }
