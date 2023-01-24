@@ -29,12 +29,16 @@ class _MainPageState extends State<MainPage> {
     QuerySnapshot<Map<String, dynamic>> doc =
         await firestore.collection('notice').get();
     for (var index in doc.docs) {
-      docs.add(index.id);
+      if (!docs.contains(index.id)) {
+        docs.add(index.id);
+      }
     }
     for (var i = 0; i < docs.length; i++) {
       DocumentSnapshot<Map<String, dynamic>> result =
           await firestore.collection('notice').doc(docs[i]).get();
-      list.add(result["내용"]);
+      if (!list.contains(result["내용"])) {
+        list.add(result["내용"]);
+      }
     }
     return onboarding == null ? "false" : "true";
   }
