@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "61156491550-hloppjmja2vo6sckibh1bpc1dsm32h73.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.CODEDC.CODEDCAPP",
+            "certificate_hash": "0c3b040515750ec6bfbc09de4b8e09bf4fc5458d"
+          }
+        },
+        {
           "client_id": "61156491550-392in347t3fvvq37s1jjnk011c8c4qn8.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,65 @@
             {
               "client_id": "61156491550-392in347t3fvvq37s1jjnk011c8c4qn8.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "61156491550-fvqs0ibb9vn082vlfk80u41e2vn3p7nd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.CODEDC.CODEDCAPP"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61156491550:android:4c49198b18590764d8090f",
+        "android_client_info": {
+          "package_name": "com.hanseihigh.codedc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61156491550-ophotb0la8l29hopdo9vicr84ap5cj6r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hanseihigh.codedc",
+            "certificate_hash": "acdb8c5976b238af345d821d5617ad3193bc60e3"
+          }
+        },
+        {
+          "client_id": "61156491550-sfs1scitp7lf2e5bogsdlc5n0em1oi9n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hanseihigh.codedc",
+            "certificate_hash": "60e57c2b22355b4089c90ffa695e1b14dd7c1980"
+          }
+        },
+        {
+          "client_id": "61156491550-392in347t3fvvq37s1jjnk011c8c4qn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvw8B1Im_WcJeEbRB2Rag6ABPM2k05qZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61156491550-392in347t3fvvq37s1jjnk011c8c4qn8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "61156491550-fvqs0ibb9vn082vlfk80u41e2vn3p7nd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.CODEDC.CODEDCAPP"
+              }
             }
           ]
         }
