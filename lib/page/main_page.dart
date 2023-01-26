@@ -22,7 +22,9 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final storage = new FlutterSecureStorage();
-  List<String> list = [];
+  List<String> day = [];
+  List<String> title = [];
+  List<String> text = [];
   Future em() async {
     onboarding = await storage.read(key: "first");
     List<String> docs = [];
@@ -36,8 +38,10 @@ class _MainPageState extends State<MainPage> {
     for (var i = 0; i < docs.length; i++) {
       DocumentSnapshot<Map<String, dynamic>> result =
           await firestore.collection('notice').doc(docs[i]).get();
-      if (!list.contains(result["내용"])) {
-        list.add(result["내용"]);
+      if (!text.contains(result["내용"])) {
+        text.add(result["내용"]);
+        title.add(result["제목"]);
+        day.add(result["날짜"]);
       }
     }
     return onboarding == null ? "false" : "true";
@@ -70,7 +74,7 @@ class _MainPageState extends State<MainPage> {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         const Homepage(),
-                        AnnouncementPage(list: list),
+                        AnnouncementPage(text: text, day: day, title: title),
                         const AskedPage(),
                         const UserCheckPage(),
                         AccountPage()
