@@ -43,239 +43,241 @@ class _AccountPageState extends State<AccountPage> {
       future: getdata(),
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
-          return SafeArea(
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 0),
-                  child: Column(
-                    children: [
-                      Column(children: [
-                        SizedBox(
-                          width: 10,
-                          height: size.height * 0.065,
-                        ),
-                        CircleAvatar(
-                          radius: size.width * 0.2,
-                          backgroundImage: avatorImage(),
-                        ),
-                        const SizedBox(
-                          width: 1,
-                          height: 10,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              result["name"].toString(),
-                              style: DCColor().boldFontBlack(
-                                  size.width * 0.06, FontWeight.w600),
-                            ),
-                            Text(user!.email.toString(),
-                                style: DCColor().boldFontBlack(
-                                    size.width * 0.06, FontWeight.w600)),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 10,
-                          height: 50,
-                        ),
-                        Container(
-                          height: size.height * 0.4,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border:
-                                  Border.all(color: DCColor.gitcolor, width: 2),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
+          return Scaffold(
+            body: SafeArea(
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24.0, 0, 24.0, 0),
+                    child: Column(
+                      children: [
+                        Column(children: [
+                          SizedBox(
+                            width: 10,
+                            height: size.height * 0.065,
+                          ),
+                          CircleAvatar(
+                            radius: size.width * 0.2,
+                            backgroundImage: avatorImage(),
+                          ),
+                          const SizedBox(
+                            width: 1,
+                            height: 10,
+                          ),
+                          Column(
                             children: [
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(7),
-                                              topRight: Radius.circular(7))),
-                                      foregroundColor: DCColor.gitcolor),
-                                  onPressed: (() {}),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.description_outlined,
-                                        color: DCColor.gitcolor,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                        height: 50,
-                                      ),
-                                      Text(
-                                        "정보",
-                                        style: DCColor()
-                                            .boldFontBlack(20, FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                              Text(
+                                result["name"].toString(),
+                                style: DCColor().boldFontBlack(
+                                    size.width * 0.06, FontWeight.w600),
                               ),
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(0)),
-                                      foregroundColor: DCColor.gitcolor),
-                                  onPressed: (() {}),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.settings_outlined,
-                                        color: DCColor.gitcolor,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                        height: 50,
-                                      ),
-                                      Text(
-                                        "설정",
-                                        style: DCColor()
-                                            .boldFontBlack(20, FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(0)),
-                                      foregroundColor: DCColor.gitcolor),
-                                  onPressed: (() {}),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.web_outlined,
-                                        color: DCColor.gitcolor,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                        height: 50,
-                                      ),
-                                      Text(
-                                        "홈페이지",
-                                        style: DCColor()
-                                            .boldFontBlack(20, FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(0)),
-                                      foregroundColor: DCColor.gitcolor),
-                                  onPressed: (() async {
-                                    Uri url = await kakao.TalkApi.instance
-                                        .addChannelUrl('_jFsFxj');
-
-                                    // 연결 페이지 URL을 브라우저에서 열기
-                                    try {
-                                      await kakao.launchBrowserTab(url);
-                                    } catch (error) {
-                                      print('카카오톡 채널 추가 실패 $error');
-                                    }
-                                  }),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.help_outline,
-                                        color: DCColor.gitcolor,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                        height: 50,
-                                      ),
-                                      Text(
-                                        "1 : 1 문의하기",
-                                        style: DCColor()
-                                            .boldFontBlack(20, FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(0)),
-                                      foregroundColor: DCColor.gitcolor),
-                                  onPressed: (() {}),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.policy_outlined,
-                                        color: DCColor.gitcolor,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                        height: 50,
-                                      ),
-                                      Text(
-                                        "약관확인",
-                                        style: DCColor()
-                                            .boldFontBlack(20, FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(7),
-                                              topLeft: Radius.circular(7))),
-                                      foregroundColor: DCColor.gitcolor),
-                                  onPressed: (() {
-                                    UserAuthentication()
-                                        .SignOutWithGoogle(context);
-                                    setState(() {});
-                                  }),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.logout,
-                                        color: DCColor.gitcolor,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                        height: 50,
-                                      ),
-                                      Text(
-                                        "로그아웃",
-                                        style: DCColor()
-                                            .boldFontBlack(20, FontWeight.w600),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )
+                              Text(user!.email.toString(),
+                                  style: DCColor().boldFontBlack(
+                                      size.width * 0.06, FontWeight.w600)),
                             ],
                           ),
-                        )
-                      ]),
-                    ],
-                  )));
+                          const SizedBox(
+                            width: 10,
+                            height: 50,
+                          ),
+                          Container(
+                            height: size.height * 0.4,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                    color: DCColor.gitcolor, width: 2),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(7),
+                                                topRight: Radius.circular(7))),
+                                        foregroundColor: DCColor.gitcolor),
+                                    onPressed: (() {}),
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.description_outlined,
+                                          color: DCColor.gitcolor,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                          height: 50,
+                                        ),
+                                        Text(
+                                          "정보",
+                                          style: DCColor().boldFontBlack(
+                                              20, FontWeight.w600),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(0)),
+                                        foregroundColor: DCColor.gitcolor),
+                                    onPressed: (() {}),
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.settings_outlined,
+                                          color: DCColor.gitcolor,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                          height: 50,
+                                        ),
+                                        Text(
+                                          "설정",
+                                          style: DCColor().boldFontBlack(
+                                              20, FontWeight.w600),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(0)),
+                                        foregroundColor: DCColor.gitcolor),
+                                    onPressed: (() {}),
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.web_outlined,
+                                          color: DCColor.gitcolor,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                          height: 50,
+                                        ),
+                                        Text(
+                                          "홈페이지",
+                                          style: DCColor().boldFontBlack(
+                                              20, FontWeight.w600),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(0)),
+                                        foregroundColor: DCColor.gitcolor),
+                                    onPressed: (() async {
+                                      Uri url = await kakao.TalkApi.instance
+                                          .addChannelUrl('_jFsFxj');
+
+                                      // 연결 페이지 URL을 브라우저에서 열기
+                                      try {
+                                        await kakao.launchBrowserTab(url);
+                                      } catch (error) {
+                                        print('카카오톡 채널 추가 실패 $error');
+                                      }
+                                    }),
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.help_outline,
+                                          color: DCColor.gitcolor,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                          height: 50,
+                                        ),
+                                        Text(
+                                          "1 : 1 문의하기",
+                                          style: DCColor().boldFontBlack(
+                                              20, FontWeight.w600),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(0)),
+                                        foregroundColor: DCColor.gitcolor),
+                                    onPressed: (() {}),
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.policy_outlined,
+                                          color: DCColor.gitcolor,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                          height: 50,
+                                        ),
+                                        Text(
+                                          "약관확인",
+                                          style: DCColor().boldFontBlack(
+                                              20, FontWeight.w600),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  fit: FlexFit.tight,
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(7),
+                                                topLeft: Radius.circular(7))),
+                                        foregroundColor: DCColor.gitcolor),
+                                    onPressed: (() {
+                                      UserAuthentication()
+                                          .SignOutWithGoogle(context);
+                                      setState(() {});
+                                    }),
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.logout,
+                                          color: DCColor.gitcolor,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                          height: 50,
+                                        ),
+                                        Text(
+                                          "로그아웃",
+                                          style: DCColor().boldFontBlack(
+                                              20, FontWeight.w600),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ]),
+                      ],
+                    ))),
+          );
         } else {
           return const Center(
             child: CircularProgressIndicator(

@@ -243,7 +243,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Text(
                             "또는",
-                            style: DCColor().blodFontgrey(14),
+                            style: DCColor().blodFontgrey(14, FontWeight.w700),
                           ),
                           Container(
                             color: const Color.fromRGBO(198, 198, 198, 1),

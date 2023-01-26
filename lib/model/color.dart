@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class DCColor {
   static const Color gitcolor = Color.fromRGBO(30, 35, 44, 1);
   static const Color dcyellow = Color.fromRGBO(255, 208, 41, 1);
-  static const Color background = Color.fromRGBO(244, 248, 249, 1);
+  static const Color background = Color.fromRGBO(228, 229, 229, 1);
+  static const Color strokecolor2 = Color.fromRGBO(242, 242, 243, 1);
   boldFontBlack(double fontsize, FontWeight w) {
     return TextStyle(
         fontSize: fontsize,
@@ -30,11 +31,11 @@ class DCColor {
         color: Colors.black);
   }
 
-  blodFontgrey(double fontsize) {
+  blodFontgrey(double fontsize, FontWeight w) {
     return TextStyle(
         fontSize: fontsize,
         fontFamily: "inter",
-        fontWeight: FontWeight.w700,
+        fontWeight: w,
         color: const Color.fromRGBO(106, 112, 124, 1));
   }
 
@@ -63,7 +64,7 @@ class DCColor {
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             width: 2,
-            color: Color.fromRGBO(218, 218, 218, 1),
+            color: DCColor.strokecolor2,
           ),
           borderRadius: BorderRadius.all(
             Radius.circular(8),
@@ -72,7 +73,7 @@ class DCColor {
         border: const OutlineInputBorder(
           borderSide: BorderSide(
             width: 2,
-            color: Color.fromRGBO(218, 218, 218, 1),
+            color: DCColor.strokecolor2,
           ),
         ),
         errorBorder: const OutlineInputBorder(
@@ -91,7 +92,7 @@ class DCColor {
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
           width: 2,
-          color: Color.fromRGBO(218, 218, 218, 1),
+          color: const Color.fromRGBO(217, 217, 217, 1),
         ),
         borderRadius: BorderRadius.all(
           Radius.circular(8),

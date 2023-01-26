@@ -24,7 +24,7 @@ class _HomepageState extends State<Homepage> {
   var result = null;
 
   ad() async {
-    DocumentSnapshot<Map<String, dynamic>> result = await firestore
+    var result = await firestore
         .collection('userdata')
         .doc(user!.uid)
         .get()
@@ -103,7 +103,7 @@ class _HomepageState extends State<Homepage> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(
-                        color: Color.fromRGBO(217, 217, 217, 1), width: 2),
+                        color: Color.fromRGBO(242, 242, 243, 1), width: 2),
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [

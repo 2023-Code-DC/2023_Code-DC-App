@@ -25,7 +25,7 @@ class _BottomBarState extends State<BottomBar> {
         border: Border(top: BorderSide(color: Colors.white, width: 0.4)),
       ),
       child: BottomNavigationBar(
-          backgroundColor: DCColor.background,
+          backgroundColor: Colors.white,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
