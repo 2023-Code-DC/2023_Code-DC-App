@@ -39,7 +39,7 @@ Future<void> _handleGetContact(GoogleSignInAccount user) async {
         'response. Check logs for details.');
     //오류 메시지
   }
-  ;
+
   print('People API ${response.statusCode} response: ${response.body}');
   return;
 }
@@ -58,17 +58,14 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.android,
   );
   print("앱이 시작됨");
   runApp(
     MaterialApp(
+      color: Colors.white,
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
-      theme: ThemeData(
-          textTheme: const TextTheme(
-              bodyText1: TextStyle(color: Colors.white),
-              bodyText2: TextStyle(color: Colors.white))),
+      home: HomeScreen(),
       routes: {
         '/homescreen': (BuildContext context) => const HomeScreen(),
         '/mainloadingpage': ((context) => const MainLoadingPage()),
