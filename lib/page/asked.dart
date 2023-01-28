@@ -21,9 +21,10 @@ class _AskedPageState extends State<AskedPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          elevation: 1,
           title: Text(
             "자주 묻는 질문",
-            style: DCColor().boldFontBlack(28, FontWeight.w800),
+            style: DCColor().boldFontBlack(20, FontWeight.w800),
           ),
           centerTitle: true,
           backgroundColor: Colors.white,
@@ -39,7 +40,7 @@ class _AskedPageState extends State<AskedPage> {
                       child: ExpansionTile(
                           title: Text(
                             que[index],
-                            style: DCColor().boldFontBlack(20, FontWeight.w700),
+                            style: DCColor().boldFontBlack(18, FontWeight.w700),
                           ),
                           children: [
                             ListTile(
