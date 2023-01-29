@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_dc/model/color.dart';
+import 'package:code_dc/page/anno_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -49,7 +50,7 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
         backgroundColor: Colors.white,
         title: Text(
           "공지사항",
-          style: DCColor().boldFontBlack(28, FontWeight.w800),
+          style: DCColor().boldFontBlack(18, FontWeight.w800),
         ),
         centerTitle: true,
       ),
@@ -63,30 +64,35 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
               List<String> retitle = List.from(widget.title.reversed);
               List<String> reday = List.from(widget.day.reversed);
 
-              final text = retext[index];
-              final title = retitle[index];
-              final day = reday[index];
+              String text = retext[index];
+              String title = retitle[index];
+              String day = reday[index];
               return AnimationConfiguration.staggeredList(
                   position: index,
                   child: SlideAnimation(
                     child: FadeInAnimation(
-                      child: ExpansionTile(
-                          title: Text(
-                            title,
-                            style: DCColor().boldFontBlack(20, FontWeight.w700),
-                          ),
-                          subtitle: Text(
-                            day,
-                            style: DCColor().blodFontgrey(12, FontWeight.w500),
-                          ),
-                          children: [
-                            ListTile(
-                                title: Text(
-                              text,
-                              style:
-                                  DCColor().boldFontBlack(16, FontWeight.w500),
-                            ))
-                          ]),
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return AnnouncementDetailPage(
+                                text: text,
+                                day: day,
+                                title: title,
+                              );
+                            },
+                          ));
+                        },
+                        title: Text(
+                          title,
+                          style: DCColor().boldFontBlack(18, FontWeight.w700),
+                        ),
+                        subtitle: Text(
+                          day,
+                          style: DCColor().blodFontgrey(12, FontWeight.w500),
+                        ),
+                        trailing: Icon(Icons.chevron_right),
+                      ),
                     ),
                   ));
             },
