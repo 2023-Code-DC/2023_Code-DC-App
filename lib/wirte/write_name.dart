@@ -24,7 +24,6 @@ class _FormWritePageState extends State<FormWritePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late FocusNode myFocusNode;
   late FocusNode numberFocusNode;
-  late FocusNode githubFocusNode;
   var maskFormatter = new MaskTextInputFormatter(
       mask: '###-####-####',
       filter: {"#": RegExp(r'[0-9]')},
@@ -34,7 +33,6 @@ class _FormWritePageState extends State<FormWritePage> {
     super.initState();
     myFocusNode = FocusNode();
     numberFocusNode = FocusNode();
-    githubFocusNode = FocusNode();
   }
 
   @override
@@ -210,64 +208,13 @@ class _FormWritePageState extends State<FormWritePage> {
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.number,
                         onFieldSubmitted: (value) {
-                          FocusScope.of(context).requestFocus(githubFocusNode);
+                          FocusScope.of(context).unfocus();
                         },
                         focusNode: numberFocusNode,
                       ),
                       const SizedBox(
                         width: 10,
                         height: 40,
-                      ),
-                      TextFormField(
-                        key: const ValueKey(3),
-                        onChanged: ((value) {
-                          setState(() {
-                            githubname = value;
-                          });
-                        }),
-                        cursorColor: DCColor.gitcolor,
-                        controller: numberController,
-                        decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Color.fromRGBO(247, 248, 249, 1),
-                            hintText: "깃허브 계정 이름을 적어주세요 없으면 무시하세요",
-                            hintStyle: TextStyle(
-                                fontSize: 15,
-                                fontFamily: "inter",
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(131, 145, 161, 1)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: Color.fromRGBO(218, 218, 218, 1),
-                              ),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  width: 2,
-                                  color: Colors.red,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)))),
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.number,
-                        onFieldSubmitted: (value) {
-                          FocusScope.of(context).unfocus();
-                        },
-                        focusNode: githubFocusNode,
                       ),
                       const SizedBox(
                         width: 10,
