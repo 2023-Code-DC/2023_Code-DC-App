@@ -91,7 +91,11 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
                           day,
                           style: DCColor().blodFontgrey(12, FontWeight.w500),
                         ),
-                        trailing: Icon(Icons.chevron_right),
+                        trailing: Icon(
+                          Icons.chevron_right,
+                          color: Colors.black,
+                          size: 30,
+                        ),
                       ),
                     ),
                   ));

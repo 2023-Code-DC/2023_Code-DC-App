@@ -103,7 +103,7 @@ class _HomepageState extends State<Homepage> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(
-                        color: Color.fromRGBO(242, 242, 243, 1), width: 2),
+                        color: Color.fromRGBO(193, 193, 193, 1), width: 2),
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
@@ -129,7 +129,7 @@ class _HomepageState extends State<Homepage> {
                               height: size.width * 0.07,
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: Color.fromRGBO(217, 217, 217, 1),
+                                      color: Color.fromRGBO(193, 193, 193, 1),
                                       width: 2),
                                   borderRadius: BorderRadius.circular(12)),
                               child: Center(
