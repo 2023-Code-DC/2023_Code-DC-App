@@ -39,7 +39,7 @@ class _AnnouncementDetailPageState extends State<AnnouncementDetailPage> {
                   style: DCColor().boldFontBlack(22, FontWeight.w600),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 8,
                   width: 6,
                 ),
                 Text(
