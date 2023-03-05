@@ -55,6 +55,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
           body: FutureBuilder(
@@ -92,34 +93,10 @@ class _ApplicationPageState extends State<ApplicationPage> {
                           if (result.exists == true) {
                             showDialog(
                                 context: context,
-                                builder: (BuildContext context) => AlertDialog(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      title: Text(
-                                        "신청서가 이미 존재합니다",
-                                        textAlign: TextAlign.center,
-                                        style: DCColor().boldFontBlack(
-                                            size.width * 0.05, FontWeight.w700),
-                                      ),
-                                      actionsAlignment:
-                                          MainAxisAlignment.center,
-                                      actions: [
-                                        ElevatedButton(
-                                            onPressed: (() {
-                                              Navigator.popAndPushNamed(
-                                                  context, "/modifyformpage");
-                                            }),
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: DCColor.dcyellow,
-                                            ),
-                                            child: Text(
-                                              "수정하기",
-                                              style: DCColor().boldFontBlack(
-                                                  size.width * 0.05,
-                                                  FontWeight.w700),
-                                            ))
-                                      ],
+                                builder: (BuildContext context) => ShowDialogs(
+                                      title: "신청서가 이미 존재합니다",
+                                      text: "수정하기",
+                                      routes: "/modifyformpage",
                                     ));
                           } else {
                             Navigator.push(
@@ -178,34 +155,10 @@ class _ApplicationPageState extends State<ApplicationPage> {
                           } else {
                             showDialog(
                                 context: context,
-                                builder: (BuildContext context) => AlertDialog(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      title: Text(
-                                        "신청서를 먼저 작성해주세요",
-                                        textAlign: TextAlign.center,
-                                        style: DCColor().boldFontBlack(
-                                            size.width * 0.05, FontWeight.w700),
-                                      ),
-                                      actionsAlignment:
-                                          MainAxisAlignment.center,
-                                      actions: [
-                                        ElevatedButton(
-                                            onPressed: (() {
-                                              Navigator.popAndPushNamed(
-                                                  context, "/writeformpage");
-                                            }),
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: DCColor.dcyellow,
-                                            ),
-                                            child: Text(
-                                              "작성하기",
-                                              style: DCColor().boldFontBlack(
-                                                  size.width * 0.05,
-                                                  FontWeight.w700),
-                                            ))
-                                      ],
+                                builder: (context) => ShowDialogs(
+                                      title: "신청서를 먼저 작성해주세요",
+                                      text: "작성하기",
+                                      routes: "/writeformpage",
                                     ));
                           }
                         }),
@@ -315,6 +268,47 @@ class _ApplicationPageState extends State<ApplicationPage> {
           }
         },
       )),
+    );
+  }
+}
+
+class ShowDialogs extends StatefulWidget {
+  ShowDialogs(
+      {super.key,
+      required this.title,
+      required this.routes,
+      required this.text});
+  String title, routes, text;
+  @override
+  State<ShowDialogs> createState() => _ShowDialogsState();
+}
+
+class _ShowDialogsState extends State<ShowDialogs> {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      title: Text(
+        widget.title,
+        textAlign: TextAlign.center,
+        style: DCColor().boldFontBlack(size.width * 0.05, FontWeight.w700),
+      ),
+      actionsAlignment: MainAxisAlignment.center,
+      actions: [
+        ElevatedButton(
+            onPressed: (() {
+              Navigator.popAndPushNamed(context, widget.routes);
+            }),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: DCColor.dcyellow,
+            ),
+            child: Text(
+              widget.text,
+              style:
+                  DCColor().boldFontBlack(size.width * 0.05, FontWeight.w700),
+            ))
+      ],
     );
   }
 }
