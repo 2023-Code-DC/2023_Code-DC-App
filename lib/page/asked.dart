@@ -56,51 +56,6 @@ class _AskedPageState extends State<AskedPage> {
             },
           ),
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: DCColor.dcyellow,
-          elevation: 0.5,
-          focusElevation: 1,
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: Text("질문하기",
-                      textAlign: TextAlign.center,
-                      style: DCColor()
-                          .boldFontBlack(size.width * 0.05, FontWeight.w700)),
-                  actionsAlignment: MainAxisAlignment.spaceAround,
-                  actions: [
-                    ElevatedButton(
-                        onPressed: (() {}),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: DCColor.dcyellow,
-                        ),
-                        child: Text(
-                          "질문하기",
-                          style: DCColor().boldFontBlack(
-                              size.width * 0.05, FontWeight.w700),
-                        )),
-                    ElevatedButton(
-                        onPressed: (() {}),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: DCColor.dcyellow,
-                        ),
-                        child: Text(
-                          "문의 내역",
-                          style: DCColor().boldFontBlack(
-                              size.width * 0.05, FontWeight.w700),
-                        ))
-                  ],
-                );
-              },
-            );
-          },
-          label: Text(
-            "질문하기",
-            style: DCColor().boldFontBlack(16, FontWeight.w600),
-          ),
-        ),
       ),
     );
   }
