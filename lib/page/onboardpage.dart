@@ -34,27 +34,27 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           decoration: getPageDecoration(),
         ),
         PageViewModel(
-          title: "코드디씨의 운영방향",
-          body:
-              "기초향상 -> 개인 과제 -> 팀 프로젝트 순으로\n기초적인 프로그래밍 실력을 학습 한 이후\n실제 프로젝트를 진행합니다.",
-          image: Image.asset('assets/images/boarding2.png'),
-          decoration: getPageDecoration(),
-        ),
-        PageViewModel(
-          title: "류재희를 알고계신가요?",
-          body: "진짜 굉장할껄요?",
+          title: "CODE D.C는 어떤\n동아리 인가요?",
+          body: "CODE D.C 는 개발 동아리로 웹, 앱, AI, 디자인 등 개발과 관계있는 여러 분야를 공부하고 있습니다.",
           image: Image.asset('assets/images/boarding3.png'),
           decoration: getPageDecoration(),
         ),
+        PageViewModel(
+          title: "코드디씨의 운영방향",
+          body:
+              "기초향상 → 개인 과제 → 팀 프로젝트 순으로\n기초적인 프로그래밍 실력을 학습 한 이후\n실제 프로젝트를 진행합니다.",
+          image: Image.asset('assets/images/boarding2.png'),
+          decoration: getPageDecoration(),
+        ),
       ],
-      done: Text("완료", style: DCColor().boldFontWhite(18, FontWeight.w600)),
+      done: Text("완료", style: DCColor().boldFontBlack(18, FontWeight.w600)),
       onDone: () {
         Navigator.of(context).pushReplacementNamed("/mainpage");
       }, //done을 누르면 실행되는거(마지막 페이지에서 나옴)
-      globalBackgroundColor: const Color.fromRGBO(30, 35, 44, 1),
+      globalBackgroundColor: Colors.white,
       next: Text("다음",
           style:
-              DCColor().boldFontWhite(18, FontWeight.w600)), //Next 버튼 아이콘으로 됨
+              DCColor().boldFontBlack(18, FontWeight.w600)), //Next 버튼 아이콘으로 됨
       showSkipButton: false,
       showBackButton: true,
       baseBtnStyle: TextButton.styleFrom(
@@ -62,12 +62,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       ),
       back: Text(
         "이전",
-        style: DCColor().boldFontWhite(18, FontWeight.w600),
+        style: DCColor().boldFontBlack(18, FontWeight.w600),
       ), //스킵버튼 문구 지정
       dotsContainerDecorator: const BoxDecoration(
-          border: Border(top: BorderSide(color: Colors.white, width: 0.8))),
+          border: Border(top: BorderSide(color: DCColor.gitcolor, width: 0.8))),
       dotsDecorator: DotsDecorator(
-        color: Colors.white,
+        color: DCColor.gitcolor,
         size: const Size(10, 10), //점 사이즈
         activeSize: const Size(22, 10), //현재 활성화된 점 사이즈
         activeShape: RoundedRectangleBorder(
@@ -83,10 +83,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   PageDecoration getPageDecoration() {
     return const PageDecoration(
       titleTextStyle: TextStyle(
-          fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-      bodyTextStyle: TextStyle(fontSize: 18, color: Colors.white),
+          fontSize: 28, fontWeight: FontWeight.w700, color: Colors.black),
+      bodyTextStyle: TextStyle(
+          fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
       imagePadding: EdgeInsets.only(top: 40),
-      pageColor: Color.fromRGBO(30, 35, 44, 1),
+      pageColor: Colors.white,
     );
   }
 }
