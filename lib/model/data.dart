@@ -60,7 +60,10 @@ class Award {
     "year": 2021,
     "award": ["한빛v2 개발", "한국코드페어 금상(장관상)"]
   };
-  static Map year_2022 = {"year": 2022};
+  static Map year_2022 = {
+    "year": 2022,
+    "award": ["STAC 생활 정보 부문 우수상"]
+  };
   AllAward() {
     List<Map> ang = [
       year_2017,
