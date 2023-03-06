@@ -45,6 +45,7 @@ class UserData {
       "전화번호": number,
       "포부": "포부",
       "학번": "G1101",
+      "id": user?.uid.toString()
     };
     firestore.collection("Form").doc(user!.uid).set(form);
   }
