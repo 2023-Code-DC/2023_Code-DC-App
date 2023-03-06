@@ -60,13 +60,6 @@ class _BottomBarState extends State<BottomBar> {
                 tooltip: "",
                 backgroundColor: DCColor.gitcolor),
             BottomNavigationBarItem(
-                icon: Icon(widget.selectedIndex == 3
-                    ? Icons.group
-                    : Icons.group_outlined),
-                label: "c",
-                tooltip: "",
-                backgroundColor: DCColor.gitcolor),
-            BottomNavigationBarItem(
                 icon: Icon(widget.selectedIndex == 4
                     ? Icons.account_circle_sharp
                     : Icons.account_circle),

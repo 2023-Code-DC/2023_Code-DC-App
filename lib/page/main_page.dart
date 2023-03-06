@@ -75,7 +75,6 @@ class _MainPageState extends State<MainPage> {
                         const Homepage(),
                         AnnouncementPage(text: text, day: day, title: title),
                         const AskedPage(),
-                        const UserCheckPage(),
                         AccountPage()
                       ]),
                   bottomNavigationBar: BottomBar(
