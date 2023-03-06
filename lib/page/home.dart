@@ -1,13 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/data.dart';
 import 'package:code_dc/model/dcfirestore.dart';
-import 'package:code_dc/model/login_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
 import 'package:stroke_text/stroke_text.dart';
+import 'package:card_swiper/card_swiper.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -36,16 +35,16 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
     ad();
-    timer = Timer.periodic(Duration(seconds: 4), (timer) {
-      int currentPage = controller.page!.toInt();
-      int nextPage = currentPage + 1;
+    // timer = Timer.periodic(Duration(seconds: 4), (timer) {
+    //   int currentPage = controller.page!.toInt();
+    //   int nextPage = currentPage + 1;
 
-      if (nextPage > 4) {
-        nextPage = 0;
-      }
-      controller.animateToPage(nextPage,
-          duration: Duration(milliseconds: 400), curve: Curves.linear);
-    });
+    //   if (nextPage > 4) {
+    //     nextPage = 0;
+    //   }
+    //   controller.animateToPage(nextPage,
+    //       duration: Duration(milliseconds: 400), curve: Curves.linear);
+    // });
   }
 
   @override
@@ -73,7 +72,7 @@ class _HomepageState extends State<Homepage> {
           SizedBox(
             width: double.infinity,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
@@ -86,9 +85,10 @@ class _HomepageState extends State<Homepage> {
                         strokeWidth: 3,
                         textStyle: TextStyle(
                             shadows: [
-                              Shadow(
+                              const Shadow(
                                   color: DCColor.dcyellow, blurRadius: 23.59),
-                              Shadow(color: DCColor.dcyellow, blurRadius: 7.86)
+                              const Shadow(
+                                  color: DCColor.dcyellow, blurRadius: 7.86)
                             ],
                             fontSize: size.width * 0.06,
                             fontFamily: "inter",
@@ -98,70 +98,178 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ],
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(color: Colors.white, width: 0.2))),
-                  width: double.infinity,
-                  height: 130,
-                  child: PageView(
-                    controller: controller,
-                    children: award
-                        .asMap()
-                        .entries
-                        .map(
-                          (e) => Container(
-                              color: Color.fromRGBO(66, 115, 207, 1),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: Text(
-                                      e.value["year"].toString(),
-                                      textAlign: TextAlign.center,
-                                      style: DCColor()
-                                          .boldFontWhite(20, FontWeight.w700),
-                                    ),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: e.value["award"]
-                                        .toString()
-                                        .split(",")
-                                        .asMap()
-                                        .entries
-                                        .map((e) => Text(
+                SizedBox(
+                  height: 180,
+                  child: Swiper(
+                    autoplay: true,
+                    autoplayDelay: 3000,
+                    itemCount: award.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 30),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: index == 0
+                                ? const Color.fromRGBO(63, 63, 63, 1)
+                                : index == 1
+                                    ? const Color.fromRGBO(168, 56, 255, 1)
+                                    : index == 2
+                                        ? const Color.fromRGBO(168, 56, 255, 1)
+                                        : index == 3
+                                            ? const Color.fromRGBO(
+                                                34, 55, 167, 1)
+                                            : index == 4
+                                                ? const Color.fromRGBO(
+                                                    34, 167, 111, 1)
+                                                : index == 5
+                                                    ? const Color.fromRGBO(
+                                                        255, 63, 63, 1)
+                                                    : Colors.black,
+                          ),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                                height: 20,
+                              ),
+                              Text(
+                                award[index]["year"].toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: "inter",
+                                  fontWeight: FontWeight.w600,
+                                  height: 1,
+                                  color: index == 0
+                                      ? const Color.fromRGBO(169, 169, 169, 1)
+                                      : index == 1
+                                          ? Color.fromARGB(197, 175, 220, 235)
+                                          : index == 2
+                                              ? const Color.fromRGBO(
+                                                  197, 175, 220, 1)
+                                              : index == 3
+                                                  ? const Color.fromRGBO(
+                                                      186, 205, 253, 1)
+                                                  : index == 4
+                                                      ? const Color.fromRGBO(
+                                                          207, 246, 228, 1)
+                                                      : index == 5
+                                                          ? const Color
+                                                                  .fromRGBO(
+                                                              255, 180, 180, 1)
+                                                          : Colors.black,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                                height: 6,
+                              ),
+                              Column(
+                                children: award[index]["award"]
+                                    .toString()
+                                    .split(",")
+                                    .asMap()
+                                    .entries
+                                    .map((e) => Column(
+                                          children: [
+                                            Text(
                                               e.value
                                                   .replaceAll("[", " ")
                                                   .replaceAll("]", " "),
                                               textAlign: TextAlign.left,
-                                              style: DCColor().boldFontWhite(
-                                                  14, FontWeight.w500),
-                                            ))
-                                        .toList(),
-                                  )
-                                ],
-                              )),
-                        )
-                        .toList(),
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: "inter",
+                                                fontWeight: FontWeight.w600,
+                                                height: 1,
+                                                color: index == 0
+                                                    ? const Color.fromRGBO(
+                                                        169, 169, 169, 1)
+                                                    : index == 1
+                                                        ? const Color.fromRGBO(
+                                                            207, 159, 255, 1)
+                                                        : index == 2
+                                                            ? const Color
+                                                                    .fromRGBO(
+                                                                207,
+                                                                159,
+                                                                255,
+                                                                1)
+                                                            : index == 3
+                                                                ? const Color
+                                                                        .fromRGBO(
+                                                                    186,
+                                                                    205,
+                                                                    253,
+                                                                    1)
+                                                                : index == 4
+                                                                    ? const Color
+                                                                            .fromRGBO(
+                                                                        207,
+                                                                        246,
+                                                                        228,
+                                                                        1)
+                                                                    : index == 5
+                                                                        ? const Color.fromRGBO(
+                                                                            255,
+                                                                            180,
+                                                                            180,
+                                                                            1)
+                                                                        : Colors
+                                                                            .black,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 1,
+                                              height: 4,
+                                            )
+                                          ],
+                                        ))
+                                    .toList(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    viewportFraction: 0.8,
+                    scale: 0.9,
+                    controller: SwiperController(),
+                    pagination: const SwiperPagination(
+                        alignment: Alignment.bottomCenter,
+                        builder: DotSwiperPaginationBuilder(
+                            color: Colors.grey, activeColor: DCColor.dcyellow)),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(18, 10, 18, 10),
                   child: Column(
                     children: [
-                      SizedBox(
+                      const ApplicationContainer(),
+                      const SizedBox(
+                        width: 10,
                         height: 20,
-                        width: 1,
                       ),
-                      ApplicationContainer(),
-                      ElevatedButton(
-                          onPressed: (() {
-                            UserAuthentication().SignOutWithGoogle(context);
-                          }),
-                          child: const Text("로그아웃")),
+                      const NextType(),
+                      const SizedBox(
+                        width: 10,
+                        height: 50,
+                      ),
+                      Image.asset(
+                        "assets/images/운영방향1.png",
+                        scale: 1.2,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                        height: 50,
+                      ),
+                      Image.asset(scale: 1.2, "assets/images/운영방향2.png"),
+                      const SizedBox(
+                        width: 10,
+                        height: 50,
+                      ),
+                      Image.asset(scale: 1.2, "assets/images/운영방향3.png")
                     ],
                   ),
                 ),
@@ -190,19 +298,20 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
       height: size.height * 0.2,
       decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: Color.fromRGBO(193, 193, 193, 1), width: 2),
+          border: Border.all(
+              color: const Color.fromRGBO(193, 193, 193, 1), width: 2),
           borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
           Container(
             width: size.width * 0.32,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
               image: AssetImage(
                 "assets/images/logo.png",
               ),
             )),
-            constraints: BoxConstraints(minHeight: 100, minWidth: 100),
+            constraints: const BoxConstraints(minHeight: 100, minWidth: 100),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -215,7 +324,8 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
                     height: size.width * 0.07,
                     decoration: BoxDecoration(
                         border: Border.all(
-                            color: Color.fromRGBO(193, 193, 193, 1), width: 2),
+                            color: const Color.fromRGBO(193, 193, 193, 1),
+                            width: 2),
                         borderRadius: BorderRadius.circular(12)),
                     child: Center(
                       child: Text(
@@ -272,6 +382,41 @@ class _ApplicationContainerState extends State<ApplicationContainer> {
           )
         ],
       ),
+    );
+  }
+}
+
+class NextType extends StatelessWidget {
+  const NextType({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "앞으로의 운영 방향은?",
+          style: DCColor().boldFontBlack(25, FontWeight.w700),
+        ),
+        const SizedBox(
+          width: double.infinity,
+          height: 8,
+        ),
+        Text("코드디씨는 기초향상->개인과제->팀 프로젝트 순으로",
+            style: DCColor().boldFontBlack(14, FontWeight.w500)),
+        const SizedBox(
+          width: 10,
+          height: 4,
+        ),
+        Text("기초적인 프로그래밍 실력을 학습 한 이후",
+            style: DCColor().boldFontBlack(14, FontWeight.w500)),
+        const SizedBox(
+          width: 10,
+          height: 4,
+        ),
+        Text("실제 프로젝트를 진행합니다",
+            style: DCColor().boldFontBlack(14, FontWeight.w500))
+      ],
     );
   }
 }
