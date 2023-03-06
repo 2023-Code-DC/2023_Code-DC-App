@@ -52,6 +52,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   flutter_staggered_animations: ^1.1.1
   firebase_messaging: ^14.2.1
+  card_swiper: ^2.0.4
 
 dev_dependencies:
   flutter_test:
