@@ -1,10 +1,10 @@
 import 'package:code_dc/loading/main_loading.dart';
 import 'package:code_dc/login_register/login.dart';
 import 'package:code_dc/login_register/register.dart';
+import 'package:code_dc/model/data.dart';
 import 'package:code_dc/modify/modify_main.dart';
 import 'package:code_dc/page/application.dart';
 import 'package:code_dc/page/main_page.dart';
-import 'package:code_dc/testpage.dart';
 import 'package:code_dc/wirte/write_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +16,12 @@ import 'package:page_transition/page_transition.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 GoogleSignInAccount? _currentUser;
 User? user = FirebaseAuth.instance.currentUser;
 dynamic firstStrat;
+
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
   // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
@@ -67,8 +69,8 @@ void main() async {
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
       routes: {
-        '/homescreen': (BuildContext context) => const HomeScreen(),
-        '/mainloadingpage': ((context) => const MainLoadingPage()),
+        '/homescreen': (BuildContext context) => HomeScreen(),
+        '/mainloadingpage': ((context) => MainLoadingPage()),
       },
       onGenerateRoute: (settings) {
         switch (settings.name) {

@@ -19,7 +19,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
   User? user = FirebaseAuth.instance.currentUser;
   final firestore = FirebaseFirestore.instance;
   late DocumentSnapshot<Map<String, dynamic>> result;
-  DateTime dday = DateTime(2023, 4, 15);
+  DateTime dday = DateTime(2023, 3, 9);
   DateTime startday = DateTime(2023, 1, 20);
   double progbar = 0;
   Future getdata() async {
@@ -129,6 +129,10 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                         style: DCColor().boldFontBlack(
                                             size.width * 0.08, FontWeight.w800),
                                       ),
+                                      const SizedBox(
+                                        width: 1,
+                                        height: 8,
+                                      ),
                                       Text(
                                         "웹에서도 작성할 수 있어요!",
                                         style: DCColor().boldFontYellow(
@@ -225,7 +229,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                   size.width * 0.07, FontWeight.w700),
                             ),
                             Text(
-                              "~ 4/15",
+                              "~ 3/9",
                               style: DCColor().boldFontBlack(
                                   size.width * 0.065, FontWeight.w600),
                             ),
@@ -250,7 +254,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                   percent: progbar,
                                   barRadius: const Radius.circular(6),
                                   center: Text(
-                                    finday.toString().substring(0, 10),
+                                    finday.toString().substring(0, 9),
                                     style: DCColor().boldFontBlack(
                                         size.width * 0.033, FontWeight.w600),
                                   ),

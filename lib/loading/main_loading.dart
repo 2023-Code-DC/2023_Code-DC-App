@@ -6,7 +6,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class MainLoadingPage extends StatefulWidget {
   const MainLoadingPage({super.key});
-
   @override
   State<MainLoadingPage> createState() => _MainLoadingPageState();
 }

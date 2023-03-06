@@ -71,7 +71,7 @@ class _FormWritePageState extends State<FormWritePage> {
             child: Column(children: [
               const SizedBox(
                 width: 10,
-                height: 20,
+                height: 65,
               ),
               Text(
                 "정보를 입력해주세요",

@@ -62,7 +62,7 @@ class _WriteMeState extends State<WriteMe> {
                   children: [
                     const SizedBox(
                       width: 10,
-                      height: 20,
+                      height: 65,
                     ),
                     Text(
                       widget.name + "님에 대해 알 수 있도록\n자기소개를 작성해주세요!",

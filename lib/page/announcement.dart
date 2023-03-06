@@ -6,8 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AnnouncementPage extends StatefulWidget {
-  AnnouncementPage(
-      {super.key, required this.text, required this.title, required this.day});
+  AnnouncementPage({
+    super.key,
+    required this.text,
+    required this.title,
+    required this.day,
+  });
   List<String> text;
   List<String> title;
   List<String> day;

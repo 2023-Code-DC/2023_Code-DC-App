@@ -114,7 +114,7 @@ class _WriteStudentPageState extends State<WriteStudentPage> {
                         children: [
                           const SizedBox(
                             width: 10,
-                            height: 20,
+                            height: 65,
                           ),
                           Text(
                             "학번을 입력해주세요",

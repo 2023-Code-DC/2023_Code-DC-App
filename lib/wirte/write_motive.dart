@@ -62,7 +62,7 @@ class _WriteMotivePageState extends State<WriteMotivePage> {
                   children: [
                     const SizedBox(
                       width: 10,
-                      height: 20,
+                      height: 65,
                     ),
                     Text(
                       "CODE D.C. 동아리에\n지원하게된 동기를 작성해주세요!",

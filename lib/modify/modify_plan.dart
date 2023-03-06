@@ -75,7 +75,7 @@ class _ModifyPlanPageState extends State<ModifyPlanPage> {
                       height: 20,
                     ),
                     Text(
-                      "${widget.result["이름"]} 님의 포부를 작성해주세요!",
+                      "${widget.result["이름"]}님의 포부를 작성해주세요!",
                       textAlign: TextAlign.center,
                       style: DCColor()
                           .boldFontBlack(size.width * 0.06, FontWeight.w700),

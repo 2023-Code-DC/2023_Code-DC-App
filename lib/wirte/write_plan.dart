@@ -64,7 +64,7 @@ class _WritePlanPageState extends State<WritePlanPage> {
                   children: [
                     const SizedBox(
                       width: 10,
-                      height: 20,
+                      height: 65,
                     ),
                     Text(
                       "${widget.name} 님의 포부를 작성해주세요!",

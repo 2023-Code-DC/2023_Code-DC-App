@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
-
+  const LoginPage({super.key});
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
