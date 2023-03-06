@@ -13,7 +13,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key, required this.user});
+  MainPage({
+    super.key,
+    required this.user,
+  });
   final user;
   @override
   State<MainPage> createState() => _MainPageState();
@@ -27,6 +30,7 @@ class _MainPageState extends State<MainPage> {
   List<String> text = [];
   Future em() async {
     onboarding = await storage.read(key: "first");
+    print(onboarding);
     List<String> docs = [];
     QuerySnapshot<Map<String, dynamic>> doc =
         await firestore.collection('notice').get();
@@ -44,7 +48,11 @@ class _MainPageState extends State<MainPage> {
         day.add(result["날짜"]);
       }
     }
-    return onboarding == null ? "false" : "true";
+    return onboarding == null
+        ? "false"
+        : onboarding == false
+            ? "false"
+            : "true";
   }
 
   PageController pageController = PageController(
@@ -72,9 +80,13 @@ class _MainPageState extends State<MainPage> {
                       controller: pageController,
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        const Homepage(),
-                        AnnouncementPage(text: text, day: day, title: title),
-                        const AskedPage(),
+                        Homepage(),
+                        AnnouncementPage(
+                          text: text,
+                          day: day,
+                          title: title,
+                        ),
+                        AskedPage(),
                         AccountPage()
                       ]),
                   bottomNavigationBar: BottomBar(
