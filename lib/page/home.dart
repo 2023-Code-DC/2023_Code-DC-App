@@ -73,7 +73,7 @@ class _HomepageState extends State<Homepage> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(18, 10, 18, 10),
                       child: StrokeText(
-                        text: "CODE D.C. 동아리",
+                        text: "CODE D.C.",
                         strokeColor: DCColor.dcyellow,
                         strokeWidth: 3,
                         textStyle: TextStyle(
@@ -137,7 +137,7 @@ class _HomepageState extends State<Homepage> {
                                   color: index == 0
                                       ? const Color.fromRGBO(169, 169, 169, 1)
                                       : index == 1
-                                          ? Color.fromARGB(197, 175, 220, 235)
+                                          ? Color.fromRGBO(197, 175, 220, 1)
                                           : index == 2
                                               ? const Color.fromRGBO(
                                                   197, 175, 220, 1)
