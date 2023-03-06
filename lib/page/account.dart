@@ -1,5 +1,6 @@
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/login_model.dart';
+import 'package:code_dc/page/terms.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -61,7 +62,7 @@ class _AccountPageState extends State<AccountPage> {
                           ),
                           const SizedBox(
                             width: 1,
-                            height: 10,
+                            height: 20,
                           ),
                           Column(
                             children: [
@@ -69,6 +70,10 @@ class _AccountPageState extends State<AccountPage> {
                                 result["name"].toString(),
                                 style: DCColor().boldFontBlack(
                                     size.width * 0.06, FontWeight.w600),
+                              ),
+                              SizedBox(
+                                width: 1,
+                                height: 6,
                               ),
                               Text(user!.email.toString(),
                                   style: DCColor().boldFontBlack(
@@ -93,11 +98,13 @@ class _AccountPageState extends State<AccountPage> {
                                   child: TextButton(
                                     style: TextButton.styleFrom(
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(7),
-                                                topRight: Radius.circular(7))),
+                                            borderRadius:
+                                                BorderRadius.circular(0)),
                                         foregroundColor: DCColor.gitcolor),
-                                    onPressed: (() {}),
+                                    onPressed: (() {
+                                      Navigator.pushNamed(
+                                          context, "/applicationpage");
+                                    }),
                                     child: Row(
                                       children: [
                                         const Icon(
@@ -109,35 +116,7 @@ class _AccountPageState extends State<AccountPage> {
                                           height: 50,
                                         ),
                                         Text(
-                                          "정보",
-                                          style: DCColor().boldFontBlack(
-                                              20, FontWeight.w600),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Flexible(
-                                  fit: FlexFit.tight,
-                                  child: TextButton(
-                                    style: TextButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(0)),
-                                        foregroundColor: DCColor.gitcolor),
-                                    onPressed: (() {}),
-                                    child: Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.settings_outlined,
-                                          color: DCColor.gitcolor,
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                          height: 50,
-                                        ),
-                                        Text(
-                                          "설정",
+                                          "지원서 작성",
                                           style: DCColor().boldFontBlack(
                                               20, FontWeight.w600),
                                         )
@@ -223,7 +202,13 @@ class _AccountPageState extends State<AccountPage> {
                                             borderRadius:
                                                 BorderRadius.circular(0)),
                                         foregroundColor: DCColor.gitcolor),
-                                    onPressed: (() {}),
+                                    onPressed: (() {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => const Terms(),
+                                          ));
+                                    }),
                                     child: Row(
                                       children: [
                                         const Icon(
