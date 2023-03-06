@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk_talk.dart' as kakao;
+import 'package:url_launcher/url_launcher.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -152,7 +153,11 @@ class _AccountPageState extends State<AccountPage> {
                                             borderRadius:
                                                 BorderRadius.circular(0)),
                                         foregroundColor: DCColor.gitcolor),
-                                    onPressed: (() {}),
+                                    onPressed: (() {
+                                      launchUrl(
+                                        Uri.parse('https://codedc.co.kr/'),
+                                      );
+                                    }),
                                     child: Row(
                                       children: [
                                         const Icon(
