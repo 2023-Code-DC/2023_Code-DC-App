@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Quse {
   static const ques1 = "CODE D.C는 어떤 동아리인가요?";
   static const ques2 = "전공에 대한 지식이 없어도 괜찮을까요?";
