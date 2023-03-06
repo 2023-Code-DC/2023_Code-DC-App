@@ -129,7 +129,8 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                                 builder: ((context) =>
                                     ModifyMotivePage(result: result))));
                       }),
-                      child: DCColor().modifyMainMenuContainer("지원동기", size)),
+                      child:
+                          DCColor().modifyMainMenuContainer("지원동기 수정하기", size)),
                   const SizedBox(
                     width: 10,
                     height: 45,
