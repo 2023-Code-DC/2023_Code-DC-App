@@ -10,7 +10,6 @@ import 'package:card_swiper/card_swiper.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
-
   @override
   State<Homepage> createState() => _HomepageState();
 }
@@ -58,12 +57,6 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    emmmm() async {
-      final storage = new FlutterSecureStorage();
-
-      String? value = await storage.read(key: "login");
-    }
-
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: SingleChildScrollView(
@@ -254,22 +247,30 @@ class _HomepageState extends State<Homepage> {
                       const NextType(),
                       const SizedBox(
                         width: 10,
-                        height: 50,
+                        height: 20,
                       ),
-                      Image.asset(
-                        "assets/images/운영방향1.png",
-                        scale: 1.2,
+                      SizedBox(
+                        height: 350,
+                        child: Swiper(
+                          autoplay: true,
+                          autoplayDelay: 5000,
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 30),
+                              child: Image.asset(
+                                "assets/images/운영방향${index + 1}.png",
+                                scale: 1.3,
+                              ),
+                            );
+                          },
+                          pagination: const SwiperPagination(
+                              alignment: Alignment.bottomCenter,
+                              builder: DotSwiperPaginationBuilder(
+                                  color: Colors.grey,
+                                  activeColor: DCColor.dcyellow)),
+                        ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                        height: 50,
-                      ),
-                      Image.asset(scale: 1.2, "assets/images/운영방향2.png"),
-                      const SizedBox(
-                        width: 10,
-                        height: 50,
-                      ),
-                      Image.asset(scale: 1.2, "assets/images/운영방향3.png")
                     ],
                   ),
                 ),
