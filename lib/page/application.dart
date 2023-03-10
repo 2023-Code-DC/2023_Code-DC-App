@@ -27,6 +27,9 @@ class _ApplicationPageState extends State<ApplicationPage> {
     return result == null ? null : "true";
   }
 
+  final _toDay = DateTime.now();
+  String date = "20230309";
+
   @override
   void initState() {
     super.initState();
@@ -55,7 +58,8 @@ class _ApplicationPageState extends State<ApplicationPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    int difference =
+        int.parse(_toDay.difference(DateTime.parse(date)).inDays.toString());
     return SafeArea(
       child: Scaffold(
           body: FutureBuilder(
@@ -76,7 +80,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              icon: Icon(Icons.arrow_back)),
+                              icon: const Icon(Icons.arrow_back)),
                         ],
                       ),
                       Text(
@@ -90,7 +94,38 @@ class _ApplicationPageState extends State<ApplicationPage> {
                       ),
                       InkWell(
                         onTap: () {
-                          if (result.exists == true) {
+                          if (difference > 0) {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      title: Text(
+                                        "신청서 작성기간이 지났습니다. ",
+                                        textAlign: TextAlign.center,
+                                        style: DCColor().boldFontBlack(
+                                            size.width * 0.05, FontWeight.w700),
+                                      ),
+                                      actionsAlignment:
+                                          MainAxisAlignment.center,
+                                      actions: [
+                                        ElevatedButton(
+                                            onPressed: (() {
+                                              Navigator.pop(context);
+                                            }),
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: DCColor.dcyellow,
+                                            ),
+                                            child: Text(
+                                              "확인",
+                                              style: DCColor().boldFontBlack(
+                                                  size.width * 0.05,
+                                                  FontWeight.w700),
+                                            ))
+                                      ],
+                                    ));
+                          } else if (result.exists == true) {
                             showDialog(
                                 context: context,
                                 builder: (BuildContext context) => ShowDialogs(
@@ -156,13 +191,44 @@ class _ApplicationPageState extends State<ApplicationPage> {
                         onTap: (() {
                           if (result.exists == true) {
                             Navigator.pushNamed(context, "/modifyformpage");
-                          } else {
+                          } else if (difference < 0) {
                             showDialog(
                                 context: context,
                                 builder: (context) => ShowDialogs(
                                       title: "신청서를 먼저 작성해주세요",
                                       text: "작성하기",
                                       routes: "/writeformpage",
+                                    ));
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      title: Text(
+                                        "신청서 작성기간이 지났습니다. ",
+                                        textAlign: TextAlign.center,
+                                        style: DCColor().boldFontBlack(
+                                            size.width * 0.05, FontWeight.w700),
+                                      ),
+                                      actionsAlignment:
+                                          MainAxisAlignment.center,
+                                      actions: [
+                                        ElevatedButton(
+                                            onPressed: (() {
+                                              Navigator.pop(context);
+                                            }),
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: DCColor.dcyellow,
+                                            ),
+                                            child: Text(
+                                              "확인",
+                                              style: DCColor().boldFontBlack(
+                                                  size.width * 0.05,
+                                                  FontWeight.w700),
+                                            ))
+                                      ],
                                     ));
                           }
                         }),
@@ -243,6 +309,12 @@ class _ApplicationPageState extends State<ApplicationPage> {
                                 style: DCColor().boldFontBlack(
                                     size.width * 0.07, FontWeight.w600),
                               )
+                            else if (difference > 0)
+                              Text(
+                                "신청서 작성기간이 아닙니다",
+                                style: DCColor().boldFontBlack(
+                                    size.width * 0.07, FontWeight.w600),
+                              )
                             else
                               SizedBox(
                                 width: double.infinity,
@@ -277,12 +349,12 @@ class _ApplicationPageState extends State<ApplicationPage> {
 }
 
 class ShowDialogs extends StatefulWidget {
-  ShowDialogs(
+  const ShowDialogs(
       {super.key,
       required this.title,
       required this.routes,
       required this.text});
-  String title, routes, text;
+  final String title, routes, text;
   @override
   State<ShowDialogs> createState() => _ShowDialogsState();
 }
