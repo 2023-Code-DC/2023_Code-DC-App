@@ -56,7 +56,7 @@ class _WriteFinPageState extends State<WriteFinPage> {
                               textAlign: TextAlign.center,
                               speed: const Duration(milliseconds: 120)),
                         ]))
-                : SizedBox(),
+                : const SizedBox(),
             _b
                 ? DefaultTextStyle(
                     style: DCColor()
@@ -74,7 +74,7 @@ class _WriteFinPageState extends State<WriteFinPage> {
                               textAlign: TextAlign.center,
                               speed: const Duration(milliseconds: 120)),
                         ]))
-                : SizedBox(),
+                : const SizedBox(),
             const SizedBox(
               width: 10,
               height: 30,

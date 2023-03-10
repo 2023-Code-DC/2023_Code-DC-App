@@ -86,6 +86,7 @@ class _WriteMotivePageState extends State<WriteMotivePage> {
                           } else if (value.length < 10) {
                             return "그래도 10글자는 써야지 읽을 맛이 나지..";
                           }
+                          return null;
                         },
                         key: const ValueKey(1),
                         onChanged: ((value) {

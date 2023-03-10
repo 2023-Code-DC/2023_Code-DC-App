@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Quse {
   static const ques1 = "CODE D.C는 어떤 동아리인가요?";
   static const ques2 = "전공에 대한 지식이 없어도 괜찮을까요?";
@@ -66,7 +64,7 @@ class Award {
     "year": 2022,
     "award": ["STAC 생활 정보 부문 우수상"]
   };
-  AllAward() {
+  allAward() {
     List<Map> ang = [
       year_2017,
       year_2018_1,

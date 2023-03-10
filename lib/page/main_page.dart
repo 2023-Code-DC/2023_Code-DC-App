@@ -7,30 +7,26 @@ import 'package:code_dc/page/bottom_bar.dart';
 import 'package:code_dc/page/announcement.dart';
 import 'package:code_dc/page/home.dart';
 import 'package:code_dc/page/onboardpage.dart';
-import 'package:code_dc/page/user.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({
+  const MainPage({
     super.key,
-    required this.user,
   });
-  final user;
+
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
-  final storage = new FlutterSecureStorage();
+  final _selectedIndex = 0;
+  final storage = const FlutterSecureStorage();
   List<String> day = [];
   List<String> title = [];
   List<String> text = [];
   Future em() async {
-    onboarding = await storage.read(key: "first");
-    print(onboarding);
+    onboarding = (await storage.read(key: "first"))!;
     List<String> docs = [];
     QuerySnapshot<Map<String, dynamic>> doc =
         await firestore.collection('notice').get();
@@ -64,7 +60,7 @@ class _MainPageState extends State<MainPage> {
     em();
   }
 
-  var onboarding = null;
+  late String onboarding;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -80,14 +76,14 @@ class _MainPageState extends State<MainPage> {
                       controller: pageController,
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        Homepage(),
+                        const Homepage(),
                         AnnouncementPage(
                           text: text,
                           day: day,
                           title: title,
                         ),
-                        AskedPage(),
-                        AccountPage()
+                        const AskedPage(),
+                        const AccountPage()
                       ]),
                   bottomNavigationBar: BottomBar(
                       selectedIndex: _selectedIndex,
@@ -95,7 +91,7 @@ class _MainPageState extends State<MainPage> {
             } else if (snapshot.data == "false") {
               return const OnBoardingPage();
             } else {
-              return Scaffold(
+              return const Scaffold(
                 body: Center(
                     child: CircularProgressIndicator(
                   color: DCColor.dcyellow,

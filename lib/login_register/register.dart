@@ -56,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
       if (isValid) {
         _formKey.currentState!.save(); //텍스트 폼필드가 다 정상이면 작동
         UserAuthentication()
-            .CreateWithDevice(context, nametext, emailtext, passwordtext);
+            .createWithDevice(context, nametext, emailtext, passwordtext);
       }
     }
 
@@ -66,6 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
         if (value!.trim().isEmpty || value.length > 10) {
           return "10글자 아래로 똑바로 적으라우 ";
         }
+        return null;
       },
       key: const ValueKey(1),
       onChanged: ((value) {
@@ -112,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
       },
     );
 
-    Widget Emailfield = TextFormField(
+    Widget mailfield = TextFormField(
       cursorColor: DCColor.gitcolor,
       validator: (value) =>
           EmailValidator.validate(value!) ? null : "올바른 전자우편을 적으라우",
@@ -160,12 +161,13 @@ class _RegisterPageState extends State<RegisterPage> {
       focusNode: emailFocusNode,
     );
 
-    Widget Passwordfield = TextFormField(
+    Widget passwordfield = TextFormField(
       cursorColor: DCColor.gitcolor,
       validator: (value) {
         if (value!.trim().isEmpty || value.length < 8) {
           return "8글자 이상으로 적으라우 동무";
         }
+        return null;
       },
       key: const ValueKey(3),
       onChanged: ((value) {
@@ -214,7 +216,7 @@ class _RegisterPageState extends State<RegisterPage> {
       focusNode: pwFocusNode,
     );
 
-    Widget checkPasswordfield = TextFormField(
+    Widget checkpasswordfield = TextFormField(
       cursorColor: DCColor.gitcolor,
       validator: (value) {
         if (passwordtext == value) {
@@ -316,15 +318,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       const SizedBox(
                         height: 15,
                       ),
-                      Emailfield,
+                      mailfield,
                       const SizedBox(
                         height: 15,
                       ),
-                      Passwordfield,
+                      passwordfield,
                       const SizedBox(
                         height: 15,
                       ),
-                      checkPasswordfield,
+                      checkpasswordfield,
                     ],
                   ),
                   SizedBox(

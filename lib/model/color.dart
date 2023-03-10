@@ -92,7 +92,7 @@ class DCColor {
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
           width: 2,
-          color: const Color.fromRGBO(217, 217, 217, 1),
+          color: Color.fromRGBO(217, 217, 217, 1),
         ),
         borderRadius: BorderRadius.all(
           Radius.circular(8),

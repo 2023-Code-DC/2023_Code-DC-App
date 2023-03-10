@@ -1,4 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore_for_file: avoid_print
+
 import 'package:code_dc/model/color.dart';
 import 'package:code_dc/model/dcfirestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -15,25 +16,25 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
     'https://www.googleapis.com/auth/contacts.readonly',
   ],
 );
-final Already = SnackBar(
+final already = SnackBar(
   backgroundColor: DCColor.gitcolor,
   content: Text("이미 존재하는 전자우편이라우 동무",
       style: DCColor().boldFontWhite(20, FontWeight.w600)),
   duration: const Duration(seconds: 2),
 );
-final UserNotFound = SnackBar(
+final userNotFound = SnackBar(
   backgroundColor: DCColor.gitcolor,
   content: Text("동무는 당원신청서를 작성하라우",
       style: DCColor().boldFontWhite(20, FontWeight.w600)),
   duration: const Duration(seconds: 2),
 );
-final WrongPassword = SnackBar(
+final wrongPassword = SnackBar(
   backgroundColor: DCColor.gitcolor,
   content: Text("동무 통과암호가 틀리다우",
       style: DCColor().boldFontWhite(20, FontWeight.w600)),
   duration: const Duration(seconds: 2),
 );
-final InvalidEmail = SnackBar(
+final invalidEmail = SnackBar(
   backgroundColor: DCColor.gitcolor,
   content:
       Text("동무 이메일이 틀리다우", style: DCColor().boldFontWhite(20, FontWeight.w600)),
@@ -46,11 +47,15 @@ class UserAuthentication {
     await storage.write(key: "login", value: "google");
 
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
         await googleUser?.authentication;
-
+    print(user);
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
@@ -64,7 +69,7 @@ class UserAuthentication {
     });
   }
 
-  SignOutWithGoogle(BuildContext context) async {
+  signOutWithGoogle(BuildContext context) async {
     final authentication = FirebaseAuth.instance;
     String? logindata = await storage.read(key: 'login');
     if (logindata == "device") {
@@ -81,25 +86,23 @@ class UserAuthentication {
     await storage.delete(key: "login");
   }
 
-  CreateWithDevice(BuildContext context, String username, String userEmail,
+  createWithDevice(BuildContext context, String username, String userEmail,
       String userPassword) async {
     final authentication = FirebaseAuth.instance;
     try {
-      final newUser = await authentication.createUserWithEmailAndPassword(
-          email: userEmail, password: userPassword);
-      UserData().DeviceAddData(username, username, userEmail, "none");
+      UserData().deviceAddData(username, username, userEmail, "none");
 
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
-        ScaffoldMessenger.of(context).showSnackBar(Already);
+        ScaffoldMessenger.of(context).showSnackBar(already);
       } else {
         print(e);
       }
     }
   }
 
-  SiginInWithDevice(BuildContext context, String email, String password) async {
+  siginInWithDevice(BuildContext context, String email, String password) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
@@ -111,11 +114,11 @@ class UserAuthentication {
       await storage.write(key: "login", value: "device");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(UserNotFound);
+        ScaffoldMessenger.of(context).showSnackBar(userNotFound);
       } else if (e.code == 'wrong-password') {
-        ScaffoldMessenger.of(context).showSnackBar(WrongPassword);
+        ScaffoldMessenger.of(context).showSnackBar(wrongPassword);
       } else if (e.code == 'invalid-email') {
-        ScaffoldMessenger.of(context).showSnackBar(InvalidEmail);
+        ScaffoldMessenger.of(context).showSnackBar(invalidEmail);
       }
     }
   }

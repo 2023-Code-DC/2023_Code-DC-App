@@ -3,7 +3,6 @@ import 'package:code_dc/model/data.dart';
 import 'package:code_dc/model/dcfirestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:async';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -20,7 +19,7 @@ class _HomepageState extends State<Homepage> {
   PageController controller = PageController(
     initialPage: 0,
   );
-  List award = Award().AllAward();
+  List award = Award().allAward();
 
   ad() async {
     var result = await firestore
@@ -69,6 +68,7 @@ class _HomepageState extends State<Homepage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(18, 10, 18, 10),
@@ -77,11 +77,10 @@ class _HomepageState extends State<Homepage> {
                         strokeColor: DCColor.dcyellow,
                         strokeWidth: 3,
                         textStyle: TextStyle(
-                            shadows: [
-                              const Shadow(
+                            shadows: const [
+                              Shadow(
                                   color: DCColor.dcyellow, blurRadius: 23.59),
-                              const Shadow(
-                                  color: DCColor.dcyellow, blurRadius: 7.86)
+                              Shadow(color: DCColor.dcyellow, blurRadius: 7.86)
                             ],
                             fontSize: size.width * 0.06,
                             fontFamily: "inter",
@@ -137,7 +136,8 @@ class _HomepageState extends State<Homepage> {
                                   color: index == 0
                                       ? const Color.fromRGBO(169, 169, 169, 1)
                                       : index == 1
-                                          ? Color.fromRGBO(197, 175, 220, 1)
+                                          ? const Color.fromRGBO(
+                                              197, 175, 220, 1)
                                           : index == 2
                                               ? const Color.fromRGBO(
                                                   197, 175, 220, 1)
@@ -239,15 +239,19 @@ class _HomepageState extends State<Homepage> {
                   padding: const EdgeInsets.fromLTRB(18, 10, 18, 10),
                   child: Column(
                     children: [
+                      const SizedBox(
+                        width: 10,
+                        height: 30,
+                      ),
                       const ApplicationContainer(),
                       const SizedBox(
                         width: 10,
-                        height: 20,
+                        height: 40,
                       ),
                       const NextType(),
                       const SizedBox(
                         width: 10,
-                        height: 20,
+                        height: 30,
                       ),
                       SizedBox(
                         height: 350,

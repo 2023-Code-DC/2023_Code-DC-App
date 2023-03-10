@@ -1,7 +1,5 @@
 import 'package:code_dc/model/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class Terms extends StatelessWidget {
   const Terms({super.key});

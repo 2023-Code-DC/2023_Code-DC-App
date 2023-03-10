@@ -52,13 +52,14 @@ class _LoginPageState extends State<LoginPage> {
       final isValid = _formKey.currentState!.validate();
       if (isValid) {
         _formKey.currentState!.save();
-        _pwController.text = "";
+
         UserAuthentication()
-            .SiginInWithDevice(context, emailtext, passwordtext);
+            .siginInWithDevice(context, emailtext, passwordtext);
+        _pwController.text = "";
       }
     }
 
-    Widget Emailfield = TextFormField(
+    Widget emailfield = TextFormField(
       cursorColor: DCColor.gitcolor,
       validator: (value) =>
           EmailValidator.validate(value!) ? null : "올바른 전자우편을 적으라우",
@@ -105,12 +106,13 @@ class _LoginPageState extends State<LoginPage> {
         FocusScope.of(context).requestFocus(myFocusNode);
       },
     );
-    Widget Passwordfield = TextFormField(
+    Widget passwordfield = TextFormField(
       cursorColor: DCColor.gitcolor,
       validator: (value) {
         if (value!.trim().isEmpty || value.length < 8) {
           return "8글자 이상으로 적으라우 동무";
         }
+        return null;
       },
       key: const ValueKey(2),
       onChanged: ((value) {
@@ -179,11 +181,11 @@ class _LoginPageState extends State<LoginPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Emailfield,
+                    emailfield,
                     const SizedBox(
                       height: 15,
                     ),
-                    Passwordfield,
+                    passwordfield,
                     Column(
                       children: [
                         const SizedBox(
@@ -192,7 +194,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         InkWell(
                           onTap: () {
-                            print(user);
                             Navigator.pushNamed(context, '/registerpage');
                           },
                           child: Text(

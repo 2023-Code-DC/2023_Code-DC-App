@@ -4,8 +4,8 @@ import 'package:code_dc/model/dcfirestore.dart';
 import 'package:flutter/material.dart';
 
 class ModifyStudentPage extends StatefulWidget {
-  ModifyStudentPage({super.key, required this.result});
-  DocumentSnapshot<Map<String, dynamic>> result;
+  const ModifyStudentPage({super.key, required this.result});
+  final DocumentSnapshot<Map<String, dynamic>> result;
   @override
   State<ModifyStudentPage> createState() => _ModifyStudentPageState();
 }
@@ -56,7 +56,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
     }
 
     if (int.parse(number) < 10) {
-      schoolid = id + "0" + number.toString();
+      schoolid = "${id}0$number";
     } else {
       schoolid = id + number.toString();
     }
@@ -67,7 +67,6 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
     super.initState();
     myFocusNode = FocusNode();
     _scrollController = ScrollController();
-    String id = widget.result["학번"];
     String myclass = widget.result["학번"].toString().substring(0, 1);
     String grade = widget.result["학번"].toString().substring(1, 2);
     String classnumber = widget.result["학번"].toString().substring(2, 3);
@@ -146,7 +145,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              icon: Icon(Icons.arrow_back)),
+                              icon: const Icon(Icons.arrow_back)),
                         ],
                       ),
                       const SizedBox(
@@ -294,7 +293,7 @@ class _ModifyStudentPageState extends State<ModifyStudentPage> {
                         },
                         key: const ValueKey(4),
                         onChanged: ((value) {
-                          if (!value.isEmpty) {
+                          if (value.isNotEmpty) {
                             setState(() {
                               number = int.parse(value).toString();
                             });

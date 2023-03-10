@@ -4,8 +4,8 @@ import 'package:code_dc/model/dcfirestore.dart';
 import 'package:flutter/material.dart';
 
 class ModifyMePage extends StatefulWidget {
-  ModifyMePage({super.key, required this.result});
-  DocumentSnapshot<Map<String, dynamic>> result;
+  const ModifyMePage({super.key, required this.result});
+  final DocumentSnapshot<Map<String, dynamic>> result;
   @override
   State<ModifyMePage> createState() => _ModifyMePageState();
 }
@@ -67,7 +67,7 @@ class _ModifyMePageState extends State<ModifyMePage> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Icon(Icons.arrow_back)),
+                            icon: const Icon(Icons.arrow_back)),
                       ],
                     ),
                     const SizedBox(

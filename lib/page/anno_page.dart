@@ -2,11 +2,11 @@ import 'package:code_dc/model/color.dart';
 import 'package:flutter/material.dart';
 
 class AnnouncementDetailPage extends StatefulWidget {
-  AnnouncementDetailPage(
+  const AnnouncementDetailPage(
       {super.key, required this.title, required this.text, required this.day});
-  String title;
-  String text;
-  String day;
+  final String title;
+  final String text;
+  final String day;
 
   @override
   State<AnnouncementDetailPage> createState() => _AnnouncementDetailPageState();
@@ -17,7 +17,7 @@ class _AnnouncementDetailPageState extends State<AnnouncementDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 1,
         title: Text(
@@ -27,7 +27,7 @@ class _AnnouncementDetailPageState extends State<AnnouncementDetailPage> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
+        padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Padding(
             padding: const EdgeInsets.only(left: 4.0, right: 4.0),
@@ -38,7 +38,7 @@ class _AnnouncementDetailPageState extends State<AnnouncementDetailPage> {
                   widget.title,
                   style: DCColor().boldFontBlack(22, FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                   width: 6,
                 ),
@@ -46,7 +46,7 @@ class _AnnouncementDetailPageState extends State<AnnouncementDetailPage> {
                   widget.day,
                   style: DCColor().blodFontgrey(12, FontWeight.w500),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                   height: 30,
                 )
@@ -58,7 +58,7 @@ class _AnnouncementDetailPageState extends State<AnnouncementDetailPage> {
             height: 1,
             color: Colors.grey,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
             height: 30,
           ),

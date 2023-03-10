@@ -65,7 +65,7 @@ class _WriteMeState extends State<WriteMe> {
                       height: 65,
                     ),
                     Text(
-                      widget.name + "님에 대해 알 수 있도록\n자기소개를 작성해주세요!",
+                      "${widget.name} 님에 대해 알 수 있도록\n자기소개를 작성해주세요!",
                       textAlign: TextAlign.center,
                       style: DCColor()
                           .boldFontBlack(size.width * 0.066, FontWeight.w700),
@@ -77,7 +77,7 @@ class _WriteMeState extends State<WriteMe> {
                     TextFormField(
                         onTap: () {
                           _scrollController.animateTo(125.0,
-                              duration: Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 500),
                               curve: Curves.ease);
                         },
                         validator: (value) {
@@ -86,6 +86,7 @@ class _WriteMeState extends State<WriteMe> {
                           } else if (value.length < 10) {
                             return "그래도 10글자는 써야지 읽을 맛이 나지..";
                           }
+                          return null;
                         },
                         key: const ValueKey(1),
                         onChanged: ((value) {

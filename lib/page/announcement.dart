@@ -29,25 +29,24 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
     for (var index in doc.docs) {
       docs.add(index.id);
     }
-    List<String> notice_text = [];
-    List<String> notice_day = [];
-    List<String> notice_title = [];
+    List<String> noticeText = [];
+    List<String> noticeDay = [];
+    List<String> noticeTitle = [];
     for (var i = 0; i < docs.length; i++) {
       DocumentSnapshot<Map<String, dynamic>> result =
           await firestore.collection('notice').doc(docs[i]).get();
-      notice_text.add(result["내용"]);
-      notice_day.add(result["날짜"]);
-      notice_title.add(result["제목"]);
-      widget.text = notice_text;
-      widget.day = notice_day;
-      widget.title = notice_title;
+      noticeText.add(result["내용"]);
+      noticeDay.add(result["날짜"]);
+      noticeTitle.add(result["제목"]);
+      widget.text = noticeText;
+      widget.day = noticeDay;
+      widget.title = noticeTitle;
     }
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -95,7 +94,7 @@ class _AnnouncementPageState extends State<AnnouncementPage> {
                           day,
                           style: DCColor().blodFontgrey(12, FontWeight.w500),
                         ),
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.chevron_right,
                           color: Colors.black,
                           size: 30,

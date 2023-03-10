@@ -24,7 +24,7 @@ class _FormWritePageState extends State<FormWritePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late FocusNode myFocusNode;
   late FocusNode numberFocusNode;
-  var maskFormatter = new MaskTextInputFormatter(
+  var maskFormatter = MaskTextInputFormatter(
       mask: '###-####-####',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
@@ -233,7 +233,7 @@ class _FormWritePageState extends State<FormWritePage> {
                               backgroundColor:
                                   name.length > 1 && number.length > 12
                                       ? DCColor.dcyellow
-                                      : Color.fromRGBO(217, 217, 217, 1),
+                                      : const Color.fromRGBO(217, 217, 217, 1),
                               minimumSize: const Size(330, 56),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),

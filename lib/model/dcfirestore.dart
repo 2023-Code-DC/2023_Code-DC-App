@@ -20,7 +20,7 @@ class UserData {
     firestore.collection("userdata").doc(user.uid).set(userdata);
   }
 
-  DeviceAddData(
+  deviceAddData(
     String displayName,
     String name,
     String email,

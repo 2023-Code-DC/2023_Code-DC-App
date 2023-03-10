@@ -59,7 +59,7 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(Icons.arrow_back)),
+                          icon: const Icon(Icons.arrow_back)),
                     ],
                   ),
                   const SizedBox(
@@ -76,7 +76,7 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                     height: 40,
                   ),
                   InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
                       onTap: (() {
                         Navigator.push(
                             context,
@@ -91,7 +91,7 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                     height: 45,
                   ),
                   InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
                       onTap: (() {
                         Navigator.push(
                             context,
@@ -106,7 +106,7 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                     height: 45,
                   ),
                   InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
                       onTap: (() {
                         Navigator.push(
                             context,
@@ -121,7 +121,7 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                     height: 45,
                   ),
                   InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
                       onTap: (() {
                         Navigator.push(
                             context,
@@ -136,7 +136,7 @@ class _ModifyFormPageState extends State<ModifyFormPage> {
                     height: 45,
                   ),
                   InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
                       onTap: (() {
                         Navigator.push(
                             context,

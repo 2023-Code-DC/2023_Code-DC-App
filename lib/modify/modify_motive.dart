@@ -4,8 +4,8 @@ import 'package:code_dc/model/dcfirestore.dart';
 import 'package:flutter/material.dart';
 
 class ModifyMotivePage extends StatefulWidget {
-  ModifyMotivePage({super.key, required this.result});
-  DocumentSnapshot<Map<String, dynamic>> result;
+  const ModifyMotivePage({super.key, required this.result});
+  final DocumentSnapshot<Map<String, dynamic>> result;
   @override
   State<ModifyMotivePage> createState() => _ModifyMotivePageState();
 }
@@ -67,7 +67,7 @@ class _ModifyMotivePageState extends State<ModifyMotivePage> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Icon(Icons.arrow_back)),
+                            icon: const Icon(Icons.arrow_back)),
                       ],
                     ),
                     const SizedBox(
@@ -87,7 +87,7 @@ class _ModifyMotivePageState extends State<ModifyMotivePage> {
                     TextFormField(
                         onTap: () {
                           _scrollController.animateTo(125.0,
-                              duration: Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 500),
                               curve: Curves.ease);
                         },
                         validator: (value) {
@@ -96,6 +96,7 @@ class _ModifyMotivePageState extends State<ModifyMotivePage> {
                           } else if (value.length < 10) {
                             return "그래도 10글자는 써야지 읽을 맛이 나지..";
                           }
+                          return null;
                         },
                         key: const ValueKey(1),
                         onChanged: ((value) {

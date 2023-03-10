@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ModifyNamePage extends StatefulWidget {
-  ModifyNamePage({super.key, required this.result});
-  DocumentSnapshot<Map<String, dynamic>> result;
+  const ModifyNamePage({super.key, required this.result});
+  final DocumentSnapshot<Map<String, dynamic>> result;
 
   @override
   State<ModifyNamePage> createState() => _ModifyNamePageState();
@@ -23,7 +23,7 @@ class _ModifyNamePageState extends State<ModifyNamePage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late FocusNode myFocusNode;
   late FocusNode numberFocusNode;
-  var maskFormatter = new MaskTextInputFormatter(
+  var maskFormatter = MaskTextInputFormatter(
       mask: '###-####-####',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
@@ -75,7 +75,7 @@ class _ModifyNamePageState extends State<ModifyNamePage> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.arrow_back)),
+                      icon: const Icon(Icons.arrow_back)),
                 ],
               ),
               const SizedBox(
@@ -106,6 +106,7 @@ class _ModifyNamePageState extends State<ModifyNamePage> {
                           if (value!.trim().isEmpty || value.length < 2) {
                             return "이름을 적어주세요";
                           }
+                          return null;
                         },
                         key: const ValueKey(1),
                         onChanged: ((value) {
@@ -168,6 +169,7 @@ class _ModifyNamePageState extends State<ModifyNamePage> {
                           if (value!.trim().isEmpty || value.length < 10) {
                             return "올바른 전화번호를 입력해주세요";
                           }
+                          return null;
                         },
                         key: const ValueKey(2),
                         onChanged: ((value) {
@@ -236,7 +238,7 @@ class _ModifyNamePageState extends State<ModifyNamePage> {
                               backgroundColor:
                                   name.length > 1 && number.length > 12
                                       ? DCColor.dcyellow
-                                      : Color.fromRGBO(217, 217, 217, 1),
+                                      : const Color.fromRGBO(217, 217, 217, 1),
                               minimumSize: const Size(330, 56),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
