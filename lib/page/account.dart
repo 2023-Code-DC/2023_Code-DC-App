@@ -4,7 +4,6 @@ import 'package:code_dc/page/terms.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk_talk.dart' as kakao;
 import 'package:url_launcher/url_launcher.dart';
 
 class AccountPage extends StatefulWidget {
@@ -71,7 +70,7 @@ class _AccountPageState extends State<AccountPage> {
                                 style: DCColor().boldFontBlack(
                                     size.width * 0.06, FontWeight.w600),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 1,
                                 height: 6,
                               ),
@@ -165,15 +164,10 @@ class _AccountPageState extends State<AccountPage> {
                                                 BorderRadius.circular(0)),
                                         foregroundColor: DCColor.gitcolor),
                                     onPressed: (() async {
-                                      Uri url = await kakao.TalkApi.instance
-                                          .addChannelUrl('_jFsFxj');
-
-                                      // 연결 페이지 URL을 브라우저에서 열기
-                                      try {
-                                        await kakao.launchBrowserTab(url);
-                                      } catch (error) {
-                                        print('카카오톡 채널 추가 실패 $error');
-                                      }
+                                      launchUrl(
+                                        Uri.parse(
+                                            'https://code-dc.channel.io/'),
+                                      );
                                     }),
                                     child: Row(
                                       children: [
@@ -232,14 +226,14 @@ class _AccountPageState extends State<AccountPage> {
                                   fit: FlexFit.tight,
                                   child: TextButton(
                                     style: TextButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
+                                        shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.only(
                                                 bottomLeft: Radius.circular(7),
                                                 topLeft: Radius.circular(7))),
                                         foregroundColor: DCColor.gitcolor),
                                     onPressed: (() {
                                       UserAuthentication()
-                                          .SignOutWithGoogle(context);
+                                          .signOutWithGoogle(context);
                                       setState(() {});
                                     }),
                                     child: Row(
